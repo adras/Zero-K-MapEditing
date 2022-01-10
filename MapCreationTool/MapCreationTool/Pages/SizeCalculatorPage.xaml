@@ -21,6 +21,7 @@
                 <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0">Ingame Map Size X</Label>
@@ -37,6 +38,9 @@
 
             <Label Grid.Row="4" Grid.Column="0">DiffuseMap size</Label>
             <TextBox Grid.Row="4" Grid.Column="1" Name="tbDiffuseMapSize" ></TextBox>
+
+            <Label Grid.Row="5" Grid.Column="0">GrassMap size</Label>
+            <TextBox Grid.Row="5" Grid.Column="1" Name="tbGrassMapSize" ></TextBox>
         </Grid>
     </Grid>
 </Page>

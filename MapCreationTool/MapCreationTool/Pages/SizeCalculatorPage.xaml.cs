@@ -61,6 +61,7 @@ namespace MapCreationTool
             tbDiffuseMapSize.Text = $"{mapSizeX * 512} / {mapSizeY * 512}";
             tbHeightMapSize.Text = $"{mapSizeX * 64 + 1} / {mapSizeY * 64 + 1}";
             tbMetalMapSize.Text = $"{mapSizeX * 32} / {mapSizeY * 32}";
+            tbGrassMapSize.Text = $"{mapSizeX * 16} / {mapSizeY * 16}";
         }
 
     }
