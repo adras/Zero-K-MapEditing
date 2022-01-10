@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace MapCreationTool
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UpdateMapPage.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class UpdateMapPage : Page
     {
-        public MainWindow()
+        public UpdateMapPage()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
-    
         }
     }
 }

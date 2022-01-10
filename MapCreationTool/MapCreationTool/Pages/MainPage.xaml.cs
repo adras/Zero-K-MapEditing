@@ -16,15 +16,24 @@ using System.Windows.Shapes;
 namespace MapCreationTool
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class MainPage : Page
     {
-        public MainWindow()
+        public MainPage()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
-    
+        }
+
+        private void btnCreateMap_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Pages/CreateMapPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void btnUpdateMap_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Pages/UpdateMapPage.xaml", UriKind.RelativeOrAbsolute));
+
         }
     }
 }
