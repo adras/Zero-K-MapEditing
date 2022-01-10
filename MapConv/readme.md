@@ -1,0 +1,1 @@
+Taken from https://springrts.com/dl/buildbot/default/develop/105.0.1-70-gcdb5b8b/win64/spring_%7bdevelop%7d105.0.1-70-gcdb5b8b_win64-minimal-portable.7z
