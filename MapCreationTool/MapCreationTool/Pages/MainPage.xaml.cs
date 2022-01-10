@@ -33,12 +33,11 @@ namespace MapCreationTool
         private void btnUpdateMap_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("Pages/UpdateMapPage.xaml", UriKind.RelativeOrAbsolute));
-
         }
 
         private void btnSizeCalculator_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("Pages/SizeCalculatorPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

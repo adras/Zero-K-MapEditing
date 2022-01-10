@@ -35,8 +35,8 @@
             <Label Grid.Row="3" Grid.Column="0">MetalMap size</Label>
             <TextBox Grid.Row="3" Grid.Column="1" Name="tbMetalMapSize" ></TextBox>
 
-            <Label Grid.Row="3" Grid.Column="0">DiffuseMap size</Label>
-            <TextBox Grid.Row="3" Grid.Column="1" Name="tbDiffuseMapSize" ></TextBox>
+            <Label Grid.Row="4" Grid.Column="0">DiffuseMap size</Label>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="tbDiffuseMapSize" ></TextBox>
         </Grid>
     </Grid>
 </Page>
