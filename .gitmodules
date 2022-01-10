@@ -1,0 +1,3 @@
+[submodule "SpringMapConvNG"]
+	path = SpringMapConvNG
+	url = git://github.com/spring/SpringMapConvNG.git
