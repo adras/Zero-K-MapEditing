@@ -7,4 +7,47 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Tools\**" />
+    <EmbeddedResource Remove="Tools\**" />
+    <None Remove="Tools\**" />
+    <Page Remove="Tools\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\LuaGaia\effects\drop.png" Link="Tools\Map-Blueprint\mapcontainer.sdd\LuaGaia\effects\drop.png">      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\LuaGaia\effects\snowflake.png" Link="Tools\Map-Blueprint\mapcontainer.sdd\LuaGaia\effects\snowflake.png" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\detailtex.bmp"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\detailtex.bmp" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\detailtexbright.bmp"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\detailtexbright.bmp" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\detailtexdark.bmp"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\detailtexdark.bmp" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\realdet.bmp"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\realdet.bmp" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\realdetnight.bmp"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\realdetnight.bmp" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\waterbump.png"   Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\waterbump.png"  >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\waterbump1.png"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\waterbump1.png" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\waterbump2.png"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\waterbump2.png" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\waterbumpx.png"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\waterbumpx.png" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\waterbump_1.png"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\waterbump_1.png" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\waterbump_2.png"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\waterbump_2.png" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maps\waterbump_3.png"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maps\waterbump_3.png" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\LuaGaia\draw.lua" Link="Tools\Map-Blueprint\mapcontainer.sdd\LuaGaia\draw.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\LuaGaia\Gadgets\FP_featureplacer.lua" Link="Tools\Map-Blueprint\mapcontainer.sdd\LuaGaia\Gadgets\FP_featureplacer.lua"   >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\LuaGaia\Gadgets\gui_dualfog_gadget.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\LuaGaia\Gadgets\gui_dualfog_gadget.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\LuaGaia\Gadgets\precipitation.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\LuaGaia\Gadgets\precipitation.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\LuaGaia\main.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\LuaGaia\main.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapconfig\featureplacer\config.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\mapconfig\featureplacer\config.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapconfig\featureplacer\set.lua"     Link="Tools\Map-Blueprint\mapcontainer.sdd\mapconfig\featureplacer\set.lua"    >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\10_dawn.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\10_dawn.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\10_night.lua" Link="Tools\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\10_night.lua">      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\20_snow.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\20_snow.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\70_extractorradius.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\70_extractorradius.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\70_invert_heightmap.lua" Link="Tools\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\70_invert_heightmap.lua">      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\70_metal.lua" Link="Tools\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\70_metal.lua">      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\70_tidal.lua" Link="Tools\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\70_tidal.lua">      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\70_wind.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\mapconfig\mapinfo\70_wind.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\maphelper\mapinfo.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\maphelper\mapinfo.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapinfo.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\mapinfo.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\mapcontainer.sdd\mapoptions.lua"  Link="Tools\Map-Blueprint\mapcontainer.sdd\mapoptions.lua" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+    <Content Include="..\..\Map-Blueprint\README"  Link="Tools\Map-Blueprint\README" >      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>    </Content>
+  </ItemGroup>
+
 </Project>
