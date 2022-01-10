@@ -7,36 +7,37 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using Forms = System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace MapCreationTool
 {
     /// <summary>
-    /// Interaction logic for MainPage.xaml
+    /// Interaction logic for CreateMapPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class SizeCalculatorPage : Page
     {
-        public MainPage()
+        public SizeCalculatorPage()
         {
             InitializeComponent();
         }
 
-        private void btnCreateMap_Click(object sender, RoutedEventArgs e)
+        private void tbMapSizeX_TextChanged(object sender, TextChangedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("Pages/CreateMapPage.xaml", UriKind.RelativeOrAbsolute));
+            CalculateMapSize();
         }
 
-        private void btnUpdateMap_Click(object sender, RoutedEventArgs e)
+        private void CalculateMapSize()
         {
-            NavigationService.Navigate(new Uri("Pages/UpdateMapPage.xaml", UriKind.RelativeOrAbsolute));
-
+            CalculateMapSize();
         }
 
-        private void btnSizeCalculator_Click(object sender, RoutedEventArgs e)
+        private void tbMapSizeY_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

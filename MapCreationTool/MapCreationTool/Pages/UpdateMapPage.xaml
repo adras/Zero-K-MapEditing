@@ -9,6 +9,22 @@
       Title="UpdateMapPage">
 
     <Grid>
-        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="25"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0">Map Working Directory:</Label>
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="tbMapWorkingDir" TextChanged="tbMapWorkingDir_TextChanged"></TextBox>
+            <Button Name="btnSelectWorkingDir" Grid.Row="0" Grid.Column="2" Click="btnSelectWorkingDir_Click">...</Button>
+        </Grid>
     </Grid>
 </Page>

@@ -13,9 +13,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Name="btnCreateMap" Grid.Column="0" Height="150" Click="btnCreateMap_Click">Create Map</Button>
             <Button Name="btnUpdateMap" Grid.Column="1" Height="150" Click="btnUpdateMap_Click">Update Map</Button>
+            <Button Name="btnSizeCalculator" Grid.Column="3" Height="150" Click="btnSizeCalculator_Click">Calculate Map sizes</Button>
         </Grid>
 
     </Grid>

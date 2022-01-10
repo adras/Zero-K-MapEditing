@@ -31,7 +31,7 @@
             <Button Name="btnSelectWorkingDir" Grid.Row="0" Grid.Column="2" Click="btnSelectWorkingDir_Click">...</Button>
 
             <Label Grid.Row="1">Map Name:</Label>
-            <TextBox Grid.Row="1" Grid.Column="1">MyTestMap</TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="tbMapName">MyTestMap</TextBox>
 
             <Button Grid.Row="3" Grid.ColumnSpan="3" Name="btnCreateMap" Click="btnCreateMap_Click">Create Map</Button>
         </Grid>
