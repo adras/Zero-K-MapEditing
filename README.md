@@ -35,3 +35,6 @@ Details: https://springrts.com/wiki/Mapdev:metal
 Details: https://springrts.com/wiki/Mapdev:diffuse
 * Same steps as for heightmap, but use Formula: pixels = MapSize * 512 instead
 * Image Properties: RGBA, 8bpp
+
+# Better map compile tool
+https://github.com/Beherith/springrts_smf_compiler
