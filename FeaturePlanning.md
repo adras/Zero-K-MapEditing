@@ -25,3 +25,8 @@ Contains a list of settings like:
 * Gamedirectory for deployment
 * Names of images files for grass, diffuse, height etc image files
 
+# TODO
+* Add image library to allow for creation of images during map creation
+* Define Project-Settings file with read/write/edit support
+* Implement pymapcomp to allow for map compilation
+* Redesign Update/deploy Map dialog to embedd required features
