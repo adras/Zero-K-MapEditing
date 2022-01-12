@@ -1,0 +1,9 @@
+[submodule "SpringMapConvNG"]
+	path = SpringMapConvNG
+	url = git://github.com/spring/SpringMapConvNG.git
+[submodule "Map-Blueprint"]
+	path = Map-Blueprint
+	url = https://github.com/jk3064/Map-Blueprint.git
+[submodule "springrts_smf_compiler"]
+	path = springrts_smf_compiler
+	url = https://github.com/Beherith/springrts_smf_compiler.git
