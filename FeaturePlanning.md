@@ -31,3 +31,4 @@ Contains a list of settings like:
 * Define Project-Settings file with read/write/edit support
 * Implement pymapcomp to allow for map compilation
 * Redesign Update/deploy Map dialog to embedd required features
+* Implement support for .7z creation
