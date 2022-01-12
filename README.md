@@ -38,3 +38,6 @@ Details: https://springrts.com/wiki/Mapdev:diffuse
 
 # Better map compile tool
 https://github.com/Beherith/springrts_smf_compiler
+
+# Other guide
+https://zero-k.info/mediawiki/index.php?title=ZK_Map_Making_Guide
