@@ -19,6 +19,7 @@
 * Allows to recompile/update the map
 * Allows to deploy the compiled map to game directory
 * Allows to change setting from project file
+* Allow to deploy as directory or as 7z
 
 # Project file
 Contains a list of settings like:
