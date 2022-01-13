@@ -26,6 +26,7 @@ jobs:
 
     env:
       Configuration: Debug
+      RuntimeIdentifier: win-${{ matrix.targetplatform }}
       App_Packages_Directory: AppPackages
       # SigningCertificate: GitHubActionsDemo.pfx
       Solution_Path: MapCreationTool\MapCreationTool.sln
@@ -76,7 +77,7 @@ jobs:
       run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
       env:
         Configuration: Debug
-        RuntimeIdentifier: win-${{ matrix.targetplatform }}
+
 
     # Decode the Base64 encoded Pfx
     # - name: Decode the Pfx
