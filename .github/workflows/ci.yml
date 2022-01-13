@@ -111,4 +111,4 @@ jobs:
       with:
         # Artifact name
         name: MapCreationTool #.zip will be added automatically
-        path: bin/release/net5.0*/*.*
+        path: bin/release/net5.0-windows/*.*
