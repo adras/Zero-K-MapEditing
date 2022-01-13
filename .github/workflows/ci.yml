@@ -34,7 +34,7 @@ jobs:
       Wap_Project_Directory: MapCreationTool.Package
       Wap_Project_Name: MapCreationTool.Package.wapproj
       Actions_Allow_Unsecure_Commands: true # Allows AddPAth and SetEnv commands
-      RuntimeIdentifier: win-${{ matrix.targetplatform }}
+      OutRuntimeIdentifier: win-${{ matrix.targetplatform }}
 
     steps:
     - name: Checkout
@@ -74,7 +74,7 @@ jobs:
 
     # Restore the application
     - name:  Restore the Wpf application to populate the obj folder
-      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
+      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:OutRuntimeIdentifier
       env:
         Configuration: Debug
 
@@ -147,6 +147,6 @@ jobs:
       with:
         # Artifact name
         name: MapCreationTool6 #.zip will be added automatically
-        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/${{ env.Configuration }}/${{ env.RuntimeIdentifier }}/**/*.*
+        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/${{ env.Configuration }}/${{ env.OutRuntimeIdentifier }}/**/*.*
         
 
