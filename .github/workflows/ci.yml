@@ -40,6 +40,9 @@ jobs:
       with:
         fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
 
+    - name: Checkout submodules
+      uses: textbook/git-checkout-submodule-action@master
+
     # Use Nerdbank.GitVersioning to set version variables: https://github.com/AArnott/nbgv
     - name: Use Nerdbank.GitVersioning to set version variables
       uses: aarnott/nbgv@v0.3
