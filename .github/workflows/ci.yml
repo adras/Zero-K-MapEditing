@@ -27,7 +27,7 @@ jobs:
     env:
       App_Packages_Directory: AppPackages
       # SigningCertificate: GitHubActionsDemo.pfx
-      Solution_Path: MapCreationTool.sln
+      Solution_Path: MapCreationTool\MapCreationTool.sln
       #Test_Project_Path: MyWpfApp.Tests\MyWpfApp.Tests.csproj
       Wpf_Project_Path: MapCreationTool\MapCreationTool\MapCreationTool.csproj
       Wap_Project_Directory: MapCreationTool.Package
