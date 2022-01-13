@@ -1,10 +1,7 @@
 # Zero-K-MapEditing
 This is a playground to figure out how map-editing works for the game: Zero-K
 
-# Useful links
-* Map Converter: https://springrts.com/wiki/MapConvNG
-* Map Dev Tutorial: https://springrts.com/wiki/Mapdev:Tutorial_Simple
-* Map Creation Wiki: https://zero-k.info/mediawiki/index.php?title=Map_Creation
+
 
 # First steps
 * Create a copy of Map-Blueprint/mapcontainer.sdd
@@ -36,8 +33,12 @@ Details: https://springrts.com/wiki/Mapdev:diffuse
 * Same steps as for heightmap, but use Formula: pixels = MapSize * 512 instead
 * Image Properties: RGBA, 8bpp
 
-# Better map compile tool
-https://github.com/Beherith/springrts_smf_compiler
+# Useful links
+## Map Converters
+* https://springrts.com/wiki/MapConvNG
+* https://github.com/Beherith/springrts_smf_compiler
 
-# Other guide
-https://zero-k.info/mediawiki/index.php?title=ZK_Map_Making_Guide
+## Tutorials
+* Map Dev Tutorial: https://springrts.com/wiki/Mapdev:Tutorial_Simple
+* Map Creation Wiki: https://zero-k.info/mediawiki/index.php?title=Map_Creation
+* Another guide: https://zero-k.info/mediawiki/index.php?title=ZK_Map_Making_Guide
