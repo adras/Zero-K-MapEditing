@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MapCreationTool.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -46,6 +47,12 @@ namespace MapCreationTool
             result = CreateMapBlueprint(mapName, workDir);
             if (!result.success)
                 return result;
+
+            // TODO: Move to dedicated method
+            ProjectSettingsSerializer settingsSerializer = new ProjectSettingsSerializer();
+            ProjectSettings defaultSettings = settingsSerializer.CreateDefault();
+            string settingsPath = Path.Combine(workDir, ProjectSettings.DEFAULT_FILE_NAME);
+            settingsSerializer.SerializeToFile(settingsPath, defaultSettings);
 
             return new MapCreationResult("");
         }

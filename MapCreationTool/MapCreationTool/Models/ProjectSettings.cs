@@ -8,6 +8,8 @@ namespace MapCreationTool.Configuration
 {
     public class ProjectSettings
     {
+        public const string DEFAULT_FILE_NAME = "MapCreationTool.xml";
+
         public string heightMapName;
         public string diffuseMapName;
         public string grassMapName;
