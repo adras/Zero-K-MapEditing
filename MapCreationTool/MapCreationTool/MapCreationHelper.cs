@@ -1,4 +1,5 @@
 ﻿using MapCreationTool.Configuration;
+using MapCreationTool.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MapCreationTool
 {
@@ -36,7 +38,7 @@ namespace MapCreationTool
         const string MAP_BLUEPRINT_PATH = "Tools\\Map-Blueprint";
         const string BLUEPRINT_MAP_NAME = "mapcontainer.sdd";
 
-        internal static MapCreationResult CreateMap(string mapName, string workDir)
+        internal static MapCreationResult CreateMap(string mapName, string workDir, MapSizeDefinition mapSizeDef)
         {
             MapCreationResult result;
 
@@ -48,10 +50,16 @@ namespace MapCreationTool
             if (!result.success)
                 return result;
 
+            result = RenameMapBlueprint(mapName, workDir);
+            if (!result.success)
+                return result;
+
+
             // TODO: Move to dedicated method
             ProjectSettingsSerializer settingsSerializer = new ProjectSettingsSerializer();
             ProjectSettings defaultSettings = settingsSerializer.CreateDefault();
-            string settingsPath = Path.Combine(workDir, ProjectSettings.DEFAULT_FILE_NAME);
+            defaultSettings.mapSizeDefinition = mapSizeDef;
+            string settingsPath = Path.Combine(workDir, $"{mapName}.sdd", ProjectSettings.DEFAULT_FILE_NAME);
             settingsSerializer.SerializeToFile(settingsPath, defaultSettings);
 
             return new MapCreationResult("");
@@ -67,15 +75,16 @@ namespace MapCreationTool
                 string programDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                 return new MapCreationResult(type, $"Could not find Map blueprint @ {Path.Combine(programDirectory, blueprintDir.FullName)} ");
             }
-            if (Directory.Exists(Path.Combine(workDir, BLUEPRINT_MAP_NAME)))
+            string newBlueprintPath = Path.Combine(workDir, BLUEPRINT_MAP_NAME);
+            if (Directory.Exists(newBlueprintPath))
             {
-                return new MapCreationResult(type, $"There is already a blueprint in the workdir. Creation aborted");
+                return new MapCreationResult(type, $"There is already a blueprint in the workdir. Creation aborted. Please delete {newBlueprintPath}");
             }
 
-            foreach(FileInfo? file in blueprintDir.GetFiles("*.*", SearchOption.AllDirectories))
+            foreach (FileInfo? file in blueprintDir.GetFiles("*.*", SearchOption.AllDirectories))
             {
                 string relativeFilePath = GetRelativeFilePath(file.FullName);
-                FileInfo targetFileInfo = new FileInfo(Path.Combine(workDir, relativeFilePath)); 
+                FileInfo targetFileInfo = new FileInfo(Path.Combine(workDir, relativeFilePath));
                 if (!Directory.Exists(targetFileInfo.DirectoryName))
                 {
                     Directory.CreateDirectory(targetFileInfo.DirectoryName);
@@ -84,9 +93,29 @@ namespace MapCreationTool
                 Debug.WriteLine($"Copied {file.FullName} to {targetFileInfo.FullName}");
             }
 
-            Directory.Move(Path.Combine(workDir, BLUEPRINT_MAP_NAME), Path.Combine(workDir, $"{mapName}.sdd"));
 
             return new MapCreationResult(type);
+        }
+
+        public static MapCreationResult RenameMapBlueprint(string mapName, string workDir)
+        {
+            MapCreationResult result;
+            string type = "Rename Map Blueprint";
+            string sourceDirPath = Path.Combine(workDir, BLUEPRINT_MAP_NAME);
+            string targetDirPath = Path.Combine(workDir, $"{mapName}.sdd");
+            //     Directory.Move(Path.Combine(workDir, BLUEPRINT_MAP_NAME), Path.Combine(workDir, $"{mapName}.sdd"));
+            if (!Directory.Exists(targetDirPath))
+            {
+                Directory.Move(sourceDirPath, targetDirPath);
+            }
+            else
+            {
+                string message = $"Could not set name for map directory. Directory {targetDirPath} already exists. Please delete directory and try again";
+                result = new MapCreationResult(type, message);
+                return result;
+            }
+            result = new MapCreationResult(type);
+            return result;
         }
 
         private static string GetRelativeFilePath(string fullFilePath)

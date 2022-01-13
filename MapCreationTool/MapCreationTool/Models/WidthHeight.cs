@@ -1,5 +1,4 @@
-﻿using MapCreationTool.MapSizes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +10,11 @@ namespace MapCreationTool.Models
     {
         public int width;
         public int height;
+
+        public WidthHeight()
+        {
+
+        }
 
         public WidthHeight(int width, int height)
         {
@@ -35,24 +39,5 @@ namespace MapCreationTool.Models
             string result = $"Width: {width} Height: {height}";
             return result;
         }
-    }
-
-    public class MapSizeDefinition
-    {
-        public WidthHeight gameMapSize;
-        public WidthHeight grassMapSize;
-        public WidthHeight metalMapSize;
-        public WidthHeight heightMapSize;
-        public WidthHeight diffuseMapSize;
-
-        public MapSizeDefinition(WidthHeight gameMapSize)
-        {
-            this.gameMapSize = gameMapSize;
-            this.grassMapSize = MapSizeCalculator.CalculateGrassMap(gameMapSize);
-            this.heightMapSize = MapSizeCalculator.CalculateHeightMap(gameMapSize);
-            this.metalMapSize = MapSizeCalculator.CalculateMetalMap(gameMapSize);
-            this.diffuseMapSize = MapSizeCalculator.CalculateDiffuseMap(gameMapSize);
-        }
-
     }
 }

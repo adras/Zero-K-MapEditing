@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MapCreationTool.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,8 @@ namespace MapCreationTool.Configuration
         public string diffuseMapName;
         public string grassMapName;
         public string otherMapName;
+
+        public MapSizeDefinition mapSizeDefinition;
 
         // Might allow enabling and disabling for map compilation
         //public bool useHeightMap;

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using MapCreationTool.Models;
 
 namespace MapCreationTool
 {
@@ -56,7 +57,30 @@ namespace MapCreationTool
             string mapName = tbMapName.Text;
             string workDir = tbMapWorkingDir.Text;
 
-            MapCreationHelper.CreateMap(mapName, workDir);
+            int mapSizeX;
+            int mapSizeY;
+
+            if (!int.TryParse(tbMapWidth.Text, out mapSizeX))
+            {
+                MessageBox.Show("Could not create map. Invalid value for Map-Width. Make sure it's an integer value");
+                return;
+            }
+
+            if (!int.TryParse(tbMapHeight.Text, out mapSizeY))
+            {
+                MessageBox.Show("Could not create map. Invalid value for Map-Width. Make sure it's an integer value");
+                return;
+            }
+            MapSizeDefinition mapSizeDef = new MapSizeDefinition(new WidthHeight(mapSizeX, mapSizeY));
+
+            MapCreationResult result = MapCreationHelper.CreateMap(mapName, workDir, mapSizeDef);
+            if (result.success == false)
+            {
+                MessageBox.Show(result.error);
+                return;
+            }
+
+            MessageBox.Show("Map creation successful");
         }
     }
 }

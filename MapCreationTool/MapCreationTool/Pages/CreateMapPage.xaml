@@ -22,6 +22,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
@@ -33,7 +34,22 @@
             <Label Grid.Row="1">Map Name:</Label>
             <TextBox Grid.Row="1" Grid.Column="1" Name="tbMapName">MyTestMap</TextBox>
 
-            <Button Grid.Row="3" Grid.ColumnSpan="3" Name="btnCreateMap" Click="btnCreateMap_Click">Create Map</Button>
+            <Label Grid.Row="2">Map Size</Label>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0">Width</Label>
+                <TextBox  Grid.Column="1" Name="tbMapWidth">16</TextBox>
+
+                <Label Grid.Column="2">Height</Label>
+                <TextBox  Grid.Column="3" Name="tbMapHeight">12</TextBox>
+            </Grid>
+
+            <Button Grid.Row="4" Grid.ColumnSpan="3" Name="btnCreateMap" Click="btnCreateMap_Click">Create Map</Button>
         </Grid>
         <TextBlock TextWrapping="Wrap" Name="tbLog" Grid.Row="1"></TextBlock>
     </Grid>

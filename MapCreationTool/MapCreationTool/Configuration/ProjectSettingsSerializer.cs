@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MapCreationTool.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace MapCreationTool.Configuration
                 grassMapName = "grass.png",
                 otherMapName = "other.png"
             };
+
             return defaultSettings;
         }
 
