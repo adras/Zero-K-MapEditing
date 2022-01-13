@@ -17,7 +17,7 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore MapCreationTool
       - name: Build
         run: dotnet build MapCreationTool --configuration Release --no-restore
 
