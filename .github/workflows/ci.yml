@@ -148,3 +148,5 @@ jobs:
         # Artifact name
         name: MapCreationTool6 #.zip will be added automatically
         path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/${{ env.Configuration }}/${{ env.RuntimeIdentifier }}/**/*.*
+        
+
