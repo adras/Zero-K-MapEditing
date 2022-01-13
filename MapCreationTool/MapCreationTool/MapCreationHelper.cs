@@ -1,4 +1,5 @@
 ﻿using MapCreationTool.Configuration;
+using MapCreationTool.Images;
 using MapCreationTool.Models;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,9 @@ namespace MapCreationTool
             defaultSettings.mapSizeDefinition = mapSizeDef;
             string settingsPath = Path.Combine(workDir, $"{mapName}.sdd", ProjectSettings.DEFAULT_FILE_NAME);
             settingsSerializer.SerializeToFile(settingsPath, defaultSettings);
+
+            string mapPath = Path.Combine(workDir, $"{mapName}.sdd");
+            ImageTest.CreateImages(defaultSettings.mapSizeDefinition, mapPath);
 
             return new MapCreationResult("");
         }
