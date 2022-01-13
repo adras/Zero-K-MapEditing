@@ -27,9 +27,9 @@ jobs:
     env:
       App_Packages_Directory: AppPackages
       # SigningCertificate: GitHubActionsDemo.pfx
-      Solution_Path: MapCreationTool\MapCreationTool.sln
+      Solution_Path: MapCreationTool.sln
       #Test_Project_Path: MyWpfApp.Tests\MyWpfApp.Tests.csproj
-      Wpf_Project_Path: MapCreationTool\MapCreationTool\MapCreationTool.csproj
+      Wpf_Project_Path: MapCreationTool\MapCreationTool.csproj
       Wap_Project_Directory: MapCreationTool.Package
       Wap_Project_Name: MapCreationTool.Package.wapproj
       Actions_Allow_Unsecure_Commands: true # Allows AddPAth and SetEnv commands
