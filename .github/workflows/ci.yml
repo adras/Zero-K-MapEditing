@@ -5,6 +5,9 @@
 # This pipeline builds the Wpf project, runs unit tests, then saves the MSIX build artifact.
 name:  Wpf Continuous Integration
 
+# TODO: Remove block with comments that are not needed
+
+
 # Trigger on every master branch push and pull request
 on:
   push:
@@ -35,6 +38,7 @@ jobs:
       Wap_Project_Name: MapCreationTool.Package.wapproj
       Actions_Allow_Unsecure_Commands: true # Allows AddPAth and SetEnv commands
       OutSubPath: net5.0-windows
+      ZipName: MapCreationTool # No file extension required
 
     steps:
     - name: Checkout
@@ -112,5 +116,5 @@ jobs:
       uses: actions/upload-artifact@v2.2.2
       with:
         # Artifact name
-        name: MapCreationTool6 #.zip will be added automatically
+        name: ${{ env.ZipName }} #.zip will be added automatically
         path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/${{ env.Configuration }}/${{ env.OutSubPath }}/**/*.*
