@@ -57,15 +57,16 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.1
 
     # Update the version before build
-    - name: Update manifest version
-      run: |
-        [xml]$manifest = get-content ".\$env:Wap_Project_Directory\Package.appxmanifest"
-        $manifest.Package.Identity.Version = "$env:NBGV_SimpleVersion.0"
-        $manifest.save(".\$env:Wap_Project_Directory\Package.appxmanifest")
+  
+    # - name: Update manifest version
+    #   run: |
+    #     [xml]$manifest = get-content ".\$env:Wap_Project_Directory\Package.appxmanifest"
+    #     $manifest.Package.Identity.Version = "$env:NBGV_SimpleVersion.0"
+    #     $manifest.save(".\$env:Wap_Project_Directory\Package.appxmanifest")
 
     # Test
-    - name: Execute Unit Tests
-      run: dotnet test $env:Test_Project_Path
+    # - name: Execute Unit Tests
+    #   run: dotnet test $env:Test_Project_Path
 
     # Restore the application
     - name:  Restore the Wpf application to populate the obj folder
@@ -75,16 +76,17 @@ jobs:
         RuntimeIdentifier: win-${{ matrix.targetplatform }}
 
     # Decode the Base64 encoded Pfx
-    - name: Decode the Pfx
-      run: |
-        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
-        $currentDirectory = Get-Location
-        $certificatePath = Join-Path -Path $currentDirectory -ChildPath $env:Wap_Project_Directory -AdditionalChildPath $env:SigningCertificate
-        [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
+    # - name: Decode the Pfx
+    #   run: |
+    #     $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
+    #     $currentDirectory = Get-Location
+    #     $certificatePath = Join-Path -Path $currentDirectory -ChildPath $env:Wap_Project_Directory -AdditionalChildPath $env:SigningCertificate
+    #     [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
 
     # Build the Windows Application Packaging project
     - name: Build the Windows Application Packaging Project (wapproj)
-      run: msbuild $env:Solution_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode /p:AppxBundle=$env:AppxBundle /p:PackageCertificateKeyFile=$env:SigningCertificate /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+      # run: msbuild $env:Solution_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode /p:AppxBundle=$env:AppxBundle /p:PackageCertificateKeyFile=$env:SigningCertificate /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
+      run: msbuild $env:Solution_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode /p:AppxBundle=$env:AppxBundle 
       env:
         AppxBundle: Never
         BuildMode: SideloadOnly
