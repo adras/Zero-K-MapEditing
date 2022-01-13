@@ -34,7 +34,7 @@ jobs:
       Wap_Project_Directory: MapCreationTool.Package
       Wap_Project_Name: MapCreationTool.Package.wapproj
       Actions_Allow_Unsecure_Commands: true # Allows AddPAth and SetEnv commands
-      OutRuntimeIdentifier: win-${{ matrix.targetplatform }}
+      OutSubPath: net5.0-windows
 
     steps:
     - name: Checkout
@@ -74,9 +74,10 @@ jobs:
 
     # Restore the application
     - name:  Restore the Wpf application to populate the obj folder
-      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:OutRuntimeIdentifier
+      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
       env:
         Configuration: Debug
+        RuntimeIdentifier: win-${{ matrix.targetplatform }}
 
     # Decode the Base64 encoded Pfx
     # - name: Decode the Pfx
@@ -111,42 +112,5 @@ jobs:
       uses: actions/upload-artifact@v2.2.2
       with:
         # Artifact name
-        name: MapCreationTool1 #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\**/*.*
-        
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.2.2
-      with:
-        # Artifact name
-        name: MapCreationTool2 #.zip will be added automatically
-        path: MapCreationTool/MapCreationTool/**/*.*
-
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.2.2
-      with:
-        # Artifact name
-        name: MapCreationTool3 #.zip will be added automatically
-        path: MapCreationTool/MapCreationTool/bin/**/*.*
-
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.2.2
-      with:
-        # Artifact name
-        name: MapCreationTool4 #.zip will be added automatically
-        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/**/*.*
-
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.2.2
-      with:
-        # Artifact name
-        name: MapCreationTool5 #.zip will be added automatically
-        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/${{ env.Configuration }}/**/*.*
-
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.2.2
-      with:
-        # Artifact name
         name: MapCreationTool6 #.zip will be added automatically
-        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/${{ env.Configuration }}/${{ env.OutRuntimeIdentifier }}/**/*.*
-        
-
+        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/${{ env.Configuration }}/${{ env.OutSubPath }}/**/*.*
