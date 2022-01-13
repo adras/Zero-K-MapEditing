@@ -21,6 +21,7 @@ jobs:
     strategy:
       matrix:
         targetplatform: [x86, x64]
+        configuration: Debug
 
     runs-on: windows-latest
 
@@ -111,4 +112,28 @@ jobs:
       with:
         # Artifact name
         name: MapCreationTool #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\bin/release/net5.0-windows/*.*
+        path: MapCreationTool\MapCreationTool\*.*
+        
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.2
+      with:
+        # Artifact name
+        name: MapCreationTool2 #.zip will be added automatically
+        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\*.*
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.2
+      with:
+        # Artifact name
+        name: MapCreationTool3 #.zip will be added automatically
+        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\${{ matrix.configuration }}\*.*
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.2
+      with:
+        # Artifact name
+        name: MapCreationTool4 #.zip will be added automatically
+        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\${{ matrix.configuration }}\net5.0-windows\*.*
+        
+# MapCreationTool\MapCreationTool\bin\$architecture\$debug\net5.0-windows\
+# configuration
