@@ -126,7 +126,7 @@ jobs:
       with:
         # Artifact name
         name: MapCreationTool3 #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\$matrix.configuration\*.*
+        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\$env:RuntimeIdentifier\*.*
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
