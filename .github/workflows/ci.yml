@@ -119,36 +119,41 @@ jobs:
       with:
         # Artifact name
         name: MapCreationTool2 #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\*.*
+        path: MapCreationTool/MapCreationTool/**/*.*
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
       with:
         # Artifact name
         name: MapCreationTool3 #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\$env:RuntimeIdentifier\*.*
+        path: MapCreationTool/MapCreationTool/bin/**/*.*
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
       with:
         # Artifact name
         name: MapCreationTool4 #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\$env:Configuration\net5.0-windows\*.*
+        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/**/*.*
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
       with:
         # Artifact name
         name: MapCreationTool5 #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\bin\*.*
-
+        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/{{ $env:Configuration }}/**/*.*
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
       with:
         # Artifact name
         name: MapCreationTool6 #.zip will be added automatically
-        path: MapCreationTool\*.*
+        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/{{ $env:Configuration }}/${{ env:RuntimeIdentifier }}/**/*.*
         
-# MapCreationTool\MapCreationTool\bin\$architecture\$debug\net5.0-windows\
-# configuration
+# No 1 works but is too extensive
+# Exists on working directory - MapCreationTool1.zip\bin\x86\Debug\net5.0-windows\
+
+# 2: No files were found with the provided path: MapCreationTool\MapCreationTool\bin\x86\*.*. No artifacts will be uploaded.
+# 3: Warning: No files were found with the provided path: MapCreationTool\MapCreationTool\bin\x86\$env:RuntimeIdentifier\*.*. No artifacts will be uploaded.
+# 4:No files were found with the provided path: MapCreationTool\MapCreationTool\bin\x86\$env:Configuration\net5.0-windows\*.*. No artifacts will be uploaded.
+# 5:Warning: No files were found with the provided path: MapCreationTool\MapCreationTool\bin\*.*. No artifacts will be uploaded.
+# 6:
