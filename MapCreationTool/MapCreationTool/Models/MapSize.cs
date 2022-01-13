@@ -49,7 +49,7 @@ namespace MapCreationTool.Models
         {
             this.gameMapSize = gameMapSize;
             this.grassMapSize = MapSizeCalculator.CalculateGrassMap(gameMapSize);
-            this.heightMapSize = MapSizeCalculator.CalculateGrassMap(gameMapSize);
+            this.heightMapSize = MapSizeCalculator.CalculateHeightMap(gameMapSize);
             this.metalMapSize = MapSizeCalculator.CalculateMetalMap(gameMapSize);
             this.diffuseMapSize = MapSizeCalculator.CalculateDiffuseMap(gameMapSize);
         }
