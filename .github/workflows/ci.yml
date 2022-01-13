@@ -26,7 +26,6 @@ jobs:
 
     env:
       Configuration: Debug
-      RuntimeIdentifier: win-${{ matrix.targetplatform }}
       App_Packages_Directory: AppPackages
       # SigningCertificate: GitHubActionsDemo.pfx
       Solution_Path: MapCreationTool\MapCreationTool.sln
@@ -77,7 +76,7 @@ jobs:
       run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
       env:
         Configuration: Debug
-
+        RuntimeIdentifier: win-${{ matrix.targetplatform }}
 
     # Decode the Base64 encoded Pfx
     # - name: Decode the Pfx
@@ -148,7 +147,7 @@ jobs:
       with:
         # Artifact name
         name: MapCreationTool6 #.zip will be added automatically
-        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/{{ $env:Configuration }}/${{ env:RuntimeIdentifier }}/**/*.*
+        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/{{ $env:Configuration }}/{{ $env:RuntimeIdentifier }}/**/*.*
         
 # No 1 works but is too extensive
 # Exists on working directory - MapCreationTool1.zip\bin\x86\Debug\net5.0-windows\
