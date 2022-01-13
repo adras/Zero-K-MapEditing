@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using MapCreationTool.Models;
 
 namespace MapCreationTool
 {
@@ -58,10 +59,12 @@ namespace MapCreationTool
             int.TryParse(tbMapSizeX.Text, out mapSizeX);
             int.TryParse(tbMapSizeY.Text, out mapSizeY);
 
-            tbDiffuseMapSize.Text = $"{mapSizeX * 512} / {mapSizeY * 512}";
-            tbHeightMapSize.Text = $"{mapSizeX * 64 + 1} / {mapSizeY * 64 + 1}";
-            tbMetalMapSize.Text = $"{mapSizeX * 32} / {mapSizeY * 32}";
-            tbGrassMapSize.Text = $"{mapSizeX * 16} / {mapSizeY * 16}";
+            MapSizeDefinition mapSizeDef = new MapSizeDefinition(new WidthHeight(mapSizeX, mapSizeY));
+
+            tbDiffuseMapSize.Text = $"{mapSizeDef.diffuseMapSize.width} / {mapSizeDef.diffuseMapSize.height}";
+            tbHeightMapSize.Text = $"{mapSizeDef.heightMapSize.width} / {mapSizeDef.heightMapSize.height}";
+            tbMetalMapSize.Text = $"{mapSizeDef.metalMapSize.width} / {mapSizeDef.metalMapSize.height}";
+            tbGrassMapSize.Text = $"{mapSizeDef.grassMapSize.width} / {mapSizeDef.grassMapSize.height}";
         }
 
     }
