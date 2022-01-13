@@ -112,7 +112,7 @@ jobs:
       with:
         # Artifact name
         name: MapCreationTool1 #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\*.*
+        path: MapCreationTool\MapCreationTool\**/*.*
         
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
@@ -133,7 +133,7 @@ jobs:
       with:
         # Artifact name
         name: MapCreationTool4 #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\$$env:Configuration\net5.0-windows\*.*
+        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\$env:Configuration\net5.0-windows\*.*
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
