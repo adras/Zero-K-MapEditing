@@ -21,11 +21,11 @@ jobs:
     strategy:
       matrix:
         targetplatform: [x86, x64]
-        configuration: Debug
 
     runs-on: windows-latest
 
     env:
+      Configuration: Debug
       App_Packages_Directory: AppPackages
       # SigningCertificate: GitHubActionsDemo.pfx
       Solution_Path: MapCreationTool\MapCreationTool.sln
@@ -126,14 +126,14 @@ jobs:
       with:
         # Artifact name
         name: MapCreationTool3 #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\${{ matrix.configuration }}\*.*
+        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\$matrix.configuration\*.*
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
       with:
         # Artifact name
         name: MapCreationTool4 #.zip will be added automatically
-        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\${{ matrix.configuration }}\net5.0-windows\*.*
+        path: MapCreationTool\MapCreationTool\bin\${{ matrix.targetplatform }}\$$env:Configuration\net5.0-windows\*.*
         
 # MapCreationTool\MapCreationTool\bin\$architecture\$debug\net5.0-windows\
 # configuration
