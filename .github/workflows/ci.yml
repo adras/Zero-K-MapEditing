@@ -140,14 +140,14 @@ jobs:
       with:
         # Artifact name
         name: MapCreationTool5 #.zip will be added automatically
-        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/{{ $env:Configuration }}/**/*.*
+        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/${{ env.Configuration }}/**/*.*
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
       with:
         # Artifact name
         name: MapCreationTool6 #.zip will be added automatically
-        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/{{ $env:Configuration }}/{{ $env:RuntimeIdentifier }}/**/*.*
+        path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/${{ env.Configuration }}/${{ env.RuntimeIdentifier }}/**/*.*
         
 # No 1 works but is too extensive
 # Exists on working directory - MapCreationTool1.zip\bin\x86\Debug\net5.0-windows\
