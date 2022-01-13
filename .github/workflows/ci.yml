@@ -34,6 +34,7 @@ jobs:
       Wap_Project_Directory: MapCreationTool.Package
       Wap_Project_Name: MapCreationTool.Package.wapproj
       Actions_Allow_Unsecure_Commands: true # Allows AddPAth and SetEnv commands
+      RuntimeIdentifier: win-${{ matrix.targetplatform }}
 
     steps:
     - name: Checkout
@@ -76,7 +77,6 @@ jobs:
       run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
       env:
         Configuration: Debug
-        RuntimeIdentifier: win-${{ matrix.targetplatform }}
 
     # Decode the Base64 encoded Pfx
     # - name: Decode the Pfx
@@ -148,12 +148,3 @@ jobs:
         # Artifact name
         name: MapCreationTool6 #.zip will be added automatically
         path: MapCreationTool/MapCreationTool/bin/${{ matrix.targetplatform }}/${{ env.Configuration }}/${{ env.RuntimeIdentifier }}/**/*.*
-        
-# No 1 works but is too extensive
-# Exists on working directory - MapCreationTool1.zip\bin\x86\Debug\net5.0-windows\
-
-# 2: No files were found with the provided path: MapCreationTool\MapCreationTool\bin\x86\*.*. No artifacts will be uploaded.
-# 3: Warning: No files were found with the provided path: MapCreationTool\MapCreationTool\bin\x86\$env:RuntimeIdentifier\*.*. No artifacts will be uploaded.
-# 4:No files were found with the provided path: MapCreationTool\MapCreationTool\bin\x86\$env:Configuration\net5.0-windows\*.*. No artifacts will be uploaded.
-# 5:Warning: No files were found with the provided path: MapCreationTool\MapCreationTool\bin\*.*. No artifacts will be uploaded.
-# 6:
