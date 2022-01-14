@@ -20,7 +20,7 @@ namespace MapCreationTool.Images
 	/*
     Image formats
     Diffuse - multiple of 1024 - no alpha, bmp
-    Height - 16 bit grayscale, bmp?
+    Height - 16 bit grayscale, bmp? - Should definitelly be 16-bit
     metal - bmp? unknown color red
     featuremap - bmp? blue = grass, green 201-215 default tree - red ??
     grassmap - bmp?
@@ -32,10 +32,10 @@ namespace MapCreationTool.Images
 
 		public static void CreateImages(MapSizeDefinition mapSize, string mapDir)
 		{
-			//SixLabors.ImageSharp.PixelFormats.Rgb24
+			
 			Image<Rgb24> diffuse = new Image<Rgb24>(mapSize.diffuseMapSize.width, mapSize.diffuseMapSize.height);
 			Image<Rgb24> grass = new Image<Rgb24>(mapSize.grassMapSize.width, mapSize.grassMapSize.height);
-			Image<Rgb24> height = new Image<Rgb24>(mapSize.heightMapSize.width, mapSize.heightMapSize.height);
+			Image<Rgb48> height = new Image<Rgb48>(mapSize.heightMapSize.width, mapSize.heightMapSize.height);
 			Image<Rgb24> metal = new Image<Rgb24>(mapSize.metalMapSize.width, mapSize.metalMapSize.height);
 
 			// Fill images with an arbitrary background color, otherwise images would be empty files
