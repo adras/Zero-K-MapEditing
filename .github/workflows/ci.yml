@@ -6,7 +6,9 @@
 name:  Wpf Continuous Integration
 
 # TODO: Remove block with comments that are not needed
-
+# ISSUES:
+# It seems like the upload can fail. Probably because x86 and x64 are build at the same time and both processes try to access
+#   the upload target at the same time
 
 # Trigger on every master branch push and pull request
 on:
