@@ -29,16 +29,16 @@ jobs:
 
     env:
       Configuration: Debug
-      App_Packages_Directory: AppPackages
-      # SigningCertificate: GitHubActionsDemo.pfx
       Solution_Path: MapCreationTool\MapCreationTool.sln
-      #Test_Project_Path: MyWpfApp.Tests\MyWpfApp.Tests.csproj
       Wpf_Project_Path: MapCreationTool\MapCreationTool\MapCreationTool.csproj
-      Wap_Project_Directory: MapCreationTool.Package
-      Wap_Project_Name: MapCreationTool.Package.wapproj
       Actions_Allow_Unsecure_Commands: true # Allows AddPAth and SetEnv commands
       OutSubPath: net5.0-windows
       ZipName: MapCreationTool # No file extension required
+      # App_Packages_Directory: AppPackages
+      # SigningCertificate: GitHubActionsDemo.pfx
+      # Test_Project_Path: MyWpfApp.Tests\MyWpfApp.Tests.csproj
+      # Wap_Project_Directory: MapCreationTool.Package
+      # Wap_Project_Name: MapCreationTool.Package.wapproj
 
     steps:
     - name: Checkout
