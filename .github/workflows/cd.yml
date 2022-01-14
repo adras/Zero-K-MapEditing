@@ -94,24 +94,24 @@ jobs:
 
     # Update the appxmanifest before build by setting the per-channel values set in the matrix such as
     # the Package.Identity.Version or the Package.Identity.Name, which allows multiple channels to be built.
-    - name: Update manifest version
-      run: |
-        [xml]$manifest = get-content ".\$env:Wap_Project_Directory\Package.appxmanifest"
-        $manifest.Package.Identity.Version = "$env:NBGV_SimpleVersion.0"
-        $manifest.Package.Identity.Name = "${{ matrix.MsixPackageId }}"
-        $manifest.Package.Identity.Publisher = "${{ matrix.MsixPublisherId }}"
-        $manifest.Package.Properties.DisplayName = "${{ matrix.MsixPackageDisplayName }}"
-        $manifest.Package.Applications.Application.VisualElements.DisplayName = "${{ matrix.MsixPackageDisplayName }}"
-        $manifest.save(".\$env:Wap_Project_Directory\Package.appxmanifest")
+    #- name: Update manifest version
+    #  run: |
+    #    [xml]$manifest = get-content ".\$env:Wap_Project_Directory\Package.appxmanifest"
+    #    $manifest.Package.Identity.Version = "$env:NBGV_SimpleVersion.0"
+    #    $manifest.Package.Identity.Name = "${{ matrix.MsixPackageId }}"
+    #    $manifest.Package.Identity.Publisher = "${{ matrix.MsixPublisherId }}"
+    #    $manifest.Package.Properties.DisplayName = "${{ matrix.MsixPackageDisplayName }}"
+    #    $manifest.Package.Applications.Application.VisualElements.DisplayName = "${{ matrix.MsixPackageDisplayName }}"
+    #    $manifest.save(".\$env:Wap_Project_Directory\Package.appxmanifest")
 
     # Decode the Base64 encoded Pfx
-    - name: Decode the Pfx
-      run: |
-        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
-        $currentDirectory = Get-Location
-        $certificatePath = Join-Path -Path $currentDirectory -ChildPath $env:Wap_Project_Directory -AdditionalChildPath $env:SigningCertificate
-        [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
-      if: matrix.ChannelName != 'Prod_Store'
+    #- name: Decode the Pfx
+    #  run: |
+    #    $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
+    #    $currentDirectory = Get-Location
+    #    $certificatePath = Join-Path -Path $currentDirectory -ChildPath $env:Wap_Project_Directory -AdditionalChildPath $env:SigningCertificate
+    #    [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
+    #  if: matrix.ChannelName != 'Prod_Store'
 
     # Restore the application
     - name:  Restore the Wpf application to populate the obj folder
@@ -133,21 +133,21 @@ jobs:
         TargetPlatform: ${{ matrix.targetplatform }}
 
     # Build the Windows Application Packaging project for Prod_Store
-    - name: Build the Windows Application Packaging Project (wapproj) for ${{ matrix.ChannelName }}
-      run: msbuild $env:Solution_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode /p:AppxBundle=$env:AppxBundle /p:GenerateAppInstallerFile=$env:GenerateAppInstallerFile /p:AppxPackageSigningEnabled=$env:AppxPackageSigningEnabled
-      if: matrix.ChannelName == 'Prod_Store'
-      env:
-        AppxBundle: Never
-        AppxPackageSigningEnabled: False
-        BuildMode: StoreUpload
-        Configuration: ${{ matrix.Configuration }}
-        GenerateAppInstallerFile: False
-        TargetPlatform: ${{ matrix.targetplatform }}
+    #- name: Build the Windows Application Packaging Project (wapproj) for ${{ matrix.ChannelName }}
+    #  run: msbuild $env:Solution_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode /p:AppxBundle=$env:AppxBundle /p:GenerateAppInstallerFile=$env:GenerateAppInstallerFile /p:AppxPackageSigningEnabled=$env:AppxPackageSigningEnabled
+    #  if: matrix.ChannelName == 'Prod_Store'
+    #  env:
+    #    AppxBundle: Never
+    #    AppxPackageSigningEnabled: False
+    #    BuildMode: StoreUpload
+    #    Configuration: ${{ matrix.Configuration }}
+    #    GenerateAppInstallerFile: False
+    #    TargetPlatform: ${{ matrix.targetplatform }}
 
     # Remove the .pfx
-    - name: Remove the .pfx
-      run: Remove-Item -path $env:Wap_Project_Directory\$env:SigningCertificate
-      if: matrix.ChannelName != 'Prod_Store'
+    #- name: Remove the .pfx
+    #  run: Remove-Item -path $env:Wap_Project_Directory\$env:SigningCertificate
+    #  if: matrix.ChannelName != 'Prod_Store'
 
     # Archive the package
     - name: Create archive
