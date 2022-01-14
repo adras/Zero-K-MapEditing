@@ -15,10 +15,20 @@ name:  Wpf Continuous Delivery
 # To create a git tag, run the following commands on the branch you wish to release:
 #   git tag 1.0.0.0
 #   git push origin --tags
+
+# on:
+#   push:
+#     tags:
+#       - '*'
+
+# For testing change trigger to every commit
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
 
