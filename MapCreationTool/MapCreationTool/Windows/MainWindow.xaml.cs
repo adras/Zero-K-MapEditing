@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MapCreationTool
+namespace MapCreationTool.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -40,6 +40,11 @@ namespace MapCreationTool
         private void ctrlStart_OnMapCreated(object sender, MapPathInformation mapPathInfo)
         {
             ViewModel.Tabs.Add(new MapTab(mapPathInfo.mapName, null));
+
+        }
+
+        private void ctrlStart_OnCalculatorClicked(object sender, EventArgs e)
+        {
 
         }
     }

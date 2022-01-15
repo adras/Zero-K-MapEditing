@@ -8,7 +8,7 @@ namespace MapCreationTool.Tabs
 {
     internal class StartTab : TabBase
     {
-        public override string Header { get => "Start"; set => throw new InvalidOperationException(); }
-        public override object Content { get => null; set => throw new InvalidOperationException(); }
+        public override string Header { get => "Start";  }
+        public override object Content { get => null; }
     }
 }

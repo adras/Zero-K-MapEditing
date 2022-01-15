@@ -25,9 +25,11 @@ namespace MapCreationTool.Controls
     {
         public delegate void MapCreated(object sender, MapPathInformation mapPathInformation);
         public delegate void MapOpened(object sender, MapPathInformation mapPathInformation);
+        
 
         public event MapCreated OnMapCreated;
         public event MapOpened OnMapOpened;
+        public event EventHandler OnCalculatorClicked;
 
         public StartControl()
         {
@@ -39,13 +41,13 @@ namespace MapCreationTool.Controls
             CreateMap createMapWindow = new CreateMap();
             bool? result = createMapWindow.ShowDialog();
             //NavigationService.Navigate(new Uri("Pages/CreateMapPage.xaml", UriKind.RelativeOrAbsolute));
-            if (result.HasValue)
+            if (result == true)
             {
                 OnMapCreated(this, createMapWindow.ViewModel.MapPathInfo);
             }
         }
 
-        private void btnUpdateMap_Click(object sender, RoutedEventArgs e)
+        private void btnOpenMap_Click(object sender, RoutedEventArgs e)
         {
             Forms.FolderBrowserDialog folderBrowser = new Forms.FolderBrowserDialog();
             Forms.DialogResult result = folderBrowser.ShowDialog();
@@ -61,7 +63,7 @@ namespace MapCreationTool.Controls
 
         private void btnSizeCalculator_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new Uri("Pages/SizeCalculatorPage.xaml", UriKind.RelativeOrAbsolute));
+            OnCalculatorClicked?.Invoke(this, new EventArgs());
         }
     }
 }

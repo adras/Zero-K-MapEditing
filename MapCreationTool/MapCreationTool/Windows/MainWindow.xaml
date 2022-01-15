@@ -1,14 +1,14 @@
-﻿<Window x:Class="MapCreationTool.MainWindow"
+﻿<Window x:Class="MapCreationTool.Windows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MapCreationTool"
+        xmlns:local="clr-namespace:MapCreationTool.Windows"
         xmlns:vm="clr-namespace:MapCreationTool.ViewModels"
         xmlns:ctrl="clr-namespace:MapCreationTool.Controls"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=true}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Zero-K Map Tool" Height="450" Width="800">
     <Window.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -16,7 +16,12 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <ctrl:StartControl x:Name="ctrlStart" Grid.Column="0" OnMapOpened="ctrlStart_OnMapOpened" OnMapCreated="ctrlStart_OnMapCreated"></ctrl:StartControl>
+            <ctrl:StartControl x:Name="ctrlStart" Grid.Column="0" 
+                               OnMapOpened="ctrlStart_OnMapOpened" 
+                               OnMapCreated="ctrlStart_OnMapCreated"
+                               OnCalculatorClicked="ctrlStart_OnCalculatorClicked">
+                
+            </ctrl:StartControl>
 
 
             <TabControl Grid.Row="1" x:Name="_tabControl" ItemsSource="{Binding Path=Tabs}">
@@ -29,10 +34,6 @@
             </TabControl>
             
 
-            <!--<TabControl Grid.Row="1" Name="tabMain">
-                <TabItem Header="Start" Name="tabStart">
-                </TabItem>
-            </TabControl>-->
         </Grid>
 
     </Window.Content>

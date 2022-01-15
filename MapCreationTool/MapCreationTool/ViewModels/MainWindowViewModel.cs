@@ -27,6 +27,7 @@ namespace MapCreationTool.ViewModels
         {
             tabs = new ObservableCollection<TabBase>();
             tabs.Add(new StartTab());
+            tabs.Add(new MapSizeCalculatorTab());
         }
     }
 }
