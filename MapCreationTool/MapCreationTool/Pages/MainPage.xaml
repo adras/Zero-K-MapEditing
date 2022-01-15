@@ -4,23 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MapCreationTool" 
-      xmlns:controls="clr-namespace:MapCreationTool.Controls"
+      
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <controls:StartControl></controls:StartControl>
-
-        <TabControl Grid.Row="1" Name="tabMain">
-            <TabItem Header="Start" Name="tabStart">
-            </TabItem>
-        </TabControl>
+        
 
     </Grid>
 </Page>
