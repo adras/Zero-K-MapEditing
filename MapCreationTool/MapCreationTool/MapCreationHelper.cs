@@ -13,27 +13,6 @@ using System.Windows;
 
 namespace MapCreationTool
 {
-    internal class MapCreationResult
-    {
-        public string type;
-        public bool success;
-        public string error;
-
-        public MapCreationResult(string type, string error = null)
-        {
-            if (error == null)
-            {
-                success = true;
-            }
-            else
-            {
-                success = false;
-                this.error = error;
-            }
-            this.type = type;
-        }
-    }
-
     internal class MapCreationHelper
     {
         const string MAP_BLUEPRINT_PATH = "Tools\\Map-Blueprint";
@@ -42,12 +21,13 @@ namespace MapCreationTool
         internal static MapCreationResult CreateMap(string mapName, string workDir, MapSizeDefinition mapSizeDef)
         {
             MapCreationResult result;
+            MapPathInformation pathInfo = new MapPathInformation(mapName, workDir);
 
             result = VerifyDirectory(mapName, workDir);
             if (!result.success)
                 return result;
 
-            result = CreateMapBlueprint(mapName, workDir);
+            result = CreateMapBlueprint(mapName, workDir, pathInfo);
             if (!result.success)
                 return result;
 
@@ -60,16 +40,15 @@ namespace MapCreationTool
             ProjectSettingsSerializer settingsSerializer = new ProjectSettingsSerializer();
             ProjectSettings defaultSettings = settingsSerializer.CreateDefault();
             defaultSettings.mapSizeDefinition = mapSizeDef;
-            string settingsPath = Path.Combine(workDir, $"{mapName}.sdd", ProjectSettings.DEFAULT_FILE_NAME);
-            settingsSerializer.SerializeToFile(settingsPath, defaultSettings);
 
-            string mapPath = Path.Combine(workDir, $"{mapName}.sdd");
-            ImageTest.CreateImages(defaultSettings.mapSizeDefinition, mapPath);
+            settingsSerializer.SerializeToFile(pathInfo.settingsPath, defaultSettings);
 
-            return new MapCreationResult("");
+            ImageTest.CreateImages(defaultSettings.mapSizeDefinition, pathInfo.mapPath);
+
+            return new MapCreationResult("", pathInfo);
         }
 
-        private static MapCreationResult CreateMapBlueprint(string mapName, string workDir)
+        private static MapCreationResult CreateMapBlueprint(string mapName, string workDir, MapPathInformation pathInfo)
         {
             string type = "Copy Map Blueprint";
             DirectoryInfo blueprintDir = new DirectoryInfo(MAP_BLUEPRINT_PATH);
@@ -77,12 +56,12 @@ namespace MapCreationTool
             {
                 // TODO: Needs testing
                 string programDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                return new MapCreationResult(type, $"Could not find Map blueprint @ {Path.Combine(programDirectory, blueprintDir.FullName)} ");
+                return new MapCreationResult(type, pathInfo, $"Could not find Map blueprint @ {Path.Combine(programDirectory, blueprintDir.FullName)} ");
             }
             string newBlueprintPath = Path.Combine(workDir, BLUEPRINT_MAP_NAME);
             if (Directory.Exists(newBlueprintPath))
             {
-                return new MapCreationResult(type, $"There is already a blueprint in the workdir. Creation aborted. Please delete {newBlueprintPath}");
+                return new MapCreationResult(type, pathInfo, $"There is already a blueprint in the workdir. Creation aborted. Please delete {newBlueprintPath}");
             }
 
             foreach (FileInfo? file in blueprintDir.GetFiles("*.*", SearchOption.AllDirectories))
@@ -115,7 +94,7 @@ namespace MapCreationTool
             else
             {
                 string message = $"Could not set name for map directory. Directory {targetDirPath} already exists. Please delete directory and try again";
-                result = new MapCreationResult(type, message);
+                result = new MapCreationResult(type, null, message);
                 return result;
             }
             result = new MapCreationResult(type);

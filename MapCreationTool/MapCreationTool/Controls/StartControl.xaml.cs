@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MapCreationTool.Models;
 
 namespace MapCreationTool.Controls
 {
@@ -22,8 +23,8 @@ namespace MapCreationTool.Controls
     /// </summary>
     public partial class StartControl : UserControl
     {
-        public delegate void MapCreated(object sender, string mapName);
-        public delegate void MapOpened(object sender, string mapName);
+        public delegate void MapCreated(object sender, MapPathInformation mapPathInformation);
+        public delegate void MapOpened(object sender, MapPathInformation mapPathInformation);
 
         public event MapCreated OnMapCreated;
         public event MapOpened OnMapOpened;
@@ -40,7 +41,7 @@ namespace MapCreationTool.Controls
             //NavigationService.Navigate(new Uri("Pages/CreateMapPage.xaml", UriKind.RelativeOrAbsolute));
             if (result.HasValue)
             {
-                OnMapCreated(this, createMapWindow.ViewModel.MapName);
+                OnMapCreated(this, createMapWindow.ViewModel.MapPathInfo);
             }
         }
 
@@ -51,7 +52,11 @@ namespace MapCreationTool.Controls
             if (result != Forms.DialogResult.OK)
                 return;
 
-            OnMapOpened(this, folderBrowser.SelectedPath);
+            string fullMapPath = folderBrowser.SelectedPath;
+
+            MapPathInformation mapPathInfo = new MapPathInformation(fullMapPath);
+
+            OnMapOpened(this, mapPathInfo);
         }
 
         private void btnSizeCalculator_Click(object sender, RoutedEventArgs e)

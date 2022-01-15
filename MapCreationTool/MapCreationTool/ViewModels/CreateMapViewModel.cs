@@ -13,10 +13,11 @@ namespace MapCreationTool.ViewModels
         private string workDir = "";
         private string mapName = "Zero-Prime";
         private WidthHeight mapSize = new WidthHeight(16, 12);
+        private MapPathInformation mapPathInfo;
 
         public string WorkDir
         {
-            get => workDir; 
+            get => workDir;
             set
             {
                 workDir = value;
@@ -25,7 +26,7 @@ namespace MapCreationTool.ViewModels
         }
         public string MapName
         {
-            get => mapName; 
+            get => mapName;
             set
             {
                 mapName = value;
@@ -38,6 +39,16 @@ namespace MapCreationTool.ViewModels
             set
             {
                 mapSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        internal MapPathInformation MapPathInfo
+        {
+            get => mapPathInfo;
+            set
+            {
+                mapPathInfo = value;
                 OnPropertyChanged();
             }
         }

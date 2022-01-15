@@ -1,4 +1,5 @@
-﻿using MapCreationTool.Tabs;
+﻿using MapCreationTool.Models;
+using MapCreationTool.Tabs;
 using MapCreationTool.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -31,14 +32,14 @@ namespace MapCreationTool
     
         }
 
-        private void ctrlStart_OnMapOpened(object sender, string mapName)
+        private void ctrlStart_OnMapOpened(object sender, MapPathInformation mapPathInfo)
         {
-            ViewModel.Tabs.Add(new MapTab(mapName, null));
+            ViewModel.Tabs.Add(new MapTab(mapPathInfo.mapName, null));
         }
 
-        private void ctrlStart_OnMapCreated(object sender, string mapName)
+        private void ctrlStart_OnMapCreated(object sender, MapPathInformation mapPathInfo)
         {
-            ViewModel.Tabs.Add(new MapTab(mapName, null));
+            ViewModel.Tabs.Add(new MapTab(mapPathInfo.mapName, null));
 
         }
     }

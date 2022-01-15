@@ -90,6 +90,7 @@ namespace MapCreationTool.Windows
 
             //MessageBox.Show("Map creation successful");
             DialogResult = true;
+            ViewModel.MapPathInfo = result.mapPathInfo;
             Close();
         }
     }
