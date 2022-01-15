@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MapCreationTool.Tabs;
+using MapCreationTool.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +22,24 @@ namespace MapCreationTool
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainWindowViewModel ViewModel { get;set; }
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            DataContext = ViewModel = new MainWindowViewModel();
     
+        }
+
+        private void ctrlStart_OnMapOpened(object sender, string mapName)
+        {
+            ViewModel.Tabs.Add(new MapTab(mapName, null));
+        }
+
+        private void ctrlStart_OnMapCreated(object sender, string mapName)
+        {
+            ViewModel.Tabs.Add(new MapTab(mapName, null));
+
         }
     }
 }

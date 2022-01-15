@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MapCreationTool.WPF
 {
-    public class PropertyChangeBase : INotifyPropertyChanged
+    public class PropertyChangedBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

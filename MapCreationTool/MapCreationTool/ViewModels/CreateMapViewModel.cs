@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MapCreationTool.ViewModels
 {
-    public class CreateMapViewModel : PropertyChangeBase
+    public class CreateMapViewModel : PropertyChangedBase
     {
         private string workDir = "";
         private string mapName = "Zero-Prime";

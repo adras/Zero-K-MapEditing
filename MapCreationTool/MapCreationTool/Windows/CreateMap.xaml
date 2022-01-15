@@ -8,8 +8,8 @@
         mc:Ignorable="d"
         xmlns:cv ="clr-namespace:MapCreationTool.Converters"
         d:DataContext="{d:DesignInstance vm:CreateMapViewModel, IsDesignTimeCreatable=true}"
+        Title="CreateMap" Height="450" Width="800">
 
-    Title="CreateMap" Height="450" Width="800">
     <Window.Resources>
         <cv:IntToStringConverter x:Key="intStringConverter" />
     </Window.Resources>
