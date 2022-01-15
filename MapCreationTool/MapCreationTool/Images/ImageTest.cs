@@ -33,10 +33,10 @@ namespace MapCreationTool.Images
 		public static void CreateImages(MapSizeDefinition mapSize, string mapDir)
 		{
 			
-			Image<Rgb24> diffuse = new Image<Rgb24>(mapSize.diffuseMapSize.width, mapSize.diffuseMapSize.height);
-			Image<Rgb24> grass = new Image<Rgb24>(mapSize.grassMapSize.width, mapSize.grassMapSize.height);
-			Image<Rgb48> height = new Image<Rgb48>(mapSize.heightMapSize.width, mapSize.heightMapSize.height);
-			Image<Rgb24> metal = new Image<Rgb24>(mapSize.metalMapSize.width, mapSize.metalMapSize.height);
+			Image<Rgb24> diffuse = new Image<Rgb24>(mapSize.diffuseMapSize.Width, mapSize.diffuseMapSize.Height);
+			Image<Rgb24> grass = new Image<Rgb24>(mapSize.grassMapSize.Width, mapSize.grassMapSize.Height);
+			Image<Rgb48> height = new Image<Rgb48>(mapSize.heightMapSize.Width, mapSize.heightMapSize.Height);
+			Image<Rgb24> metal = new Image<Rgb24>(mapSize.metalMapSize.Width, mapSize.metalMapSize.Height);
 
 			// Fill images with an arbitrary background color, otherwise images would be empty files
 			diffuse.Mutate(x => x.Fill(Color.Aqua));

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MapCreationTool.Models;
+using MapCreationTool.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,25 +9,31 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using Forms = System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.IO;
-using MapCreationTool.Models;
+using Forms = System.Windows.Forms;
 
-namespace MapCreationTool
+namespace MapCreationTool.Windows
 {
     /// <summary>
-    /// Interaction logic for CreateMapPage.xaml
+    /// Interaction logic for CreateMap.xaml
     /// </summary>
-    public partial class CreateMapPage : Page
+    public partial class CreateMap : Window
     {
-        public CreateMapPage()
+        public CreateMapViewModel ViewModel { get; set; }
+
+        public CreateMap()
         {
             InitializeComponent();
+            DataContext = ViewModel = new CreateMapViewModel();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
         }
 
         private void btnSelectWorkingDir_Click(object sender, RoutedEventArgs e)
@@ -38,41 +46,41 @@ namespace MapCreationTool
             Forms.DialogResult result = dialog.ShowDialog();
             if (result == Forms.DialogResult.OK)
             {
-                tbMapWorkingDir.Text = dialog.SelectedPath;
+                ViewModel.WorkDir = dialog.SelectedPath;
             }
         }
 
         private void btnCreateMap_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(tbMapWorkingDir.Text))
+            if (string.IsNullOrEmpty(ViewModel.WorkDir))
             {
                 MessageBox.Show("Please select or enter a path to a working directory for the new map");
                 return;
             }
-            if (string.IsNullOrEmpty(tbMapName.Text))
+            if (string.IsNullOrEmpty(ViewModel.MapName))
             {
                 MessageBox.Show("Please enter a map name");
             }
 
-            string mapName = tbMapName.Text;
-            string workDir = tbMapWorkingDir.Text;
+            string mapName = ViewModel.MapName;
+            string workDir = ViewModel.WorkDir;
 
             int mapSizeX;
             int mapSizeY;
 
-            if (!int.TryParse(tbMapWidth.Text, out mapSizeX))
+            if (ViewModel.MapSize.Width == 0)
             {
                 MessageBox.Show("Could not create map. Invalid value for Map-Width. Make sure it's an integer value");
                 return;
             }
 
-            if (!int.TryParse(tbMapHeight.Text, out mapSizeY))
+            if (ViewModel.MapSize.Height == 0)
             {
                 MessageBox.Show("Could not create map. Invalid value for Map-Width. Make sure it's an integer value");
                 return;
             }
-            MapSizeDefinition mapSizeDef = new MapSizeDefinition(new WidthHeight(mapSizeX, mapSizeY));
 
+            MapSizeDefinition mapSizeDef = new MapSizeDefinition(ViewModel.MapSize);
             MapCreationResult result = MapCreationHelper.CreateMap(mapName, workDir, mapSizeDef);
             if (result.success == false)
             {
@@ -80,7 +88,9 @@ namespace MapCreationTool
                 return;
             }
 
-            MessageBox.Show("Map creation successful");
+            //MessageBox.Show("Map creation successful");
+            DialogResult = true;
+            Close();
         }
     }
 }

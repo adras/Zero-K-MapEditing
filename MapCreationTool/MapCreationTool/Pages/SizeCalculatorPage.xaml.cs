@@ -61,10 +61,10 @@ namespace MapCreationTool
 
             MapSizeDefinition mapSizeDef = new MapSizeDefinition(new WidthHeight(mapSizeX, mapSizeY));
 
-            tbDiffuseMapSize.Text = $"{mapSizeDef.diffuseMapSize.width} / {mapSizeDef.diffuseMapSize.height}";
-            tbHeightMapSize.Text = $"{mapSizeDef.heightMapSize.width} / {mapSizeDef.heightMapSize.height}";
-            tbMetalMapSize.Text = $"{mapSizeDef.metalMapSize.width} / {mapSizeDef.metalMapSize.height}";
-            tbGrassMapSize.Text = $"{mapSizeDef.grassMapSize.width} / {mapSizeDef.grassMapSize.height}";
+            tbDiffuseMapSize.Text = $"{mapSizeDef.diffuseMapSize.Width} / {mapSizeDef.diffuseMapSize.Height}";
+            tbHeightMapSize.Text = $"{mapSizeDef.heightMapSize.Width} / {mapSizeDef.heightMapSize.Height}";
+            tbMetalMapSize.Text = $"{mapSizeDef.metalMapSize.Width} / {mapSizeDef.metalMapSize.Height}";
+            tbGrassMapSize.Text = $"{mapSizeDef.grassMapSize.Width} / {mapSizeDef.grassMapSize.Height}";
         }
 
     }

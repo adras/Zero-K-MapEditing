@@ -8,8 +8,11 @@ namespace MapCreationTool.Models
 {
     public class WidthHeight
     {
-        public int width;
-        public int height;
+        private int width;
+        private int height;
+
+        public int Width { get => width; set => width = value; }
+        public int Height { get => height; set => height = value; }
 
         public WidthHeight()
         {
@@ -18,25 +21,25 @@ namespace MapCreationTool.Models
 
         public WidthHeight(int width, int height)
         {
-            this.width = width;
-            this.height = height;
+            this.Width = width;
+            this.Height = height;
         }
 
         public static WidthHeight CreateByFactor(WidthHeight widthHeight, int factor)
         {
-            WidthHeight result = new WidthHeight(widthHeight.width * factor, widthHeight.height * factor);
+            WidthHeight result = new WidthHeight(widthHeight.Width * factor, widthHeight.Height * factor);
             return result;
         }
 
         public static WidthHeight CreateByFactorAdd(WidthHeight widthHeight, int factor, int add)
         {
-            WidthHeight result = new WidthHeight(widthHeight.width * factor + add, widthHeight.height * factor + add);
+            WidthHeight result = new WidthHeight(widthHeight.Width * factor + add, widthHeight.Height * factor + add);
             return result;
         }
 
         public override string ToString()
         {
-            string result = $"Width: {width} Height: {height}";
+            string result = $"Width: {Width} Height: {Height}";
             return result;
         }
     }
