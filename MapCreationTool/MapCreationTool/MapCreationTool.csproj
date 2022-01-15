@@ -124,19 +124,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Pages\SizeCalculatorPage.xaml.cs">
-			<SubType>Code</SubType>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Page Update="Pages\SizeCalculatorPage.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-			<SubType>Designer</SubType>
-		</Page>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Folder Include="Converters\" />
 	</ItemGroup>
 

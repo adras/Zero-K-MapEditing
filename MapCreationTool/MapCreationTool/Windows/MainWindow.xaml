@@ -12,7 +12,7 @@
     <Window.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
@@ -20,7 +20,6 @@
                                OnMapOpened="ctrlStart_OnMapOpened" 
                                OnMapCreated="ctrlStart_OnMapCreated"
                                OnCalculatorClicked="ctrlStart_OnCalculatorClicked">
-                
             </ctrl:StartControl>
 
 
