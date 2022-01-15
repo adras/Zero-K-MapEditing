@@ -1,13 +1,18 @@
-﻿using System;
+﻿using MapCreationTool.Controls;
+using MapCreationTool.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace MapCreationTool.Tabs
 {
     internal class MapTab : TabBase
     {
+        private MapPathInformation mapPathInfo;
+
         string header;
         object content;
 
@@ -21,10 +26,11 @@ namespace MapCreationTool.Tabs
             get => content;
         }
 
-        public MapTab(string mapName, object content)
+        public MapTab(MapPathInformation pathInfo)
         {
-            this.header = mapName;
-            this.content = content;
+            this.mapPathInfo = pathInfo;
+            this.header = mapPathInfo.mapName;
+            this.content = new EditMapControl();
         }
     }
 }

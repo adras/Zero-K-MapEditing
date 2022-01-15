@@ -7,6 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <TabControl TabStripPlacement="Left" >
+            <TabItem Header="Metal placement">
+                <Label>uisduiasfhasf</Label>
+            </TabItem>
+            <TabItem Header="Start-Zones">
+                <Label>sdinsiacnascnu</Label>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

@@ -34,12 +34,12 @@ namespace MapCreationTool.Windows
 
         private void ctrlStart_OnMapOpened(object sender, MapPathInformation mapPathInfo)
         {
-            ViewModel.Tabs.Add(new MapTab(mapPathInfo.mapName, null));
+            ViewModel.Tabs.Add(new MapTab(mapPathInfo));
         }
 
         private void ctrlStart_OnMapCreated(object sender, MapPathInformation mapPathInfo)
         {
-            ViewModel.Tabs.Add(new MapTab(mapPathInfo.mapName, null));
+            ViewModel.Tabs.Add(new MapTab(mapPathInfo));
 
         }
 
