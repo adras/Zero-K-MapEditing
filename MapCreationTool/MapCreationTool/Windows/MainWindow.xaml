@@ -19,7 +19,7 @@
             <ctrl:StartControl x:Name="ctrlStart" Grid.Column="0" 
                                OnMapOpened="ctrlStart_OnMapOpened" 
                                OnMapCreated="ctrlStart_OnMapCreated"
-                               OnCalculatorClicked="ctrlStart_OnCalculatorClicked">
+                               OnSettingsClicked="ctrlStart_OnCalculatorClicked">
             </ctrl:StartControl>
 
 
@@ -31,8 +31,6 @@
                     </Style>
                 </TabControl.ItemContainerStyle>
             </TabControl>
-            
-
         </Grid>
 
     </Window.Content>

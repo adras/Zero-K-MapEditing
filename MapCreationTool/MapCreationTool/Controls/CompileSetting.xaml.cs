@@ -89,6 +89,7 @@ namespace MapCreationTool.Controls
         public CompileSetting()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         private void btnBrowseFile_Click(object sender, RoutedEventArgs e)

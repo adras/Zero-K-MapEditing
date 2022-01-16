@@ -15,7 +15,7 @@
             </Grid.ColumnDefinitions>
             <Button Name="btnCreateMap" Grid.Column="0" Click="btnCreateMap_Click" >Create Map</Button>
             <Button Name="btnOpenMap" Grid.Column="1" Click="btnOpenMap_Click">Open Map</Button>
-            <!--<Button Name="btnSizeCalculator" Grid.Column="3" Click="btnSizeCalculator_Click">Calculate Map sizes</Button>-->
+            <Button Name="btnSettings" Grid.Column="3" Click="btnSettings_Click">Select GameDirectory</Button>
         </Grid>
     </Grid>
 </UserControl>

@@ -29,7 +29,7 @@ namespace MapCreationTool.Controls
 
         public event MapCreated OnMapCreated;
         public event MapOpened OnMapOpened;
-        public event EventHandler OnCalculatorClicked;
+        public event EventHandler OnSettingsClicked;
 
         public StartControl()
         {
@@ -40,7 +40,7 @@ namespace MapCreationTool.Controls
         {
             CreateMap createMapWindow = new CreateMap();
             bool? result = createMapWindow.ShowDialog();
-            //NavigationService.Navigate(new Uri("Pages/CreateMapPage.xaml", UriKind.RelativeOrAbsolute));
+
             if (result == true)
             {
                 OnMapCreated(this, createMapWindow.ViewModel.MapPathInfo);
@@ -61,9 +61,10 @@ namespace MapCreationTool.Controls
             OnMapOpened(this, mapPathInfo);
         }
 
-        private void btnSizeCalculator_Click(object sender, RoutedEventArgs e)
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-            OnCalculatorClicked?.Invoke(this, new EventArgs());
+            OnSettingsClicked?.Invoke(this, new EventArgs());
         }
     }
 }

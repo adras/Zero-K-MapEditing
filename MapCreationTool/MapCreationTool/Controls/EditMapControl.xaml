@@ -8,15 +8,16 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <TabControl TabStripPlacement="Left" >
-            <TabItem Header="Metal placement">
-                <Label>uisduiasfhasf</Label>
-            </TabItem>
-            <TabItem Header="Start-Zones" >
-                <Label>sdinsiacnascnu</Label>
-            </TabItem>
-            <TabItem Header="Compile">
+            <TabItem Header="Compile" FontSize="16">
                 <local:CompileMapControl Margin="10, 10"></local:CompileMapControl>
             </TabItem>
+            <TabItem Header="Metal placement" FontSize="16">
+                <Label>Coming soon</Label>
+            </TabItem>
+            <TabItem Header="Start-Zones" FontSize="16">
+                <Label>Coming soon</Label>
+            </TabItem>
+
         </TabControl>
     </Grid>
 </UserControl>
