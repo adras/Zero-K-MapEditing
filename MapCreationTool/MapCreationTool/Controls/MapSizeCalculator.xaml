@@ -16,6 +16,10 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
+            
+            <RowDefinition Height="25"></RowDefinition>
+         
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
@@ -25,18 +29,20 @@
         <TextBox Grid.Row="0" Grid.Column="1" Name="tbMapSizeX" TextChanged="tbMapSizeX_TextChanged"></TextBox>
 
         <Label Grid.Row="1" Grid.Column="0">Ingame Map Size Y</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Name="tbMapSizeY" TextChanged="tbMapSizeY_TextChanged"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="tbMapSizeY" TextChanged="tbMapSizeY_TextChanged" ></TextBox>
 
-        <Label Grid.Row="2" Grid.Column="0">HeightMap size</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Name="tbHeightMapSize" ></TextBox>
+        <Label Grid.Row="3">Results:</Label>
+        
+        <Label Grid.Row="4" Grid.Column="0">HeightMap size</Label>
+        <TextBox Grid.Row="4" Grid.Column="1" Name="tbHeightMapSize" IsReadOnly="True" ></TextBox>
 
-        <Label Grid.Row="3" Grid.Column="0">MetalMap size</Label>
-        <TextBox Grid.Row="3" Grid.Column="1" Name="tbMetalMapSize" ></TextBox>
+        <Label Grid.Row="5" Grid.Column="0">MetalMap size</Label>
+        <TextBox Grid.Row="5" Grid.Column="1" Name="tbMetalMapSize" IsReadOnly="True"></TextBox>
 
-        <Label Grid.Row="4" Grid.Column="0">DiffuseMap size</Label>
-        <TextBox Grid.Row="4" Grid.Column="1" Name="tbDiffuseMapSize" ></TextBox>
+        <Label Grid.Row="6" Grid.Column="0">DiffuseMap size</Label>
+        <TextBox Grid.Row="6" Grid.Column="1" Name="tbDiffuseMapSize" IsReadOnly="True"></TextBox>
 
-        <Label Grid.Row="5" Grid.Column="0">GrassMap size</Label>
-        <TextBox Grid.Row="5" Grid.Column="1" Name="tbGrassMapSize" ></TextBox>
+        <Label Grid.Row="7" Grid.Column="0">GrassMap size</Label>
+        <TextBox Grid.Row="7" Grid.Column="1" Name="tbGrassMapSize" IsReadOnly="True"></TextBox>
     </Grid>
 </UserControl>
