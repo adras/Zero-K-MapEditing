@@ -11,6 +11,8 @@ namespace MapCreationTool.MapConverter
 	/// </summary>
 	class MapCompilerSetting
 	{
+		public string MAP_CONV_EXE_PATH = @"Tools\PyMapConv\pymapconv.exe";
+
 		public readonly string identifier;
 		public readonly string settingValue;
 		public readonly string custom;
