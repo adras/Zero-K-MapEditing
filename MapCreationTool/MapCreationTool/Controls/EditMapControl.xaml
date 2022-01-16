@@ -11,8 +11,11 @@
             <TabItem Header="Metal placement">
                 <Label>uisduiasfhasf</Label>
             </TabItem>
-            <TabItem Header="Start-Zones">
+            <TabItem Header="Start-Zones" >
                 <Label>sdinsiacnascnu</Label>
+            </TabItem>
+            <TabItem Header="Compile">
+                <local:CompileMapControl Margin="10, 10"></local:CompileMapControl>
             </TabItem>
         </TabControl>
     </Grid>
