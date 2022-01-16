@@ -11,22 +11,22 @@
         
         <Grid DataContext="Self">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
 
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
             </Grid.RowDefinitions>
             <local:CompileSetting Grid.Row="0" SettingName="Output file" SettingDescription="The output smf file to create. E.g Zero-Prime.smf (REQUIRED)" SettingIsEnabled="True" SettingHasFileBrowser="true"></local:CompileSetting>
             <local:CompileSetting Grid.Row="1" SettingName="Texture" SettingDescription="The diffuse map file to use. (REQUIRED)" SettingIsEnabled="True"></local:CompileSetting>
@@ -43,6 +43,9 @@
             <local:CompileSetting Grid.Row="12" SettingName="override minimap" SettingDescription=" " SettingIsEnabled="True"></local:CompileSetting>
             <local:CompileSetting Grid.Row="13" SettingName="NVDXT settings" SettingDescription=" " SettingValue="-Sinc -quality_highest" SettingIsEnabled="True"></local:CompileSetting>
             <local:CompileSetting Grid.Row="14" SettingName="Highresheightmap filter" SettingDescription=" " SettingValue="lanczos" SettingIsEnabled="True"></local:CompileSetting>
+
+            <local:CompileDeployControl Grid.Row="15"></local:CompileDeployControl>
         </Grid>
+            
     </ScrollViewer>
 </UserControl>
