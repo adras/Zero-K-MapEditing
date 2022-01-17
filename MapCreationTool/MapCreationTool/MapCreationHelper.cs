@@ -43,7 +43,7 @@ namespace MapCreationTool
 
             settingsSerializer.SerializeToFile(pathInfo.settingsPath, defaultSettings);
 
-            ImageTest.CreateImages(defaultSettings.MapSizeDefinition, pathInfo.mapPath);
+            ImageTest.CreateImages(defaultSettings.MapSizeDefinition, pathInfo.mapPath, defaultSettings);
 
             return new MapCreationResult("", pathInfo);
         }

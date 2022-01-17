@@ -1,4 +1,5 @@
-﻿using MapCreationTool.Models;
+﻿using MapCreationTool.Configuration;
+using MapCreationTool.Models;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Drawing.Processing;
 using SixLabors.ImageSharp.Formats;
@@ -30,7 +31,7 @@ namespace MapCreationTool.Images
 	class ImageTest
 	{
 
-		public static void CreateImages(MapSizeDefinition mapSize, string mapDir)
+		public static void CreateImages(MapSizeDefinition mapSize, string mapDir, ProjectSettings settings)
 		{
 			
 			Image<Rgb24> diffuse = new Image<Rgb24>(mapSize.DiffuseMapSize.Width, mapSize.DiffuseMapSize.Height);
@@ -39,17 +40,17 @@ namespace MapCreationTool.Images
 			Image<Rgb24> metal = new Image<Rgb24>(mapSize.MetalMapSize.Width, mapSize.MetalMapSize.Height);
 
 			// Fill images with an arbitrary background color, otherwise images would be empty files
-			diffuse.Mutate(x => x.Fill(Color.Aqua));
-			grass.Mutate(x => x.Fill(Color.Purple));
-			height.Mutate(x => x.Fill(Color.PeachPuff));
-			metal.Mutate(x => x.Fill(Color.Sienna));
+			diffuse.Mutate(x => x.Fill(Color.Black));
+			grass.Mutate(x => x.Fill(Color.Black));
+			height.Mutate(x => x.Fill(Color.Black));
+			metal.Mutate(x => x.Fill(Color.Black));
 
 			BmpEncoder encoder = new BmpEncoder();
 
-			WriteImage(encoder, diffuse, $"{mapDir}\\diffuse.bmp");
-			WriteImage(encoder, grass, $"{mapDir}\\grass.bmp");
-			WriteImage(encoder, height,$"{mapDir}\\height.bmp");
-			WriteImage(encoder, metal, $"{mapDir}\\metal.bmp");
+			WriteImage(encoder, diffuse, $"{mapDir}\\{settings.DiffuseMapName}");
+			WriteImage(encoder, grass, $"{mapDir}\\{settings.GrassMapName}");
+			WriteImage(encoder, height,$"{mapDir}\\{settings.HeightMapName}");
+			WriteImage(encoder, metal, $"{mapDir}\\{settings.MetalMapName}");
 		}
 
 		private static void WriteImage<T>(IImageEncoder encoder, Image<T> image, string fileName) where T: unmanaged, IPixel<T>

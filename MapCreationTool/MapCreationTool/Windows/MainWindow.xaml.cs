@@ -38,29 +38,22 @@ namespace MapCreationTool.Windows
 		{
 			ViewModel.Tabs.Add(new MapTab(mapPathInfo));
 
-			ProjectSettingsSerializer serializer = new ProjectSettingsSerializer();
-			ProjectSettings projectSettings;
-			if (!File.Exists(mapPathInfo.settingsPath))
-			{
-				projectSettings = serializer.CreateDefault();
-				serializer.SerializeToFile(mapPathInfo.settingsPath, projectSettings);
-			}
-			else
-			{
-				projectSettings = serializer.DeserializeFromFile(mapPathInfo.settingsPath);
-			}
-			ViewModel.ProjectSettings = projectSettings;
+			// Settings exist when map was opened previously, otherwise default settings will be created
+			ViewModel.ProjectSettings = ProjectSettings.OpenOrCreateDefault(mapPathInfo.settingsPath);
 		}
+
+		
 
 		private void ctrlStart_OnMapCreated(object sender, MapPathInformation mapPathInfo)
 		{
 			ViewModel.Tabs.Add(new MapTab(mapPathInfo));
 
+			// Settings don't exist so create default settings
+			ViewModel.ProjectSettings = ProjectSettings.OpenOrCreateDefault(mapPathInfo.settingsPath);
 		}
 
 		private void ctrlStart_OnCalculatorClicked(object sender, EventArgs e)
 		{
-
 		}
 	}
 }
