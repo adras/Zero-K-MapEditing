@@ -69,6 +69,10 @@ namespace MapCreationTool.Rendering
 			double halfWidth = heightImage.Width / 2.0;
 			double halfHeight = heightImage.Height / 2.0;
 
+			// To improve performance it would be nice to check if a point already exists
+			// in that case it's coordinate could be reused instead of being added again
+			// However this can become a pain when editing is later added
+
 			for (int y = 0; y < heightImage.Height; y ++)
 			{
 				Rgba32[]? test = heightImage.GetPixelRowMemory(y).ToArray();
@@ -83,33 +87,6 @@ namespace MapCreationTool.Rendering
 				}
 			}
 
-			//defining triangles
-			//int ind1 = 0;
-			//int ind2 = 0;
-			//int xLength = heightImage.Width;
-			//for (var y = 0; y < heightImage.Height - 1; y++)
-			//{
-			//	for (var x = 0; x < heightImage.Width - 1; x++)
-			//	{
-			//		ind1 = x + y * (xLength);
-			//		ind2 = ind1 + (xLength);
-
-			//		//first triangle
-			//		vertexIndices.Add(ind1);
-			//		vertexIndices.Add(ind2 + 1);
-			//		vertexIndices.Add(ind2);
-
-			//		//second triangle
-			//		vertexIndices.Add(ind1);
-			//		vertexIndices.Add(ind1 + 1);
-			//		vertexIndices.Add(ind2 + 1);
-			//	}
-			//}
-			// for (int i = 0; i < vertices.Count; i++)
-			// {
-			// 	int x = i % heightImage.Width;
-			// 	int y = i / heightImage.Height;
-			// }
 			Int32Collection vertexIndices = new Int32Collection();
 			for (int y = 0; y < heightImage.Height - 1; y += 1)
 			{
@@ -121,16 +98,14 @@ namespace MapCreationTool.Rendering
 					vertexIndices.Add(idx1);
 					vertexIndices.Add(idx2 + 1);
 					vertexIndices.Add(idx3);
-
-					
 				
 					vertexIndices.Add(idx3 + 1);
 					vertexIndices.Add(idx3);
 					vertexIndices.Add(idx1 + 1);
 				}
 			}
-			meshGeometry.Positions = vertices;
 
+			meshGeometry.Positions = vertices;
 			meshGeometry.TriangleIndices = vertexIndices;
 
 			return meshGeometry;
@@ -240,11 +215,13 @@ namespace MapCreationTool.Rendering
 		{
 			//camera = new KeyboardCamera();
 			mouseCamera = new MouseOrbitCamera(terrainControl);
-			mouseCamera.XAngle = 50;
-			mouseCamera.Zoom = 400;
+			mouseCamera.XAngle = 60;
+			mouseCamera.YAngle = 183;
+			mouseCamera.Zoom = 1200;
 
 			// Asign the camera to the viewport
 			viewport.Camera = mouseCamera.perspectiveCamera;
+			mouseCamera.Update(deltaTime);
 		}
 
 		private void SetupMaterials()

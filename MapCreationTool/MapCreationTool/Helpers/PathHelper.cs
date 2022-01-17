@@ -18,7 +18,8 @@ namespace MapCreationTool.Helpers
             string mapDirName = fi.FullName;
 
             int sddStart = fi.Name.IndexOf(".sdd");
-            
+            if (sddStart == -1)
+                return null;
             string result = fi.Name.Substring(0, sddStart);
 
             return result;

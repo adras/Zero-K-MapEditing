@@ -57,7 +57,11 @@ namespace MapCreationTool.Controls
             string fullMapPath = folderBrowser.SelectedPath;
 
             MapPathInformation mapPathInfo = new MapPathInformation(fullMapPath);
-
+            if (mapPathInfo.mapName == null)
+			{
+                MessageBox.Show("Map could not be opened. Please open a .sdd directory");
+                return;
+			}
             OnMapOpened(this, mapPathInfo);
         }
 

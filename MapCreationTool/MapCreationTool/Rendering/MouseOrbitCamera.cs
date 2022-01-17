@@ -129,11 +129,11 @@ namespace MapCreationTool.Rendering
             Vector3D lookDir = testPos - cameraPos;
             Vector3D up = Vector3D.CrossProduct(lookDir, new Vector3D(-lookDir.Y, lookDir.X, 0));
 
-            lookDir.Normalize();
-            up.Normalize();
+			lookDir.Normalize();
+			up.Normalize();
 
-            //Debug.WriteLine("xAngle: " + XAngle + " - yangle: " + YAngle);
-            perspectiveCamera.Position = (Point3D)cameraPos;
+			//Debug.WriteLine("xAngle: " + XAngle + " - yangle: " + YAngle);
+			perspectiveCamera.Position = (Point3D)cameraPos;
             perspectiveCamera.LookDirection = lookDir;
             perspectiveCamera.UpDirection = up;
         }
