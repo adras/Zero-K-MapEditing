@@ -1,4 +1,5 @@
-﻿using MapCreationTool.Rendering;
+﻿using MapCreationTool.Configuration;
+using MapCreationTool.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,24 +12,46 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MapCreationTool.Controls
 {
-	/// <summary>
-	/// Interaction logic for TerrainControl.xaml
-	/// </summary>
-	public partial class TerrainControl : UserControl
-	{
-		Testing testing;
+    /// <summary>
+    /// Interaction logic for TerrainControl.xaml
+    /// </summary>
+    public partial class TerrainControl : UserControl
+    {
+        Testing testing;
 
-		public TerrainControl()
-		{
-			InitializeComponent();
+        public ProjectSettings ProjectSettings
+        {
+            get { return (ProjectSettings)GetValue(ProjectSettingsProperty); }
+            set { SetValue(ProjectSettingsProperty, value); }
+        }
 
-			testing = new Testing(this);
-	
-		}
-	}
+        public static readonly DependencyProperty ProjectSettingsProperty = DependencyProperty.Register(
+            nameof(ProjectSettings),
+            typeof(ProjectSettings),
+            typeof(TerrainControl),
+            new PropertyMetadata(null)
+        );
+
+        public TerrainControl()
+        {
+            InitializeComponent();
+
+            testing = new Testing(this);
+        }
+
+        private async void viewPortMain_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            //Dispatcher.Invoke(() =>
+            //    {
+                    MeshGeometry3D geom = testing.LoadHeightmap();
+                    testing.SetMeshGeometry(geom);
+                //});
+        }
+    }
 }

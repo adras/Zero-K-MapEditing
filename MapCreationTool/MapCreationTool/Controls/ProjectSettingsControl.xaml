@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MapCreationTool.Controls.ProjectSettings"
+﻿<UserControl x:Class="MapCreationTool.Controls.ProjectSettingsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,7 +15,7 @@
             <RowDefinition Height="35"></RowDefinition>
             <RowDefinition Height="35"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:LabeledTextBoxControl Grid.Row="0" LabelText="Height map" TextBoxValue="{Binding Path=ViewModel.ProjectSettings.HeightMapName, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
-        <local:LabeledTextBoxControl Grid.Row="1" LabelText="Diffuse map" TextBoxValue="{Binding Path=ViewModel.ProjectSettings.DiffuseMapName, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+        <local:LabeledTextBoxControl Grid.Row="0" LabelText="Height map" TextBoxValue="{Binding Path=ViewModel.ProjectSettings.HeightMapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+        <local:LabeledTextBoxControl Grid.Row="1" LabelText="Diffuse map" TextBoxValue="{Binding Path=ViewModel.ProjectSettings.DiffuseMapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
     </Grid>
 </UserControl>

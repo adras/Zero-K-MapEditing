@@ -7,8 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Viewport3D Name="viewPortMain" RenderOptions.EdgeMode="Aliased" >
-            
+        <Viewport3D Name="viewPortMain" RenderOptions.EdgeMode="Aliased" IsVisibleChanged="viewPortMain_IsVisibleChanged">
+            <ModelVisual3D x:Name="modelVisual3D">
+                
+            </ModelVisual3D>
         </Viewport3D>
     </Grid>
 </UserControl>

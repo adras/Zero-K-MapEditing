@@ -76,7 +76,6 @@ namespace MapCreationTool
                 Debug.WriteLine($"Copied {file.FullName} to {targetFileInfo.FullName}");
             }
 
-
             return new MapCreationResult(type);
         }
 
