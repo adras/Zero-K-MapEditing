@@ -39,7 +39,7 @@ namespace MapCreationTool.Rendering
 
 			//geometryModel.Geometry = CreateHeightmapModel();
 			// Dont forget assigning this instead of createheightmapmodel
-			geometryModel.Geometry = LoadHeightmap("Rendering\\heightmap-smallx.bmp");
+			geometryModel.Geometry = LoadHeightmap("Rendering\\heightmap.bmp");
 
 
 			geometryModel.Material = normalModelMaterial;
@@ -115,9 +115,9 @@ namespace MapCreationTool.Rendering
 			{
 				for (int x = 0; x < heightImage.Width - 1; x += 1)
 				{
-					int idx1 = x + y * heightImage.Height;
-					int idx2 = x + y * heightImage.Height;
-					int idx3 = x + (y + 1) * heightImage.Height;
+					int idx1 = x + y * heightImage.Width;
+					int idx2 = x + y * heightImage.Width;
+					int idx3 = x + (y + 1) * heightImage.Width;
 					vertexIndices.Add(idx1);
 					vertexIndices.Add(idx2 + 1);
 					vertexIndices.Add(idx3);

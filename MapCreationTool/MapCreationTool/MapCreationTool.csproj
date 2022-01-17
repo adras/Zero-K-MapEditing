@@ -141,6 +141,9 @@
 	  <None Update="Rendering\heightmap-smallx.bmp">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Rendering\heightmap-smallx2.bmp">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Rendering\heightmap.bmp">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
