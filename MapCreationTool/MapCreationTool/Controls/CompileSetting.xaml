@@ -19,11 +19,14 @@
         </Grid.ColumnDefinitions>
         <CheckBox Margin="0,10" Grid.Column="0" IsChecked="{Binding Path=SettingIsEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"></CheckBox>
         <Label FontSize="12" Margin="0,5" Grid.Column="1" Content="{Binding Path=SettingName, RelativeSource={RelativeSource AncestorType=UserControl}}">
+            <Label.Resources>
+                <DiscreteObjectKeyFrame x:Key="proxy" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=SettingDescription}"></DiscreteObjectKeyFrame>
+            </Label.Resources>
             <Label.ToolTip>
                 <ToolTip>
                     <DockPanel>
-                        <!-- Binding works at runtime, but not when the map is initially loaded -->
-                        <TextBlock Text="{Binding Path=SettingDescription, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"></TextBlock>
+                        <!-- Proxy binding required: https://stackoverflow.com/questions/33117006/wpf-binding-cannot-find-source-for-binding-with-reference -->
+                        <TextBlock Text="{Binding Value, Source={StaticResource proxy}}"></TextBlock>
                     </DockPanel>
                 </ToolTip>
             </Label.ToolTip>
