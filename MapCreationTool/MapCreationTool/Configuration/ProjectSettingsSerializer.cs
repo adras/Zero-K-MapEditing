@@ -23,7 +23,9 @@ namespace MapCreationTool.Configuration
                 DiffuseMapName = "diffuse.bmp",
                 HeightMapName = "height.bmp",
                 GrassMapName = "grass.bmp",
-                MetalMapName = "metal.bmp"
+                MetalMapName = "metal.bmp",
+                MinHeight = -50,
+                MaxHeight = 200
             };
 
             return defaultSettings;

@@ -17,6 +17,9 @@ namespace MapCreationTool.Configuration
         private string grassMapName;
         private string metalMapName;
 
+        private int minHeight;
+        private int maxHeight;
+
         private MapSizeDefinition mapSizeDefinition;
 
         public string HeightMapName { get => heightMapName; set => heightMapName = value; }
@@ -26,7 +29,9 @@ namespace MapCreationTool.Configuration
 
         public MapSizeDefinition MapSizeDefinition { get => mapSizeDefinition; set => mapSizeDefinition = value; }
 
-        
+        public int MinHeight { get => minHeight; set => minHeight = value; }
+        public int MaxHeight { get => maxHeight; set => maxHeight = value; }
+
         internal static ProjectSettings OpenOrCreateDefault(string settingsPath)
         {
             ProjectSettingsSerializer serializer = new ProjectSettingsSerializer();
