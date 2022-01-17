@@ -25,6 +25,10 @@ namespace MapCreationTool.Rendering
         private double xAngle = 0;
         private double yAngle = 0;
         private double zoom = 0;
+        
+        private Matrix3D matrix = new Matrix3D();
+
+        Vector3D testPos = new Vector3D();
 
         public double XAngle
         {
@@ -114,18 +118,16 @@ namespace MapCreationTool.Rendering
             {
                 PanCamera();
             }
-
-
         }
-        Vector3D testPos = new Vector3D();
+
         private void UpdatePerspective()
         {
-            Matrix3D m = new Matrix3D();
-            m.Rotate(new Quaternion(new Vector3D(1, 0, 0), XAngle));
-            m.Rotate(new Quaternion(new Vector3D(0, 0, 1), YAngle));
-            var cameraPos = m.Transform(new Vector3D(0, 0, 1) * Zoom);
+            matrix.SetIdentity();
+            matrix.Rotate(new Quaternion(new Vector3D(1, 0, 0), XAngle));
+            matrix.Rotate(new Quaternion(new Vector3D(0, 0, 1), YAngle));
+            var cameraPos = matrix.Transform(new Vector3D(0, 0, 1) * Zoom);
 
-            //Vector3D lookDir = new Vector3D() - cameraPos;
+      
             Vector3D lookDir = testPos - cameraPos;
             Vector3D up = Vector3D.CrossProduct(lookDir, new Vector3D(-lookDir.Y, lookDir.X, 0));
 
@@ -162,12 +164,8 @@ namespace MapCreationTool.Rendering
             Vector3D leftAxis = Vector3D.CrossProduct(perspectiveCamera.LookDirection, perspectiveCamera.UpDirection);
             Vector3D upAxis = perspectiveCamera.UpDirection;
 
-
             Vector3D translation = -leftAxis * positionDelta.X * 0.1 + upAxis * positionDelta.Y * 0.1;
             testPos += translation;
-            //Debug.WriteLine("Translation: " + translation);
-            //perspectiveCamera.Position += translation;
-            //testPos += new Vector3D(positionDelta.X, positionDelta.Y, 0);
         }
     }
 }

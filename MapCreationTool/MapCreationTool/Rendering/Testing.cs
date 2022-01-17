@@ -19,7 +19,8 @@ namespace MapCreationTool.Rendering
 	class Testing
 	{
 		Model3DGroup model3DGroup;
-		DiffuseMaterial normalModelMaterial;
+		DiffuseMaterial frontMaterial;
+		DiffuseMaterial backMaterial;
 		MouseOrbitCamera mouseCamera;
 		DeltaTime deltaTime;
 		TerrainControl terrainControl;
@@ -34,22 +35,15 @@ namespace MapCreationTool.Rendering
 
 		private void GenerateModels()
 		{
-
 			GeometryModel3D geometryModel = new GeometryModel3D();
 
-			//geometryModel.Geometry = CreateHeightmapModel();
-			// Dont forget assigning this instead of createheightmapmodel
 			geometryModel.Geometry = LoadHeightmap("Rendering\\heightmap.bmp");
-
-
-			geometryModel.Material = normalModelMaterial;
-			geometryModel.BackMaterial = GetDefaultMaterial();
-			//geometryModel.Transform = GetExampleTransform();
+			geometryModel.Material = frontMaterial;
+			// Disabled for performance reasons
+			//geometryModel.BackMaterial = backMaterial;
 
 			// Add the geometry model to the model group.
 			model3DGroup.Children.Add(geometryModel);
-
-			// printer Bed
 		}
 
 		private MeshGeometry3D LoadHeightmap(string filePath)
@@ -73,11 +67,11 @@ namespace MapCreationTool.Rendering
 			// in that case it's coordinate could be reused instead of being added again
 			// However this can become a pain when editing is later added
 
-			for (int y = 0; y < heightImage.Height; y ++)
+			for (int y = 0; y < heightImage.Height; y++)
 			{
 				Rgba32[]? test = heightImage.GetPixelRowMemory(y).ToArray();
 
-				for (int x = 0; x < test.Length; x ++)
+				for (int x = 0; x < test.Length; x++)
 				{
 					double xPos = x - halfWidth;
 					double yPos = y - halfHeight;
@@ -98,7 +92,7 @@ namespace MapCreationTool.Rendering
 					vertexIndices.Add(idx1);
 					vertexIndices.Add(idx2 + 1);
 					vertexIndices.Add(idx3);
-				
+
 					vertexIndices.Add(idx3 + 1);
 					vertexIndices.Add(idx3);
 					vertexIndices.Add(idx1 + 1);
@@ -110,71 +104,6 @@ namespace MapCreationTool.Rendering
 
 			return meshGeometry;
 		}
-
-		private MeshGeometry3D CreateHeightmapModel()
-		{
-			MeshGeometry3D meshGeometry = new MeshGeometry3D();
-			Point3DCollection vertices = new Point3DCollection();
-			Int32Collection vertexIndices = new Int32Collection();
-
-			// For testing create a simple heightmap, which is a rectangle of 4 points on the same height
-			List<List<int>> heightMap = new List<List<int>>()
-			{
-				new List<int> { 0, 0},
-				new List<int> {0, 0}
-			};
-
-			// Just for testing create a simple triangle
-			vertices.Add(new Point3D(0, 0, 0));
-			vertices.Add(new Point3D(0, 1, 0));
-			vertices.Add(new Point3D(-1, 1, 0));
-
-
-			meshGeometry.Positions = vertices;
-			//meshGeometry.TriangleIndices = vertexIndices;
-
-			return meshGeometry;
-		}
-
-		//public static MeshGeometry3D CreateFromFacets()
-		//{
-		//    MeshGeometry3D myMeshGeometry3D = new MeshGeometry3D();
-
-		//    Vector3DCollection normals = new Vector3DCollection();
-		//    Point3DCollection vertices = new Point3DCollection();
-		//    Int32Collection vertexIndices = new Int32Collection();
-
-		//    int vertexIndex = 0;
-		//    foreach (Facet facet in facets)
-		//    {
-		//        normals.Add(-VertexConverter.ConvertToVector3D(facet.Normal));
-		//        foreach (Vertex vertex in facet.Vertices)
-		//        {
-		//            vertices.Add(VertexConverter.ConvertToPoint3D(vertex));
-		//            vertexIndices.Add(vertexIndex);
-		//            vertexIndex++;
-		//        }
-		//    }
-		//    // Normal generation seems to be broken right now. WPF automatically generates normals when indices are set
-		//    //myMeshGeometry3D.Normals = normals;
-
-		//    myMeshGeometry3D.Positions = vertices;
-		//    myMeshGeometry3D.TriangleIndices = vertexIndices;
-
-		//    // get some information for debugging purposes
-		//    double testMinX = vertices.Min(v => v.X);
-		//    double testMinY = vertices.Min(v => v.Y);
-		//    double testMinZ = vertices.Min(v => v.Z);
-
-		//    double testMaxX = vertices.Max(v => v.X);
-		//    double testMaxY = vertices.Max(v => v.Y);
-		//    double testMaxZ = vertices.Max(v => v.Z);
-		//    Rect3D bounds = myMeshGeometry3D.Bounds;
-
-
-		//    return myMeshGeometry3D;
-		//}
-
 
 		private void SetupView()
 		{
@@ -195,7 +124,6 @@ namespace MapCreationTool.Rendering
 
 			SetupCamera(viewport3D);
 
-			//
 			viewport3D.Children.Add(modelVisual3D);
 
 
@@ -226,36 +154,17 @@ namespace MapCreationTool.Rendering
 
 		private void SetupMaterials()
 		{
-			Color modelColor = Color.FromArgb(255, 100, 100, 250);
-			Color transparentModelColor = Color.FromArgb(100, 100, 100, 250);
+			Color frontColor = Color.FromArgb(255, 100, 100, 250);
+			Color backColor = Color.FromArgb(100, 100, 255, 250);
 
-			normalModelMaterial = GetDiffuseMaterial(modelColor);
+			frontMaterial = GetDiffuseMaterial(frontColor);
+			backMaterial = GetDiffuseMaterial(backColor);
 		}
 
 		DiffuseMaterial GetDiffuseMaterial(Color color)
 		{
 			DiffuseMaterial material = new DiffuseMaterial(new SolidColorBrush(color));
 			return material;
-		}
-
-		DiffuseMaterial GetDefaultMaterial()
-		{
-			// The material specifies the material applied to the 3D object. In this sample a
-			// linear gradient covers the surface of the 3D object.
-
-			// Create a horizontal linear gradient with four stops.
-			LinearGradientBrush myHorizontalGradient = new LinearGradientBrush();
-			myHorizontalGradient.StartPoint = new Point(0, 0.5);
-			myHorizontalGradient.EndPoint = new Point(1, 0.5);
-			myHorizontalGradient.GradientStops.Add(new GradientStop(Colors.Yellow, 0.0));
-			myHorizontalGradient.GradientStops.Add(new GradientStop(Colors.Red, 0.25));
-			myHorizontalGradient.GradientStops.Add(new GradientStop(Colors.Blue, 0.75));
-			myHorizontalGradient.GradientStops.Add(new GradientStop(Colors.LimeGreen, 1.0));
-
-			// Define material and apply to the mesh geometries.
-			DiffuseMaterial myMaterial = new DiffuseMaterial(myHorizontalGradient);
-
-			return myMaterial;
 		}
 
 		private void SetupLighting(Model3DGroup model3DGroup)
