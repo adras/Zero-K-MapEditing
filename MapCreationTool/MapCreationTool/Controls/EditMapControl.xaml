@@ -11,6 +11,9 @@
             <TabItem Header="Compile" FontSize="16">
                 <local:CompileMapControl Margin="10, 10"></local:CompileMapControl>
             </TabItem>
+            <TabItem Header="Terrain" FontSize="16">
+                <local:TerrainControl Margin="10, 10"></local:TerrainControl>
+            </TabItem>
             <TabItem Header="Metal placement" FontSize="16">
                 <Label>Coming soon</Label>
             </TabItem>

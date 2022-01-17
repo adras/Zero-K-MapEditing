@@ -10,9 +10,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Remove="Converters\**" />
 		<Compile Remove="Tools\**" />
+		<EmbeddedResource Remove="Converters\**" />
 		<EmbeddedResource Remove="Tools\**" />
+		<None Remove="Converters\**" />
 		<None Remove="Tools\**" />
+		<Page Remove="Converters\**" />
 		<Page Remove="Tools\**" />
 	</ItemGroup>
 
@@ -125,10 +129,6 @@
 	<ItemGroup>
 		<PackageReference Include="SixLabors.ImageSharp" Version="1.0.4" />
 		<PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta13" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Converters\" />
 	</ItemGroup>
 
 </Project>
