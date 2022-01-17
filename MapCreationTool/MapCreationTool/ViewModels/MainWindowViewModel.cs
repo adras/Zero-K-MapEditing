@@ -1,4 +1,5 @@
-﻿using MapCreationTool.Tabs;
+﻿using MapCreationTool.Configuration;
+using MapCreationTool.Tabs;
 using MapCreationTool.WPF;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,9 @@ namespace MapCreationTool.ViewModels
     public class MainWindowViewModel : PropertyChangedBase
     {
         public ObservableCollection<TabBase> tabs;
+		private ProjectSettings projectSettings;
 
-        public ObservableCollection<TabBase> Tabs
+		public ObservableCollection<TabBase> Tabs
         {
             get => tabs;
             set
@@ -23,7 +25,9 @@ namespace MapCreationTool.ViewModels
             }
         }
 
-        public MainWindowViewModel()
+		public ProjectSettings ProjectSettings { get => projectSettings; set => projectSettings = value; }
+
+		public MainWindowViewModel()
         {
             tabs = new ObservableCollection<TabBase>();
             tabs.Add(new StartTab());

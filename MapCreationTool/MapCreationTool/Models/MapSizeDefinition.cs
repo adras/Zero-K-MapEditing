@@ -4,19 +4,25 @@ namespace MapCreationTool.Models
 {
     public class MapSizeDefinition
     {
-        public WidthHeight gameMapSize;
-        public WidthHeight grassMapSize;
-        public WidthHeight metalMapSize;
-        public WidthHeight heightMapSize;
-        public WidthHeight diffuseMapSize;
+		private WidthHeight gameMapSize;
+		private WidthHeight grassMapSize;
+		private WidthHeight metalMapSize;
+		private WidthHeight heightMapSize;
+		private WidthHeight diffuseMapSize;
 
-        public MapSizeDefinition(WidthHeight gameMapSize)
+		public WidthHeight GameMapSize { get => gameMapSize; set => gameMapSize = value; }
+		public WidthHeight GrassMapSize { get => grassMapSize; set => grassMapSize = value; }
+		public WidthHeight MetalMapSize { get => metalMapSize; set => metalMapSize = value; }
+		public WidthHeight HeightMapSize { get => heightMapSize; set => heightMapSize = value; }
+		public WidthHeight DiffuseMapSize { get => diffuseMapSize; set => diffuseMapSize = value; }
+
+		public MapSizeDefinition(WidthHeight gameMapSize)
         {
-            this.gameMapSize = gameMapSize;
-            this.grassMapSize = MapSizeCalculator.CalculateGrassMap(gameMapSize);
-            this.heightMapSize = MapSizeCalculator.CalculateHeightMap(gameMapSize);
-            this.metalMapSize = MapSizeCalculator.CalculateMetalMap(gameMapSize);
-            this.diffuseMapSize = MapSizeCalculator.CalculateDiffuseMap(gameMapSize);
+            this.GameMapSize = gameMapSize;
+            this.GrassMapSize = MapSizeCalculator.CalculateGrassMap(gameMapSize);
+            this.HeightMapSize = MapSizeCalculator.CalculateHeightMap(gameMapSize);
+            this.MetalMapSize = MapSizeCalculator.CalculateMetalMap(gameMapSize);
+            this.DiffuseMapSize = MapSizeCalculator.CalculateDiffuseMap(gameMapSize);
         }
 
         public MapSizeDefinition()

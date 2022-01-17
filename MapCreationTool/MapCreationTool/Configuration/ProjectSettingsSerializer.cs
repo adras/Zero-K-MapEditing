@@ -20,10 +20,10 @@ namespace MapCreationTool.Configuration
         {
             ProjectSettings defaultSettings = new ProjectSettings
             {
-                diffuseMapName = "diffuse.png",
-                heightMapName = "height.png",
-                grassMapName = "grass.png",
-                otherMapName = "other.png"
+                DiffuseMapName = "diffuse.png",
+                HeightMapName = "height.png",
+                GrassMapName = "grass.png",
+                OtherMapName = "other.png"
             };
 
             return defaultSettings;

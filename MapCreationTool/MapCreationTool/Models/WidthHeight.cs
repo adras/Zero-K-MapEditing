@@ -16,7 +16,6 @@ namespace MapCreationTool.Models
 
         public WidthHeight()
         {
-
         }
 
         public WidthHeight(int width, int height)

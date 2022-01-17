@@ -39,11 +39,11 @@ namespace MapCreationTool
             // TODO: Move to dedicated method
             ProjectSettingsSerializer settingsSerializer = new ProjectSettingsSerializer();
             ProjectSettings defaultSettings = settingsSerializer.CreateDefault();
-            defaultSettings.mapSizeDefinition = mapSizeDef;
+            defaultSettings.MapSizeDefinition = mapSizeDef;
 
             settingsSerializer.SerializeToFile(pathInfo.settingsPath, defaultSettings);
 
-            ImageTest.CreateImages(defaultSettings.mapSizeDefinition, pathInfo.mapPath);
+            ImageTest.CreateImages(defaultSettings.MapSizeDefinition, pathInfo.mapPath);
 
             return new MapCreationResult("", pathInfo);
         }
