@@ -29,10 +29,10 @@ namespace MapCreationTool.Rendering
 
         private void GenerateModels()
         {
-            string stlPath = @"..\..\..\..\TestStl\";
+      
             GeometryModel3D geometryModel = new GeometryModel3D();
-            
-            //geometryModel.Geometry = GetStlGeometry(System.IO.Path.Combine(stlPath, "bearing5.stl"));
+
+            geometryModel.Geometry = CreateHeightmapModel();
 
             geometryModel.Material = normalModelMaterial;
             geometryModel.BackMaterial = GetDefaultMaterial();
@@ -43,6 +43,31 @@ namespace MapCreationTool.Rendering
 
             // printer Bed
         }
+
+        private MeshGeometry3D CreateHeightmapModel()
+		{
+            MeshGeometry3D meshGeometry = new MeshGeometry3D();
+            Point3DCollection vertices = new Point3DCollection();
+            Int32Collection vertexIndices = new Int32Collection();
+
+            // For testing create a simple heightmap, which is a rectangle of 4 points on the same height
+            List<List<int>> heightMap = new List<List<int>>()
+            {
+                new List<int> { 0, 0},
+                new List<int> {0, 0}
+            };
+
+            // Just for testing create a simple triangle
+            vertices.Add(new Point3D(0, 0, 0));
+            vertices.Add(new Point3D(0, 1, 0));
+            vertices.Add(new Point3D(-1, 1, 0));
+
+
+            meshGeometry.Positions = vertices;
+            //meshGeometry.TriangleIndices = vertexIndices;
+
+            return meshGeometry;
+		}
 
         //public static MeshGeometry3D CreateFromFacets()
         //{
@@ -96,7 +121,7 @@ namespace MapCreationTool.Rendering
             SetupLighting(model3DGroup);
             SetupMaterials();
 
-            // GenerateModels();
+            GenerateModels();
 
             // Add the group of models to the ModelVisual3d.
             modelVisual3D.Content = model3DGroup;

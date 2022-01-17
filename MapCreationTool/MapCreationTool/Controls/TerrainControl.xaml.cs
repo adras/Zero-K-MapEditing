@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MapCreationTool.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace MapCreationTool.Controls
 	/// </summary>
 	public partial class TerrainControl : UserControl
 	{
+		Testing testing;
+
 		public TerrainControl()
 		{
 			InitializeComponent();
+
+			testing = new Testing(this);
+	
 		}
 	}
 }
