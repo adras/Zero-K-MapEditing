@@ -1,0 +1,55 @@
+[MAP]
+{
+	Description=Another Archipelego map for u guys. Official Tournament Map by Quanto. Revised by sprang.;
+	TidalStrength=21;
+	Gravity=110;						//in units/sec^2
+	MaxMetal=0.85;						//how much metal a map square with the maximum metal value gives
+	ExtractorRadius=100;				//radius that a single extractor(mine) extracts from
+	MapHardness=150;					//defines how much the terrain changes from explosions etc
+	AutoShowMetal=1;
+
+	[ATMOSPHERE]
+	{
+		FogColor=0.76 0.88 1;
+		FogStart=0.6;
+
+		CloudColor=1 1 1;
+		SkyColor=0.1 0.1 1;
+
+		SunColor=1 1 1;
+		CloudDensity=0.1;
+
+		MinWind=12;
+		MaxWind=28;
+	}
+	[WATER]
+	{
+		WaterSurfaceColor=0.44 0.66 1;
+		WaterPlaneColor=0.76 0.88 1;
+		WaterBaseColor=0.4 0.4 1;
+		WaterAbsorb=0.2 0.2 0.4;
+		WaterMinColor=.4 .4 .8;
+	}
+	[LIGHT]
+	{
+		SunDir=0.4 0.4 -0.5;						//direction of sun (spring will normalize it later)(y component is upward)
+		
+		GroundAmbientColor=0.95 0.95 0.95;		//ambient (non sun lit) color of ground (and grass trees etc)
+		GroundSunColor=0.25 0.25 0.25;			//color of ground where fully sun lit (added to ambient)
+		GroundShadowDensity=1.5;			//how far from the non shadowed to the ambient color stuff in shadow will go
+
+		UnitAmbientColor=0.9 0.9 0.9;			//ambient (non sun lit) color of units (and wreckage etc)
+		UnitSunColor=0.3 0.3 0.3;				//color of units where fully sun lit (added to ambient)
+		UnitShadowDensity=1.5;				//how far from the non shadowed to the ambient color stuff in shadow will go
+	}
+	[TEAM0]
+	{
+		StartPosX=200;
+		StartPosZ=200;
+	}
+	[TEAM1]
+	{
+		StartPosX=3800;
+		StartPosZ=3800;
+	}
+}

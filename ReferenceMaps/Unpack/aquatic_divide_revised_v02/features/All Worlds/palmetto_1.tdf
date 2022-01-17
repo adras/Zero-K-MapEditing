@@ -1,0 +1,19 @@
+[palmetto_1]
+	{
+	world=allworld;
+	description=Palmetto;
+	category=arm_corpses;
+	object=palmetto_1.s3o;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	blocking=0;
+	hitdensity=0;
+	energy=50;
+	damage=100;
+	flammable=0;
+	reclaimable=1;
+	autoreclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

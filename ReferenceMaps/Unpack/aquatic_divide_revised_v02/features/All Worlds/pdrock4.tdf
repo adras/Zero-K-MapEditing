@@ -1,0 +1,17 @@
+[pdrock4]
+	{
+	world=All Worlds;
+	description=rock;
+	category=arm_corpses;
+	object=pdrock4.s3o;
+	footprintx=4;
+	footprintz=4;
+	height=30;
+	blocking=1;
+	hitdensity=1000;
+	metal=70;
+	damage=10000;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

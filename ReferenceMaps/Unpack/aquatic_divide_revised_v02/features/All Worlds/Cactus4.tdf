@@ -1,0 +1,19 @@
+[Cactus4]
+	{
+	world=allworld;
+	description=Cactus;
+	category=arm_corpses;
+	object=Cactus4.s3o;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	blocking=1;
+	hitdensity=50;
+	energy=300;
+	damage=1000;
+	flammable=0;
+	reclaimable=1;
+	autoreclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
