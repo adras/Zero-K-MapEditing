@@ -29,7 +29,7 @@ namespace MapCreationTool.Controls
 		public static readonly DependencyProperty SettingHeightMapProperty = DependencyProperty.Register(
 			nameof(SettingHeightMap),
 			typeof(string),
-			typeof(CompileSetting),
+			typeof(ProjectSettings),
 			new PropertyMetadata("")
 		);
 
@@ -42,7 +42,7 @@ namespace MapCreationTool.Controls
 		public static readonly DependencyProperty SettingDiffuseMapProperty = DependencyProperty.Register(
 			nameof(SettingDiffuseMap),
 			typeof(string),
-			typeof(CompileSetting),
+			typeof(ProjectSettings),
 			new PropertyMetadata("")
 		);
 
