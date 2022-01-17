@@ -71,15 +71,22 @@ namespace MapCreationTool.Rendering
             // in that case it's coordinate could be reused instead of being added again
             // However this can become a pain when editing is later added
 
+            int bit16 = 2 << (16 - 1);
+            double minHeight = terrainControl.ProjectSettings.MinHeight;
+            double maxHeight = terrainControl.ProjectSettings.MaxHeight;
+
+            double colorScaleFactor = 10;
+
             for (int y = 0; y < heightImage.Height; y++)
             {
-                Rgba32[]? test = heightImage.GetPixelRowMemory(y).ToArray();
+                Rgba32[]? row = heightImage.GetPixelRowMemory(y).ToArray();
 
-                for (int x = 0; x < test.Length; x++)
+                for (int x = 0; x < row.Length; x++)
                 {
                     double xPos = x - halfWidth;
                     double yPos = y - halfHeight;
-                    double zPos = (test[x].R * 0.02) - halfHeight;
+                    //double zPos = (test[x].R * 0.02) - halfHeight;
+                    double zPos = Rescale(0, bit16, minHeight, maxHeight, row[x].R * colorScaleFactor);
                     Point3D point = new Point3D(xPos, yPos, zPos);
                     vertices.Add(point);
                 }
@@ -107,6 +114,26 @@ namespace MapCreationTool.Rendering
             meshGeometry.TriangleIndices = vertexIndices;
 
             return meshGeometry;
+        }
+
+        /// <summary>
+        /// Rescales the given val defined by the range oldMin->oldMax to be in the range newMin->newMax
+        /// </summary>
+        /// <param name="oldMin"></param>
+        /// <param name="oldMax"></param>
+        /// <param name="newMin"></param>
+        /// <param name="newMax"></param>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        private static double Rescale(double oldMin, double oldMax, double newMin, double newMax, double val)
+        {
+            // https://stackoverflow.com/questions/929103/convert-a-number-range-to-another-range-maintaining-ratio
+            double oldDelta = oldMax - oldMin;
+            double newDelta = newMax - newMin;
+
+            double result = (((val - oldMin) * newDelta) / oldDelta) + newMin;
+
+            return result;
         }
 
         internal void SetMeshGeometry(MeshGeometry3D geom)
