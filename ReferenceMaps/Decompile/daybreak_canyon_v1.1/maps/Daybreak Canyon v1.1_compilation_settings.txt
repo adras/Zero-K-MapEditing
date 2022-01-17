@@ -1,0 +1,20 @@
+-n
+150.0
+-x
+350.0
+-o
+C:/temp/Zero-K-Maps/daybreak_canyon_v1.1/maps/Daybreak Canyon v1.1_recompiled.smf
+-m
+C:/temp/Zero-K-Maps/daybreak_canyon_v1.1/maps/Daybreak Canyon v1.1_metal.bmp
+-t
+C:/temp/Zero-K-Maps/daybreak_canyon_v1.1/maps/Daybreak Canyon v1.1_texture.bmp
+-a
+C:/temp/Zero-K-Maps/daybreak_canyon_v1.1/maps/Daybreak Canyon v1.1_height.png
+-g
+
+-y
+C:/temp/Zero-K-Maps/daybreak_canyon_v1.1/maps/Daybreak Canyon v1.1_type.bmp
+-r
+C:/temp/Zero-K-Maps/daybreak_canyon_v1.1/maps/Daybreak Canyon v1.1_grass.bmp
+-k
+C:/temp/Zero-K-Maps/daybreak_canyon_v1.1/maps/Daybreak Canyon v1.1_featureplacement.lua

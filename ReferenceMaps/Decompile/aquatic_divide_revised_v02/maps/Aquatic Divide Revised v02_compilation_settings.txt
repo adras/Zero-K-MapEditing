@@ -1,0 +1,20 @@
+-n
+-100.0
+-x
+300.0
+-o
+C:/temp/Zero-K-Maps/aquatic_divide_revised_v02/maps/Aquatic Divide Revised v02_recompiled.smf
+-m
+C:/temp/Zero-K-Maps/aquatic_divide_revised_v02/maps/Aquatic Divide Revised v02_metal.bmp
+-t
+C:/temp/Zero-K-Maps/aquatic_divide_revised_v02/maps/Aquatic Divide Revised v02_texture.bmp
+-a
+C:/temp/Zero-K-Maps/aquatic_divide_revised_v02/maps/Aquatic Divide Revised v02_height.png
+-g
+
+-y
+C:/temp/Zero-K-Maps/aquatic_divide_revised_v02/maps/Aquatic Divide Revised v02_type.bmp
+-r
+C:/temp/Zero-K-Maps/aquatic_divide_revised_v02/maps/Aquatic Divide Revised v02_grass.bmp
+-k
+C:/temp/Zero-K-Maps/aquatic_divide_revised_v02/maps/Aquatic Divide Revised v02_featureplacement.lua
