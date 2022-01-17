@@ -39,7 +39,7 @@ namespace MapCreationTool.Rendering
 
 			//geometryModel.Geometry = CreateHeightmapModel();
 			// Dont forget assigning this instead of createheightmapmodel
-			geometryModel.Geometry= LoadHeightmap("Rendering\\heightmap.bmp");
+			geometryModel.Geometry = LoadHeightmap("Rendering\\heightmap-smallx.bmp");
 
 
 			geometryModel.Material = normalModelMaterial;
@@ -56,10 +56,10 @@ namespace MapCreationTool.Rendering
 		{
 			MeshGeometry3D meshGeometry = new MeshGeometry3D();
 			Point3DCollection vertices = new Point3DCollection();
-			Int32Collection vertexIndices = new Int32Collection();
 
 
 			// https://docs.sixlabors.com/articles/imagesharp/pixelbuffers.html
+			// http://csharphelper.com/blog/2014/10/draw-surface-normals-on-a-3d-model-using-wpf-and-xaml/
 
 			// Code inspired by: https://www.codeproject.com/Articles/1194994/Terrain-Generator-and-3D-WPF-Representation
 
@@ -69,49 +69,69 @@ namespace MapCreationTool.Rendering
 			double halfWidth = heightImage.Width / 2.0;
 			double halfHeight = heightImage.Height / 2.0;
 
-			for (int y = 0; y < heightImage.Height; y += 2)
+			for (int y = 0; y < heightImage.Height; y ++)
 			{
 				Rgba32[]? test = heightImage.GetPixelRowMemory(y).ToArray();
-				Rgba32[]? test2 = heightImage.GetPixelRowMemory(y + 1).ToArray();
 
-				for (int x = 0; x < test.Length; x += 2)
+				for (int x = 0; x < test.Length; x ++)
 				{
-					double xPos = x-halfWidth;
+					double xPos = x - halfWidth;
 					double yPos = y - halfHeight;
-					double zPos = test[x].R - halfHeight;
+					double zPos = (test[x].R * 0.02) - halfHeight;
 					Point3D point = new Point3D(xPos, yPos, zPos);
 					vertices.Add(point);
 				}
 			}
-			Int32Collection triangleIndices = new Int32Collection();
+
 			//defining triangles
-			int ind1 = 0;
-			int ind2 = 0;
-			int xLenght = heightImage.Width;
-			for (var y = 0; y < heightImage.Height - 1; y++)
+			//int ind1 = 0;
+			//int ind2 = 0;
+			//int xLength = heightImage.Width;
+			//for (var y = 0; y < heightImage.Height - 1; y++)
+			//{
+			//	for (var x = 0; x < heightImage.Width - 1; x++)
+			//	{
+			//		ind1 = x + y * (xLength);
+			//		ind2 = ind1 + (xLength);
+
+			//		//first triangle
+			//		vertexIndices.Add(ind1);
+			//		vertexIndices.Add(ind2 + 1);
+			//		vertexIndices.Add(ind2);
+
+			//		//second triangle
+			//		vertexIndices.Add(ind1);
+			//		vertexIndices.Add(ind1 + 1);
+			//		vertexIndices.Add(ind2 + 1);
+			//	}
+			//}
+			// for (int i = 0; i < vertices.Count; i++)
+			// {
+			// 	int x = i % heightImage.Width;
+			// 	int y = i / heightImage.Height;
+			// }
+			Int32Collection vertexIndices = new Int32Collection();
+			for (int y = 0; y < heightImage.Height - 1; y += 1)
 			{
-				for (var x = 0; x < heightImage.Width - 1; x++)
+				for (int x = 0; x < heightImage.Width - 1; x += 1)
 				{
-					ind1 = x + y * (xLenght);
-					ind2 = ind1 + (xLenght);
+					int idx1 = x + y * heightImage.Height;
+					int idx2 = x + y * heightImage.Height;
+					int idx3 = x + (y + 1) * heightImage.Height;
+					vertexIndices.Add(idx1);
+					vertexIndices.Add(idx2 + 1);
+					vertexIndices.Add(idx3);
 
-					//first triangle
-					triangleIndices.Add(ind1);
-					triangleIndices.Add(ind2 + 1);
-					triangleIndices.Add(ind2);
-
-					//second triangle
-					triangleIndices.Add(ind1);
-					triangleIndices.Add(ind1 + 1);
-					triangleIndices.Add(ind2 + 1);
+					
+				
+					vertexIndices.Add(idx3 + 1);
+					vertexIndices.Add(idx3);
+					vertexIndices.Add(idx1 + 1);
 				}
 			}
-
-
 			meshGeometry.Positions = vertices;
-			meshGeometry.TriangleIndices = triangleIndices;
 
-			//meshGeometry.TriangleIndices = vertexIndices;
+			meshGeometry.TriangleIndices = vertexIndices;
 
 			return meshGeometry;
 		}
