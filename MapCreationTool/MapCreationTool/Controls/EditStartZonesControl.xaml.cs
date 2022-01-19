@@ -213,7 +213,7 @@ namespace MapCreationTool.Controls
                 return;
 
 
-            Point mousePos = e.GetPosition(cvsDraw);
+            Point mousePos = e.GetPosition(zoomBorder.Child);
             CurrentEditor?.AddPointConsecutive(mousePos);
         }
 
@@ -224,7 +224,7 @@ namespace MapCreationTool.Controls
 
         private void cvsDraw_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Point mousePos = e.GetPosition(cvsDraw);
+            Point mousePos = e.GetPosition(zoomBorder.Child);
 
             CurrentEditor?.AddPointConsecutive(mousePos);
         }

@@ -18,16 +18,19 @@
             <!--<Canvas.Background>
                 <ImageBrush ImageSource="{Binding Path=ProjectSettings.DiffuseMapName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}" />
             </Canvas.Background>-->
-            <wpf:ZoomBorder>
-                <Image Source="{Binding Path=ProjectSettings.DiffuseMapName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}"
+            <wpf:ZoomBorder x:Name="zoomBorder">
+                <Grid>
+                    <Image Source="{Binding Path=ProjectSettings.DiffuseMapName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}"
                        ClipToBounds="True"></Image>
-            </wpf:ZoomBorder>
-            <Polyline Name="poly" 
+                    <Polyline Name="poly" StrokeThickness="2"
                       Points="{Binding Mode=TwoWay, Path=SelectedBoxCoords, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}"
                       Stroke="#33FF00"></Polyline>
+                </Grid>
+            </wpf:ZoomBorder>
+
         </Canvas>
         <!-- Maybe this helps to delete teams: https://stackoverflow.com/questions/9880589/bind-to-selecteditems-from-datagrid-or-listbox-in-mvvm-->
-        
+
         <!-- Startboxes are defined in: \ReferenceMaps\Unpack\daybreak_canyon_v1.1\mapconfig\map_startboxes.lua-->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
