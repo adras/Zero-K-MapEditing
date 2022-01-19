@@ -19,7 +19,14 @@ namespace MapCreationTool.Helpers
 
             int sddStart = fi.Name.IndexOf(".sdd");
             if (sddStart == -1)
-                return null;
+            {
+                // For now we allow opening non .sdd directories
+                // See also GetSdd Name where it's disabled as well
+                
+                //return null;
+                return fi.Name;
+            }
+
             string result = fi.Name.Substring(0, sddStart);
 
             return result;
@@ -35,7 +42,9 @@ namespace MapCreationTool.Helpers
 
         internal static string? GetSddName(string mapName)
         {
-            string result = $"{mapName}.sdd";
+            // Disabled, see also GetMapNameFromPath
+            //string result = $"{mapName}.sdd";
+            string result = $"{mapName}";
             return result;
         }
 

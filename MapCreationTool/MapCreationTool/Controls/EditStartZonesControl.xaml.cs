@@ -204,7 +204,7 @@ namespace MapCreationTool.Controls
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            CurrentEditor?.Reset();
+            ResetEditor();
         }
 
         private void cvsDraw_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -212,6 +212,23 @@ namespace MapCreationTool.Controls
             Point mousePos = e.GetPosition(cvsDraw);
 
             CurrentEditor?.AddPointConsecutive(mousePos);
+        }
+
+        private void ResetEditor()
+        {
+            CurrentEditor?.Reset();
+        }
+
+        private void UserControl_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch(e.Key)
+            {
+                case Key.R:
+                case Key.D:
+                case Key.Delete:
+                    ResetEditor();
+                    break;
+            }
         }
     }
 }
