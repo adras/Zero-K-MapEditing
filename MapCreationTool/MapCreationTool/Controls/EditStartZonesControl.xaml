@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <!-- Edit grid-->
         <!-- Wow, background color needs to be set, otherwise MouseLeftButton won't fire -->
-        <Canvas Name="cvsDraw" MouseLeftButtonDown="cvsDraw_MouseDown" Background="White">
+        <Canvas Name="cvsDraw" MouseLeftButtonDown="cvsDraw_MouseDown" MouseRightButtonUp="cvsDraw_MouseRightButtonUp" MouseMove="cvsDraw_MouseMove" Background="White">
             <!--<Polyline Points="{Binding ElementName=lvTeams, Path=SelectedItem.BoxCoords}" Stroke="Black"></Polyline>-->
             <Polyline Name="poly" Points="{Binding Mode=TwoWay, Path=SelectedBoxCoords, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}" Stroke="Black"></Polyline>
         </Canvas>

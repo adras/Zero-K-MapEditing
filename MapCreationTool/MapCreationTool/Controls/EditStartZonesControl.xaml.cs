@@ -19,6 +19,35 @@ using System.Windows.Shapes;
 
 namespace MapCreationTool.Controls
 {
+    //class PolygonEditor
+    //{
+    //    Polyline polyline;
+    //    bool isClosed;
+
+    //    public PolygonEditor(Polyline polyline)
+    //    {
+    //        this.polyline = polyline;
+    //    }
+
+    //    public void AddPoint(Point p)
+    //    {
+
+    //    }
+
+    //    public void Close()
+    //    {
+    //        if (isClosed)
+    //            return;
+
+    //        isClosed = true;
+    //    }
+
+    //    private void UpdatePolygon()
+    //    {
+
+    //    }
+    //}
+
     /// <summary>
     /// Interaction logic for EditStartZonesControl.xaml
     /// </summary>
@@ -82,12 +111,32 @@ namespace MapCreationTool.Controls
 
             // Wow, databinding these non observable pointcollections really sucks
             // Let's do it like this
+            UpdatePolyLine();
+        }
 
+        private void UpdatePolyLine()
+        {
             PointCollection newPoints = new PointCollection();
-            foreach(var point in selectedStartZone.BoxCoords)
+            foreach (Point point in selectedStartZone.BoxCoords)
                 newPoints.Add(point);
 
             SelectedBoxCoords = newPoints;
+        }
+
+        private void cvsDraw_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            // Can't close a polygon with less or equal than 2 points
+            if (SelectedBoxCoords.Count <= 2)
+                return;
+
+            Point firstPoint = SelectedBoxCoords[0];
+            SelectedBoxCoords.Add(firstPoint);
+            UpdatePolyLine();
+        }
+
+        private void cvsDraw_MouseMove(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
