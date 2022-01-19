@@ -8,5 +8,13 @@ namespace MapCreationTool.Configuration
 {
     public class ProgramSettings
     {
+        public static ProgramSettings CreateDefault()
+        {
+            ProgramSettings defaultSettings = new ProgramSettings
+            {
+
+            };
+            return defaultSettings;
+        }
     }
 }

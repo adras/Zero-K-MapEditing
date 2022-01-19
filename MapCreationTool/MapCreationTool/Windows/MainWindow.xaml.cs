@@ -39,7 +39,7 @@ namespace MapCreationTool.Windows
 			ViewModel.Tabs.Add(new MapTab(mapPathInfo));
 
 			// Settings exist when map was opened previously, otherwise default settings will be created
-			ViewModel.ProjectSettings = ProjectSettings.OpenOrCreateDefault(mapPathInfo.settingsPath);
+			ViewModel.ProjectSettings = ProjectSettings.OpenOrCreateDefault(mapPathInfo);
 		}
 
 		
@@ -49,7 +49,7 @@ namespace MapCreationTool.Windows
 			ViewModel.Tabs.Add(new MapTab(mapPathInfo));
 
 			// Settings don't exist so create default settings
-			ViewModel.ProjectSettings = ProjectSettings.OpenOrCreateDefault(mapPathInfo.settingsPath);
+			ViewModel.ProjectSettings = ProjectSettings.OpenOrCreateDefault(mapPathInfo);
 		}
 
 		private void ctrlStart_OnCalculatorClicked(object sender, EventArgs e)

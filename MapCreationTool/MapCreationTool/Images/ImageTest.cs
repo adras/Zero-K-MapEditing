@@ -4,6 +4,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Drawing.Processing;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Bmp;
+using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 using System;
@@ -45,16 +46,29 @@ namespace MapCreationTool.Images
 			height.Mutate(x => x.Fill(Color.Black));
 			metal.Mutate(x => x.Fill(Color.Black));
 
-			BmpEncoder encoder = new BmpEncoder();
 
-			WriteImage(encoder, diffuse, $"{mapDir}\\{settings.DiffuseMapName}");
-			WriteImage(encoder, grass, $"{mapDir}\\{settings.GrassMapName}");
-			WriteImage(encoder, height,$"{mapDir}\\{settings.HeightMapName}");
-			WriteImage(encoder, metal, $"{mapDir}\\{settings.MetalMapName}");
+			WriteImage(diffuse, $"{settings.DiffuseMapName}");
+			WriteImage(grass, $"{settings.GrassMapName}");
+			WriteImage(height,$"{settings.HeightMapName}");
+			WriteImage(metal, $"{settings.MetalMapName}");
 		}
 
-		private static void WriteImage<T>(IImageEncoder encoder, Image<T> image, string fileName) where T: unmanaged, IPixel<T>
+		private static void WriteImage<T>(Image<T> image, string fileName) where T: unmanaged, IPixel<T>
 		{
+			FileInfo fi = new FileInfo(fileName);
+			IImageEncoder encoder;
+			switch(fi.Extension.ToLower())
+            {
+				case ".bmp":
+					encoder = new BmpEncoder();
+					break;
+				case ".png":
+					encoder = new PngEncoder();
+					break;
+				default:
+					throw new NotSupportedException("Right now only creation of .bmp and .png files are supported");
+            }
+
 			using (Stream stream = File.Create(fileName))
 			{
 				encoder.Encode<T>(image, stream);

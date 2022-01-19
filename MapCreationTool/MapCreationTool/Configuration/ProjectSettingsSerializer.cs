@@ -16,20 +16,7 @@ namespace MapCreationTool.Configuration
             serializer = new GenericSerializer<ProjectSettings>();
         }
 
-        public ProjectSettings CreateDefault()
-        {
-            ProjectSettings defaultSettings = new ProjectSettings
-            {
-                DiffuseMapName = "diffuse.bmp",
-                HeightMapName = "height.bmp",
-                GrassMapName = "grass.bmp",
-                MetalMapName = "metal.bmp",
-                MinHeight = -50,
-                MaxHeight = 200
-            };
 
-            return defaultSettings;
-        }
 
         public ProjectSettings DeserializeFromFile(string path)
         {

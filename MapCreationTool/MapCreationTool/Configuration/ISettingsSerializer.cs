@@ -8,7 +8,6 @@ namespace MapCreationTool.Configuration
 {
     interface ISettingsSerializer<T>
     {
-        public T CreateDefault();
 
         public T DeserializeFromFile(string path);
 

@@ -15,15 +15,6 @@ namespace MapCreationTool.Configuration
             serializer = new GenericSerializer<ProgramSettings>();
         }
 
-        public ProgramSettings CreateDefault()
-        {
-            ProgramSettings defaultSettings = new ProgramSettings
-            {
-
-            };
-            return defaultSettings;
-        }
-
         public ProgramSettings DeserializeFromFile(string path)
         {
             ProgramSettings result = serializer.DeserializeFromFile(path);
