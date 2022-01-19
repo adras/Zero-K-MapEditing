@@ -200,7 +200,7 @@ namespace MapCreationTool.Controls
 
         private void cvsDraw_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            CurrentEditor.Close();
+            CurrentEditor?.Close();
         }
 
         private void cvsDraw_MouseMove(object sender, MouseEventArgs e)
