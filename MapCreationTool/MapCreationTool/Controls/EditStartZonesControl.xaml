@@ -14,8 +14,8 @@
         <!-- Edit grid-->
         <!-- Wow, background color needs to be set, otherwise MouseLeftButton won't fire -->
         <Canvas Name="cvsDraw" MouseLeftButtonDown="cvsDraw_MouseDown" Background="White">
-            <Polyline Points="{Binding ElementName=lvTeams, Path=SelectedItem.BoxCoords}" Stroke="Black"></Polyline>
-            <Polyline Points="100, 100 200, 200 0, 300 100, 100" Stroke="Black"></Polyline>
+            <!--<Polyline Points="{Binding ElementName=lvTeams, Path=SelectedItem.BoxCoords}" Stroke="Black"></Polyline>-->
+            <Polyline Name="poly" Points="{Binding Mode=TwoWay, Path=SelectedBoxCoords, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}" Stroke="Black"></Polyline>
         </Canvas>
         <!-- Maybe this helps to delete teams: https://stackoverflow.com/questions/9880589/bind-to-selecteditems-from-datagrid-or-listbox-in-mvvm-->
         
@@ -26,7 +26,9 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
-            <ListView Name="lvTeams" ItemsSource="{Binding StartZones, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}">
+            <ListView Name="lvTeams" 
+                      ItemsSource="{Binding StartZones, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}"
+                      SelectedItem="{Binding SelectedStartZone, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}">
                 <!-- Wow, that grid in the datatemplate doesn't outomatically use the entire space
                 of the listview. We need to set an item container style ... *sigh* -->
                 <ListView.ItemContainerStyle>

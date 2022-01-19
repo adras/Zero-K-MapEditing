@@ -25,20 +25,32 @@ namespace MapCreationTool.Controls
     public partial class EditStartZonesControl : UserControl, INotifyPropertyChanged
     {
         ObservableCollection<StartZoneInfo> startZones;
-        //private StartZoneInfo selectedStartZone;
+        private StartZoneInfo selectedStartZone;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public ObservableCollection<StartZoneInfo> StartZones { get => startZones; set => startZones = value; }
-        //public StartZoneInfo SelectedStartZone { get => selectedStartZone; 
-        //    set
-        //    {
-        //        selectedStartZone = value;
-        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedStartZone)));
-        //    }
+        public StartZoneInfo SelectedStartZone { 
+            get => selectedStartZone; 
+            set
+            {
+                selectedStartZone = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedStartZone)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedBoxCoords)));
+            }
+        }
 
-        //}
-
+        public PointCollection SelectedBoxCoords
+        {
+            get => SelectedStartZone?.BoxCoords;
+            set
+            {
+                if (SelectedStartZone == null)
+                    return;
+                SelectedStartZone.BoxCoords = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedBoxCoords)));
+            }
+        }
 
         public EditStartZonesControl()
         {
@@ -68,8 +80,14 @@ namespace MapCreationTool.Controls
 
             selectedZone.AddPointNotify(mousePos);
 
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BoxCoords"));
+            // Wow, databinding these non observable pointcollections really sucks
+            // Let's do it like this
 
+            PointCollection newPoints = new PointCollection();
+            foreach(var point in selectedStartZone.BoxCoords)
+                newPoints.Add(point);
+
+            SelectedBoxCoords = newPoints;
         }
     }
 }
