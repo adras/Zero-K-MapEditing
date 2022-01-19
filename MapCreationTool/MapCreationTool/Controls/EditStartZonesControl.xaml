@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <!-- Edit grid-->
         <!-- Wow, background color needs to be set, otherwise MouseLeftButton won't fire -->
-        <Canvas Name="cvsDraw" MouseLeftButtonDown="cvsDraw_MouseDown" MouseRightButtonUp="cvsDraw_MouseRightButtonUp" MouseMove="cvsDraw_MouseMove" Background="White">
+        <Canvas Name="cvsDraw" MouseLeftButtonUp="cvsDraw_MouseLeftButtonUp" MouseRightButtonUp="cvsDraw_MouseRightButtonUp" MouseMove="cvsDraw_MouseMove" Background="White">
             <Polyline Name="poly" Points="{Binding Mode=TwoWay, Path=SelectedBoxCoords, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}" Stroke="Black"></Polyline>
         </Canvas>
         <!-- Maybe this helps to delete teams: https://stackoverflow.com/questions/9880589/bind-to-selecteditems-from-datagrid-or-listbox-in-mvvm-->

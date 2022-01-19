@@ -21,6 +21,8 @@ namespace MapCreationTool.Controls
 {
     class PolygonEditor
     {
+        const int MINIMUM_POINT_DISTANCE = 10;
+
         bool isClosed;
         PointCollection points;
         EditStartZonesControl control;
@@ -34,6 +36,24 @@ namespace MapCreationTool.Controls
                 this.points = new PointCollection();
         }
 
+        public int Count { get { return points.Count; } }
+
+        public Point? GetPointAtIndex (int idx)
+        {
+            if (points.Count == 0)
+                return null;
+
+            return points[idx];
+        }
+
+        public Point? GetLastPoint()
+        {
+            if (points.Count == 0)
+                return null;
+
+            return points[points.Count - 1];
+        }
+
         public void AddPoint(Point p)
         {
             if (isClosed)
@@ -42,6 +62,7 @@ namespace MapCreationTool.Controls
             points.Add(p);
             UpdatePolygon();
         }
+
 
         public PointCollection GetPoints()
         {
@@ -78,6 +99,24 @@ namespace MapCreationTool.Controls
             isClosed = false;
             UpdatePolygon();
         }
+
+        internal void AddPointConsecutive(Point mousePos)
+        {
+            Point? lastPoint;
+            // If it's the first point, just add it
+            if ((lastPoint = GetLastPoint()) == null)
+            {
+                AddPoint(mousePos);
+                return;
+            }
+
+            // Otherwise get distance, and only add it, if it's a little bit apart
+            Vector delta = new Vector(mousePos.X - lastPoint.Value.X, mousePos.Y - lastPoint.Value.Y);
+            if (delta.Length < MINIMUM_POINT_DISTANCE)
+                return;
+
+            AddPoint(mousePos);
+        }
     }
 
     /// <summary>
@@ -95,6 +134,8 @@ namespace MapCreationTool.Controls
         {
             get
             {
+                if (startZones.Count == 0)
+                    return null;
                 return editors[SelectedStartZone];
             }
         }
@@ -141,16 +182,6 @@ namespace MapCreationTool.Controls
             StartZones.Add(startZoneInfo);
         }
 
-        private void cvsDraw_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            StartZoneInfo selectedZone = lvTeams.SelectedItem as StartZoneInfo;
-            if (selectedZone == null)
-                return;
-
-            Point mousePos = e.GetPosition(cvsDraw);
-            CurrentEditor?.AddPoint(mousePos);
-        }
-
 
         private void cvsDraw_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -159,12 +190,28 @@ namespace MapCreationTool.Controls
 
         private void cvsDraw_MouseMove(object sender, MouseEventArgs e)
         {
+            if (e.LeftButton == MouseButtonState.Released)
+                return;
 
+            StartZoneInfo selectedZone = lvTeams.SelectedItem as StartZoneInfo;
+            if (selectedZone == null)
+                return;
+
+
+            Point mousePos = e.GetPosition(cvsDraw);
+            CurrentEditor?.AddPointConsecutive(mousePos);
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            CurrentEditor.Reset();
+            CurrentEditor?.Reset();
+        }
+
+        private void cvsDraw_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Point mousePos = e.GetPosition(cvsDraw);
+
+            CurrentEditor?.AddPointConsecutive(mousePos);
         }
     }
 }
