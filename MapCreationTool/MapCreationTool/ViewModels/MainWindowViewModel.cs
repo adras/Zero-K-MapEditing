@@ -12,10 +12,11 @@ namespace MapCreationTool.ViewModels
 {
     public class MainWindowViewModel : PropertyChangedBase
     {
-        public ObservableCollection<TabBase> tabs;
-		private ProjectSettings projectSettings;
+        private ObservableCollection<TabBase> tabs;
+        private TabBase selectedTab;
+        private ProjectSettings projectSettings;
 
-		public ObservableCollection<TabBase> Tabs
+        public ObservableCollection<TabBase> Tabs
         {
             get => tabs;
             set
@@ -25,9 +26,18 @@ namespace MapCreationTool.ViewModels
             }
         }
 
-		public ProjectSettings ProjectSettings { get => projectSettings; set => projectSettings = value; }
+        public ProjectSettings ProjectSettings { get => projectSettings; set => projectSettings = value; }
+        public TabBase SelectedTab
+        {
+            get => selectedTab;
+            set
+            {
+                selectedTab = value;
+                OnPropertyChanged();
+            }
+        }
 
-		public MainWindowViewModel()
+        public MainWindowViewModel()
         {
             tabs = new ObservableCollection<TabBase>();
             tabs.Add(new StartTab());

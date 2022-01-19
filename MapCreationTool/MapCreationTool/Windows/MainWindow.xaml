@@ -8,7 +8,7 @@
         xmlns:ctrl="clr-namespace:MapCreationTool.Controls"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=true}"
-        Title="Zero-K Map Tool" Height="450" Width="800">
+        Title="Zero-K Map Tool"  Width="1200" Height="800">
     <Window.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -23,7 +23,7 @@
             </ctrl:StartControl>
 
 
-            <TabControl Grid.Row="1" x:Name="_tabControl" ItemsSource="{Binding Path=Tabs}">
+            <TabControl Grid.Row="1" x:Name="_tabControl" ItemsSource="{Binding Path=Tabs}" SelectedItem="{Binding Path=SelectedTab}">
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="TabItem">
                         <Setter Property="Header" Value="{Binding Path=Header}"/>

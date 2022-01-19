@@ -1,4 +1,5 @@
-﻿using MapCreationTool.Models;
+﻿using MapCreationTool.Configuration;
+using MapCreationTool.Models;
 using MapCreationTool.WPF;
 using System;
 using System.Collections.Generic;
@@ -136,6 +137,8 @@ namespace MapCreationTool.Controls
             {
                 if (startZones.Count == 0)
                     return null;
+                if (SelectedStartZone == null)
+                    return null;
                 return editors[SelectedStartZone];
             }
         }
@@ -163,13 +166,25 @@ namespace MapCreationTool.Controls
             }
         }
 
+        public ProjectSettings ProjectSettings
+        {
+            get { return (ProjectSettings)GetValue(ProjectSettingsProperty); }
+            set { SetValue(ProjectSettingsProperty, value); }
+        }
+
+        public static readonly DependencyProperty ProjectSettingsProperty = DependencyProperty.Register(
+            nameof(ProjectSettings),
+            typeof(ProjectSettings),
+            typeof(EditStartZonesControl),
+            new PropertyMetadata(null)
+        );
+
         public EditStartZonesControl()
         {
             InitializeComponent();
             StartZones = new ObservableCollection<StartZoneInfo>();
             editors = new Dictionary<StartZoneInfo, PolygonEditor>();
         }
-
 
         private void btnAddTeam_Click(object sender, RoutedEventArgs e)
         {
