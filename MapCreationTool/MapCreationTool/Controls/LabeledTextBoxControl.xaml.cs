@@ -20,20 +20,20 @@ namespace MapCreationTool.Controls
     /// </summary>
     public partial class LabeledTextBoxControl : UserControl
     {
-		public string LabelText
-		{
-			get { return (string)GetValue(LabelTextProperty); }
-			set { SetValue(LabelTextProperty, value); }
-		}
+        public string LabelText
+        {
+            get { return (string)GetValue(LabelTextProperty); }
+            set { SetValue(LabelTextProperty, value); }
+        }
 
-		public static readonly DependencyProperty LabelTextProperty = DependencyProperty.Register(
-			nameof(LabelText),
-			typeof(string),
-			typeof(LabeledTextBoxControl),
-			new PropertyMetadata("")
-		);
+        public static readonly DependencyProperty LabelTextProperty = DependencyProperty.Register(
+            nameof(LabelText),
+            typeof(string),
+            typeof(LabeledTextBoxControl),
+            new PropertyMetadata("")
+        );
 
-		public string TextBoxValue
+        public string TextBoxValue
 		{
 			get { return (string)GetValue(TextBoxValueProperty); }
 			set { SetValue(TextBoxValueProperty, value); }
@@ -44,6 +44,19 @@ namespace MapCreationTool.Controls
 			typeof(string),
 			typeof(LabeledTextBoxControl),
 			new PropertyMetadata("")
+		);
+
+		public int LabelWidth
+		{
+			get { return (int)GetValue(LabelWidthProperty); }
+			set { SetValue(LabelWidthProperty, value); }
+		}
+
+		public static readonly DependencyProperty LabelWidthProperty = DependencyProperty.Register(
+			nameof(LabelWidth),
+			typeof(int),
+			typeof(LabeledTextBoxControl),
+			new PropertyMetadata(100)
 		);
 
 		public LabeledTextBoxControl()

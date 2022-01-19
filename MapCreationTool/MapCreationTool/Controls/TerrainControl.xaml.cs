@@ -47,6 +47,9 @@ namespace MapCreationTool.Controls
 
         private async void viewPortMain_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            bool newVisibility = (bool)e.NewValue;
+            if (!newVisibility)
+                return;
             //Dispatcher.Invoke(() =>
             //    {
                     MeshGeometry3D geom = testing.LoadHeightmap();

@@ -16,7 +16,9 @@ namespace MapCreationTool.WPF
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler? handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
         protected virtual void OnPropertyChanged<T>(Expression<Func<T>> raiser)

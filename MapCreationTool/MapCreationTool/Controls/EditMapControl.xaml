@@ -19,7 +19,7 @@
                 <Label>Coming soon</Label>
             </TabItem>
             <TabItem Header="Start-Zones" FontSize="16">
-                <Label>Coming soon</Label>
+                <local:EditStartZonesControl Margin="10, 10" ></local:EditStartZonesControl>
             </TabItem>
             <TabItem Header="Compile" FontSize="16">
                 <local:CompileMapControl Margin="10, 10"></local:CompileMapControl>
