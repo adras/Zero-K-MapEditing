@@ -19,44 +19,78 @@ using System.Windows.Shapes;
 
 namespace MapCreationTool.Controls
 {
-    //class PolygonEditor
-    //{
-    //    Polyline polyline;
-    //    bool isClosed;
+    class PolygonEditor
+    {
+        bool isClosed;
+        PointCollection points;
+        EditStartZonesControl control;
 
-    //    public PolygonEditor(Polyline polyline)
-    //    {
-    //        this.polyline = polyline;
-    //    }
+        public PolygonEditor(EditStartZonesControl control, PointCollection points = null)
+        {
+            this.points = points;
+            this.control = control;
 
-    //    public void AddPoint(Point p)
-    //    {
+            if (this.points == null)
+                this.points = new PointCollection();
+        }
 
-    //    }
+        public void AddPoint(Point p)
+        {
+            if (isClosed)
+                return;
 
-    //    public void Close()
-    //    {
-    //        if (isClosed)
-    //            return;
+            points.Add(p);
+            UpdatePolygon();
+        }
 
-    //        isClosed = true;
-    //    }
+        public PointCollection GetPoints()
+        {
+            return points;
+        }
 
-    //    private void UpdatePolygon()
-    //    {
+        public void Close()
+        {
+            if (isClosed)
+                return;
 
-    //    }
-    //}
+            // Can't close a polygon with less or equal than 2 points
+            if (points.Count <= 2)
+                return;
+
+            // Add the first point to close the polygon
+            AddPoint(points[0]);
+
+            isClosed = true;
+        }
+
+        private void UpdatePolygon()
+        {
+            PointCollection newPoints = new PointCollection();
+            foreach (Point point in points)
+                newPoints.Add(point);
+
+            control.SelectedBoxCoords = newPoints;
+        }
+    }
 
     /// <summary>
     /// Interaction logic for EditStartZonesControl.xaml
     /// </summary>
     public partial class EditStartZonesControl : UserControl, INotifyPropertyChanged
     {
-        ObservableCollection<StartZoneInfo> startZones;
-        private StartZoneInfo selectedStartZone;
-
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        private ObservableCollection<StartZoneInfo> startZones;
+        private StartZoneInfo selectedStartZone;
+        private Dictionary<StartZoneInfo, PolygonEditor> editors;
+
+        private PolygonEditor CurrentEditor
+        {
+            get
+            {
+                return editors[SelectedStartZone];
+            }
+        }
 
         public ObservableCollection<StartZoneInfo> StartZones { get => startZones; set => startZones = value; }
         public StartZoneInfo SelectedStartZone { 
@@ -85,6 +119,7 @@ namespace MapCreationTool.Controls
         {
             InitializeComponent();
             StartZones = new ObservableCollection<StartZoneInfo>();
+            editors = new Dictionary<StartZoneInfo, PolygonEditor>();
         }
 
 
@@ -93,6 +128,8 @@ namespace MapCreationTool.Controls
             StartZoneInfo startZoneInfo = new StartZoneInfo();
             startZoneInfo.Name = $"Team-{StartZones.Count + 1}";
             startZoneInfo.ShortName = $"T-{StartZones.Count + 1}";
+
+            editors.Add(startZoneInfo, new PolygonEditor(this));
 
             StartZones.Add(startZoneInfo);
         }
@@ -104,34 +141,13 @@ namespace MapCreationTool.Controls
                 return;
 
             Point mousePos = e.GetPosition(cvsDraw);
-            selectedZone.BoxCoords.Add(mousePos);
-            selectedZone.BoxCoords = selectedZone.BoxCoords;
-
-            selectedZone.AddPointNotify(mousePos);
-
-            // Wow, databinding these non observable pointcollections really sucks
-            // Let's do it like this
-            UpdatePolyLine();
+            CurrentEditor?.AddPoint(mousePos);
         }
 
-        private void UpdatePolyLine()
-        {
-            PointCollection newPoints = new PointCollection();
-            foreach (Point point in selectedStartZone.BoxCoords)
-                newPoints.Add(point);
-
-            SelectedBoxCoords = newPoints;
-        }
 
         private void cvsDraw_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            // Can't close a polygon with less or equal than 2 points
-            if (SelectedBoxCoords.Count <= 2)
-                return;
-
-            Point firstPoint = SelectedBoxCoords[0];
-            SelectedBoxCoords.Add(firstPoint);
-            UpdatePolyLine();
+            CurrentEditor.Close();
         }
 
         private void cvsDraw_MouseMove(object sender, MouseEventArgs e)
