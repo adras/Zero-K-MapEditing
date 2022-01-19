@@ -1,4 +1,5 @@
 ﻿using MapCreationTool.Configuration;
+using MapCreationTool.Helpers;
 using MapCreationTool.Images;
 using MapCreationTool.Models;
 using System;
@@ -84,7 +85,7 @@ namespace MapCreationTool
             MapCreationResult result;
             string type = "Rename Map Blueprint";
             string sourceDirPath = Path.Combine(workDir, BLUEPRINT_MAP_NAME);
-            string targetDirPath = Path.Combine(workDir, $"{mapName}.sdd");
+            string targetDirPath = Path.Combine(workDir, PathHelper.GetSddName(mapName));
             //     Directory.Move(Path.Combine(workDir, BLUEPRINT_MAP_NAME), Path.Combine(workDir, $"{mapName}.sdd"));
             if (!Directory.Exists(targetDirPath))
             {
