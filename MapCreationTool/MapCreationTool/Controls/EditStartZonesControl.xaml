@@ -22,6 +22,7 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
@@ -57,7 +58,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Grid.Row="3" Name="btnAddTeam" Click="btnAddTeam_Click">Add team</Button>
+            <Button Grid.Row="1" Name="btnClear" Click="btnClear_Click">Reset Area</Button>
+            <Button Grid.Row="4" Name="btnAddTeam" Click="btnAddTeam_Click">Add team</Button>
         </Grid>
     </Grid>
 </UserControl>

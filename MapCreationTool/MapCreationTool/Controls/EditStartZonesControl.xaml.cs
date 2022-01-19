@@ -71,6 +71,13 @@ namespace MapCreationTool.Controls
 
             control.SelectedBoxCoords = newPoints;
         }
+
+        internal void Reset()
+        {
+            points.Clear();
+            isClosed = false;
+            UpdatePolygon();
+        }
     }
 
     /// <summary>
@@ -153,6 +160,11 @@ namespace MapCreationTool.Controls
         private void cvsDraw_MouseMove(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentEditor.Reset();
         }
     }
 }
