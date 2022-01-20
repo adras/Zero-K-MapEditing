@@ -1,1 +1,1 @@
-# See [MapEditing.md](https://github.com/adras/Zero-K-MapEditing/blob/main/MapEditing.md)
+See [MapEditing.md](https://github.com/adras/Zero-K-MapEditing/blob/main/MapEditing.md)
