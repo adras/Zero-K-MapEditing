@@ -16,10 +16,10 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="35"></RowDefinition>
         </Grid.RowDefinitions>
-        <local:LabeledTextBoxControl Grid.Row="0" LabelText="Height map" TextBoxValue="{Binding Path=ViewModel.ProjectSettings.HeightMapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
-        <local:LabeledTextBoxControl Grid.Row="1" LabelText="Diffuse map" TextBoxValue="{Binding Path=ViewModel.ProjectSettings.DiffuseMapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
-        <local:LabeledTextBoxControl Grid.Row="2" LabelText="Min height" TextBoxValue="{Binding Path=ViewModel.ProjectSettings.MinHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
-        <local:LabeledTextBoxControl Grid.Row="3" LabelText="Max height" TextBoxValue="{Binding Path=ViewModel.ProjectSettings.MaxHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+        <local:LabeledTextBoxControl Grid.Row="0" LabelText="Height map" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.HeightMapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+        <local:LabeledTextBoxControl Grid.Row="1" LabelText="Diffuse map" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.DiffuseMapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+        <local:LabeledTextBoxControl Grid.Row="2" LabelText="Min height" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.MinHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+        <local:LabeledTextBoxControl Grid.Row="3" LabelText="Max height" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.MaxHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
 
         <!--<Grid Grid.Row="5">
             <Grid.ColumnDefinitions>

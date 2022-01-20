@@ -143,6 +143,9 @@ namespace MapCreationTool.Rendering
 
         internal MeshGeometry3D LoadHeightmap()
         {
+            // Criminal hack when there are no projectsettings
+            if (terrainControl.ProjectSettings == null)
+                return new MeshGeometry3D();
 
             MeshGeometry3D geometry = LoadHeightmap(terrainControl.ProjectSettings.HeightMapName);
             return geometry;

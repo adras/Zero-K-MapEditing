@@ -13,13 +13,13 @@
                 <local:ProjectSettingsControl Margin="10, 10" ></local:ProjectSettingsControl>
             </TabItem>
             <TabItem Header="Terrain" FontSize="16">
-                <local:TerrainControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.ProjectSettings, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:TerrainControl>
+                <local:TerrainControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:TerrainControl>
             </TabItem>
             <TabItem Header="Metal placement" FontSize="16">
                 <Label>Coming soon</Label>
             </TabItem>
             <TabItem Header="Start-Zones" FontSize="16">
-                <local:EditStartZonesControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.ProjectSettings, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:EditStartZonesControl>
+                <local:EditStartZonesControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:EditStartZonesControl>
             </TabItem>
             <TabItem Header="Compile" FontSize="16">
                 <local:CompileMapControl Margin="10, 10"></local:CompileMapControl>
