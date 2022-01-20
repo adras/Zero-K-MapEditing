@@ -1,44 +1,20 @@
-# Zero-K-MapEditing
-This is a playground to figure out how map-editing works for the game: Zero-K
+# Zero-K Map Tool
 
+## Description
+Goal of this tool is to help users with map-creation in the game Zero-K.
 
+Right now there's no official release yet, since this is in a very early prototype stage. 
 
-# First steps
-* Create a copy of Map-Blueprint/mapcontainer.sdd
-* rename mapcontainer.sdd to the name of your map e.g. MyAwesomeMap.sdd
-* Open mapinfo.lua, and update name, shortname, description, author, version
+## Build instructions
+* Get Visual Studio e.g. Visual Studio Community Edition
+* Open Project/Solution -> MapCreationTool\MapCreationTool.sln 
+* Build/Rebuild Solution
+* Excecutable can be found in: src\MapCreationTool\MapCreationTool\bin\x64\Debug\net5.0-windows\
 
-## Heightmap
-Details: https://springrts.com/wiki/Mapdev:height
-* Calculate the size of your heightmap image
-	* e.g. MapSize=12*16
-	* Formula: pixels = MapSize * 64 + 1
-	* 12 * 64 + 1 = 769x
-	* 16 * 64 + 1 = 1025y
+Feel free to report issues here on github.
 
-* Create an image with the calculated dimensions in your favorite program
-	* Image properties: Greyscale, 16bpp
-	* Black will be the lowest elevation, white will be the highest elevation. How high these colors will be is defined in mapinfo.lua as minHeight(black) ans maxHeight(white)
-* Save image in working directory (TODO) as heightmap.png
+# Current state
+For the current state of development see [FeaturePlanning](https://github.com/adras/Zero-K-MapEditing/blob/main/FeaturePlanning.md)
 
-## Metalmap
-Details: https://springrts.com/wiki/Mapdev:metal
-* Same steps as for the heightmap, but use: Formula: pixels = MapSize * 32 instead
-* Image properties: RGB, 8bpp
-* Color Red indicates how much metal is on a spot. For instance: #010000 is barely any metal, #FF0000 is maximum metal
-* The max-amount of metal which an extractor can extract for a bright red color (#FF0000) is defined in mapinfo.lua as maxMetal
-
-## Diffusemap
-Details: https://springrts.com/wiki/Mapdev:diffuse
-* Same steps as for heightmap, but use Formula: pixels = MapSize * 512 instead
-* Image Properties: RGBA, 8bpp
-
-# Useful links
-## Map Converters
-* https://springrts.com/wiki/MapConvNG
-* https://github.com/Beherith/springrts_smf_compiler
-
-## Tutorials
-* Map Dev Tutorial: https://springrts.com/wiki/Mapdev:Tutorial_Simple
-* Map Creation Wiki: https://zero-k.info/mediawiki/index.php?title=Map_Creation
-* Another guide: https://zero-k.info/mediawiki/index.php?title=ZK_Map_Making_Guide
+# Contribute
+If you like to contribute contact me here on github
