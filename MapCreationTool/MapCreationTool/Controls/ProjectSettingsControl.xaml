@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MapCreationTool.Controls"
+             xmlns:compile="clr-namespace:MapCreationTool.Controls.CompileSettings"
              xmlns:wnd="clr-namespace:MapCreationTool.Windows"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="35"></RowDefinition>
             <RowDefinition Height="35"></RowDefinition>
             <RowDefinition Height="35"></RowDefinition>
@@ -19,8 +20,34 @@
         <local:LabeledTextBoxControl Grid.Row="0" LabelText="Height map" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.HeightMapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
         <local:LabeledTextBoxControl Grid.Row="1" LabelText="Diffuse map" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.DiffuseMapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
         <local:LabeledTextBoxControl Grid.Row="2" LabelText="Min height" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.MinHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
-        <local:LabeledTextBoxControl Grid.Row="3" LabelText="Max height" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.MaxHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+        <local:LabeledTextBoxControl Grid.Row="3" LabelText="Max height" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.MaxHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>-->
 
+        <StackPanel Orientation="Vertical">
+            <local:LabeledTextBoxControl LabelText="Height map" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.HeightMapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+            <local:LabeledTextBoxControl LabelText="Diffuse map" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.DiffuseMapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+            <local:LabeledTextBoxControl LabelText="Min height" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.MinHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+            <local:LabeledTextBoxControl LabelText="Max height" TextBoxValue="{Binding Path=ViewModel.SelectedTab.ProjectSettings.MaxHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:LabeledTextBoxControl>
+            <Separator></Separator>
+            <Label>Compile settings</Label>
+
+            <compile:ValueCompileSetting SettingName="Output file" SettingDescription="The output smf file to create. E.g Zero-Prime.smf (REQUIRED)" SettingEnabledLocked="true"  SettingIsEnabled="True" SettingHasFileBrowser="true"></compile:ValueCompileSetting>
+            <compile:LabeledCompileSetting SettingName="Include texture" SettingDescription="The diffuse map file to use. (REQUIRED)" SettingIsEnabled="True"></compile:LabeledCompileSetting>
+            <compile:ValueCompileSetting SettingName="Height map" SettingDescription="The height map file to use. (REQUIRED)" SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Metal map" SettingDescription="Metal map file to use. Red channel is amount of metal (OPTIONAL)" SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Maximum height" SettingDescription="Engine maximum height - Highest point in map" SettingValue="100" SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Minimum height" SettingDescription="Engine minimum height - Lowest point in map" SettingValue="-50" SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Geovent decal" SettingDescription="Texture to use for geovents. (OPTIONAL)" SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Feature placement" SettingDescription=" " SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Feature list" SettingDescription=" " SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Feature map" SettingDescription=" " SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Grass map" SettingDescription=" " SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="type map" SettingDescription=" " SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="override minimap" SettingDescription=" " SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="NVDXT settings" SettingDescription=" " SettingValue="-Sinc -quality_highest" SettingIsEnabled="True"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Highresheightmap filter" SettingDescription=" " SettingValue="lanczos" SettingIsEnabled="True"></compile:ValueCompileSetting>
+
+        </StackPanel>
+        
         <!--<Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

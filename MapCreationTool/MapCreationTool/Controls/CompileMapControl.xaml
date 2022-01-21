@@ -28,21 +28,6 @@
 
                 <RowDefinition Height="35"></RowDefinition>
             </Grid.RowDefinitions>
-            <local:CompileSetting Grid.Row="0" SettingName="Output file" SettingDescription="The output smf file to create. E.g Zero-Prime.smf (REQUIRED)" SettingIsEnabled="True" SettingHasFileBrowser="true"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="1" SettingName="Texture" SettingDescription="The diffuse map file to use. (REQUIRED)" SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="2" SettingName="Height map" SettingDescription="The height map file to use. (REQUIRED)" SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="3" SettingName="Metal map" SettingDescription="Metal map file to use. Red channel is amount of metal (OPTIONAL)" SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="4" SettingName="Maximum height" SettingDescription="Engine maximum height - Highest point in map" SettingValue="100" SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="5" SettingName="Minimum height" SettingDescription="Engine minimum height - Lowest point in map" SettingValue="-50" SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="6" SettingName="Geovent decal" SettingDescription="Texture to use for geovents. (OPTIONAL)" SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="7" SettingName="Feature placement" SettingDescription=" " SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="8" SettingName="Feature list" SettingDescription=" " SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="9" SettingName="Feature map" SettingDescription=" " SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="10" SettingName="Grass map" SettingDescription=" " SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="11" SettingName="type map" SettingDescription=" " SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="12" SettingName="override minimap" SettingDescription=" " SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="13" SettingName="NVDXT settings" SettingDescription=" " SettingValue="-Sinc -quality_highest" SettingIsEnabled="True"></local:CompileSetting>
-            <local:CompileSetting Grid.Row="14" SettingName="Highresheightmap filter" SettingDescription=" " SettingValue="lanczos" SettingIsEnabled="True"></local:CompileSetting>
 
             <local:CompileDeployControl Grid.Row="15"></local:CompileDeployControl>
         </Grid>
