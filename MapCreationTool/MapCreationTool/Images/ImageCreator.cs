@@ -29,17 +29,21 @@ namespace MapCreationTool.Images
     typemap- bmp? 
     minimap - 1024x1024
     */
-	class ImageTest
+	class ImageCreator
 	{
 
 		public static void CreateImages(MapSizeDefinition mapSize, string mapDir, ProjectSettings settings)
 		{
-			
+			// Alternative to Imagesharp: https://csharp.hotexamples.com/examples/System.Windows.Media.Imaging/PngBitmapEncoder/-/php-pngbitmapencoder-class-examples.html
+			// Type: PngBitmapEncoder -> Windows namespace
+
 			Image<Rgb24> diffuse = new Image<Rgb24>(mapSize.DiffuseMapSize.Width, mapSize.DiffuseMapSize.Height);
 			Image<Rgb24> grass = new Image<Rgb24>(mapSize.GrassMapSize.Width, mapSize.GrassMapSize.Height);
-			Image<Rgb48> height = new Image<Rgb48>(mapSize.HeightMapSize.Width, mapSize.HeightMapSize.Height);
+			Image<L16> height = new Image<L16>(mapSize.HeightMapSize.Width, mapSize.HeightMapSize.Height);
 			Image<Rgb24> metal = new Image<Rgb24>(mapSize.MetalMapSize.Width, mapSize.MetalMapSize.Height);
-
+			
+			// SixLabors.ImageSharp.PixelFormats.HalfSingle
+			
 			// Fill images with an arbitrary background color, otherwise images would be empty files
 			diffuse.Mutate(x => x.Fill(Color.Black));
 			grass.Mutate(x => x.Fill(Color.Black));

@@ -112,7 +112,8 @@ namespace MapCreationTool.Controls.CompileSettings
 		private void btnBrowseFile_Click(object sender, RoutedEventArgs e)
 		{
 			Forms.SaveFileDialog dialog = new Forms.SaveFileDialog();
-			dialog.Filter = "smt files (*.smt)|*.smt|All files (*.*)|*.*";
+			// This is crappy and unflexible, make it a dependencyproperty
+			dialog.Filter = "smf files (*.smf)|*.smt|All files (*.*)|*.*";
 			dialog.CheckFileExists = false;
 			dialog.AddExtension = true;
 			Forms.DialogResult result = dialog.ShowDialog();

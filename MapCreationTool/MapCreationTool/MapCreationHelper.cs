@@ -44,7 +44,7 @@ namespace MapCreationTool
 
             settingsSerializer.SerializeToFile(pathInfo.settingsPath, defaultSettings);
 
-            ImageTest.CreateImages(defaultSettings.MapSizeDefinition, pathInfo.mapPath, defaultSettings);
+            ImageCreator.CreateImages(defaultSettings.MapSizeDefinition, pathInfo.mapPath, defaultSettings);
 
             return new MapCreationResult("", pathInfo);
         }

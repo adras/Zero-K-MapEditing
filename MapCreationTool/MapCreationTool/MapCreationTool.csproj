@@ -123,6 +123,9 @@
 		<Content Include="..\..\springrts_smf_compiler\pymapconv.exe" Link="Tools\PyMapConv\pymapconv.exe">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="..\..\springrts_smf_compiler\nvdxt.exe" Link="Tools\PyMapConv\nvdxt.exe">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		
 	</ItemGroup>
 
