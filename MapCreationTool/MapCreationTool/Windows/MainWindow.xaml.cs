@@ -26,6 +26,8 @@ namespace MapCreationTool.Windows
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+
+
 		public MainWindowViewModel ViewModel { get; set; }
 
 		public MainWindow()
@@ -64,23 +66,20 @@ namespace MapCreationTool.Windows
 
 		private void ctrlStart_OnMapOpened(object sender, MapPathInformation mapPathInfo)
 		{
-			ViewModel.Tabs.Add(new MapTab(mapPathInfo));
+			MapTab newTab = new MapTab(mapPathInfo);
+			newTab.LoadProjectSettings();
+
+			ViewModel.Tabs.Add(newTab);
 			ViewModel.SelectedTab = ViewModel.Tabs[ViewModel.Tabs.Count - 1];
-
-			// Settings exist when map was opened previously, otherwise default settings will be created
-			ViewModel.ProjectSettings = ProjectSettings.OpenOrCreateDefault(mapPathInfo);
 		}
-
-
 
 		private void ctrlStart_OnMapCreated(object sender, MapPathInformation mapPathInfo)
 		{
-			ViewModel.Tabs.Add(new MapTab(mapPathInfo));
+			MapTab newTab = new MapTab(mapPathInfo);
+			newTab.LoadProjectSettings();
+
+			ViewModel.Tabs.Add(newTab);
 			ViewModel.SelectedTab = ViewModel.Tabs[ViewModel.Tabs.Count - 1];
-
-
-			// Settings don't exist so create default settings
-			ViewModel.ProjectSettings = ProjectSettings.OpenOrCreateDefault(mapPathInfo);
 		}
 
 		private void ctrlStart_OnCalculatorClicked(object sender, EventArgs e)

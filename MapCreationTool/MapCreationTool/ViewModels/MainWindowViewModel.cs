@@ -14,7 +14,6 @@ namespace MapCreationTool.ViewModels
     {
         private ObservableCollection<TabBase> tabs;
         private TabBase selectedTab;
-        private ProjectSettings projectSettings;
 
         public ObservableCollection<TabBase> Tabs
         {
@@ -26,7 +25,6 @@ namespace MapCreationTool.ViewModels
             }
         }
 
-        public ProjectSettings ProjectSettings { get => projectSettings; set => projectSettings = value; }
         public TabBase SelectedTab
         {
             get => selectedTab;
