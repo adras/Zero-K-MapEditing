@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MapCreationTool.Models;
+using System.IO;
+using MapCreationTool.Helpers;
 
 namespace MapCreationTool.Controls
 {
@@ -57,11 +59,12 @@ namespace MapCreationTool.Controls
             string fullMapPath = folderBrowser.SelectedPath;
 
             MapPathInformation mapPathInfo = new MapPathInformation(fullMapPath);
-            if (mapPathInfo.mapName == null)
+            if (!PathHelper.IsMapDirectory(fullMapPath))
 			{
-                MessageBox.Show("Map could not be opened. Please open a .sdd directory");
+                 MessageBox.Show($"Could not open map directory. No mapinfo.lua exists at: {mapPathInfo.mapInfoPath}");
                 return;
-			}
+            }
+
             OnMapOpened(this, mapPathInfo);
         }
 

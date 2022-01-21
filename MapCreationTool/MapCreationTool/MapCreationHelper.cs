@@ -32,7 +32,7 @@ namespace MapCreationTool
             if (!result.success)
                 return result;
 
-            result = RenameMapBlueprint(mapName, workDir);
+            result = RenameMapBlueprint(pathInfo);
             if (!result.success)
                 return result;
 
@@ -80,13 +80,13 @@ namespace MapCreationTool
             return new MapCreationResult(type);
         }
 
-        public static MapCreationResult RenameMapBlueprint(string mapName, string workDir)
+        public static MapCreationResult RenameMapBlueprint(MapPathInformation mapPathInfo)
         {
             MapCreationResult result;
             string type = "Rename Map Blueprint";
-            string sourceDirPath = Path.Combine(workDir, BLUEPRINT_MAP_NAME);
-            string targetDirPath = Path.Combine(workDir, PathHelper.GetSddName(mapName));
-            //     Directory.Move(Path.Combine(workDir, BLUEPRINT_MAP_NAME), Path.Combine(workDir, $"{mapName}.sdd"));
+            string sourceDirPath = Path.Combine(mapPathInfo.workDir, BLUEPRINT_MAP_NAME);
+            string targetDirPath = mapPathInfo.mapPath;
+            
             if (!Directory.Exists(targetDirPath))
             {
                 Directory.Move(sourceDirPath, targetDirPath);

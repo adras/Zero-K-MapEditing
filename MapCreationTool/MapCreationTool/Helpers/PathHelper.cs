@@ -10,42 +10,21 @@ namespace MapCreationTool.Helpers
 {
     public class PathHelper
     {
-        // TODO: Add methods which help to create the paths required to create a map
-        // blueprint path, map folder, etc
-        public static string GetMapNameFromPath(string path)
+        public const string MAP_INFO_NAME = "mapinfo.lua";
+
+        public static string GetMapDirectoryNameFromPath(string path)
         {
-            FileInfo fi = new FileInfo(path);
-            string mapDirName = fi.FullName;
+            DirectoryInfo mapDirInfo = new DirectoryInfo(path);
+            string mapDirName = mapDirInfo.Name;
 
-            int sddStart = fi.Name.IndexOf(".sdd");
-            if (sddStart == -1)
-            {
-                // For now we allow opening non .sdd directories
-                // See also GetSdd Name where it's disabled as well
-                
-                //return null;
-                return fi.Name;
-            }
 
-            string result = fi.Name.Substring(0, sddStart);
-
-            return result;
+            return mapDirName;
         }
 
         internal static string? GetMapPath(string mapName, string workDir)
         {
-            string mapSddName = GetSddName(mapName);
-
-            string path = Path.Combine(workDir, mapSddName);
+            string path = Path.Combine(workDir, mapName);
             return path;
-        }
-
-        internal static string? GetSddName(string mapName)
-        {
-            // Disabled, see also GetMapNameFromPath
-            //string result = $"{mapName}.sdd";
-            string result = $"{mapName}";
-            return result;
         }
 
         internal static string GetWorkDirFromFullMapPath(string fullMapPath)
@@ -55,11 +34,37 @@ namespace MapCreationTool.Helpers
             return workDir;
         }
 
-        internal static string? GetSettingsPath(string workDir, string mapName)
+        internal static string? GetSettingsPath(string mapPath)
         {
-            string sddName = GetSddName(mapName);
-            string result = Path.Combine(workDir, sddName, ProjectSettings.DEFAULT_FILE_NAME);
+            DirectoryInfo mapDirInfo = new DirectoryInfo(mapPath);
+            string result = Path.Combine(mapDirInfo.FullName, ProjectSettings.DEFAULT_FILE_NAME);
             return result;
         }
-    }
+
+		internal static string? GetMapInfoPath(string mapPath)
+		{
+            // Linux ain't not gonna like the casing of the created path, because it could be different
+            DirectoryInfo mapFileInfo = new DirectoryInfo(mapPath);
+            string result = Path.Combine(mapFileInfo.FullName, MAP_INFO_NAME);
+            return result;
+		}
+
+        /// <summary>
+        /// Returns true if the given map path is actually containing a map
+        /// </summary>
+        /// <param name="fullMapPath"></param>
+        /// <returns></returns>
+        /// <remarks>Afaik, every map must have a maps subdirectory. This method checks for it's existence.
+        /// No maps subdirectory -> Not a map
+        /// A bit troublesome if the user stores their map in a related directory
+        /// </remarks>
+		internal static bool IsMapDirectory(string fullMapPath)
+		{
+            string mapsPath = Path.Combine(fullMapPath, "maps");
+            if (!Directory.Exists(mapsPath))
+                return false;
+
+            return true;
+		}
+	}
 }

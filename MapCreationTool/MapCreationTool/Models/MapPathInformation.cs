@@ -14,35 +14,42 @@ namespace MapCreationTool.Models
         public string settingsPath;
 
         /// <summary>
-        /// Gets the path of the maps .sdd directory
+        /// Gets the path of the maps directory
         /// </summary>
         public string mapPath;
 
         /// <summary>
-        /// Gets the name of the map directory without .sdd
+        /// Gets the name of the map directory
         /// </summary>
         public string mapName;
 
         /// <summary>
-        /// Gets the name of the map including .sdd
+        /// Gets the directory the map directory is contained in
         /// </summary>
-        public string mapSddName;
+        public string workDir;
+
+        /// <summary>
+        /// Gets the path to the maps mapinfo.lua file
+        /// </summary>
+        public string mapInfoPath;
+
 
         public MapPathInformation(string fullMapPath)
         {
             this.mapPath = fullMapPath;
-            mapName = PathHelper.GetMapNameFromPath(fullMapPath);
-            this.mapSddName = PathHelper.GetSddName(mapName);
-            string workDir = PathHelper.GetWorkDirFromFullMapPath(fullMapPath);
-            this.settingsPath = PathHelper.GetSettingsPath(workDir, mapName);
+            this.mapName = PathHelper.GetMapDirectoryNameFromPath(fullMapPath);
+            this.workDir = PathHelper.GetWorkDirFromFullMapPath(fullMapPath);
+            this.settingsPath = PathHelper.GetSettingsPath(mapPath);
+            this.mapInfoPath = PathHelper.GetMapInfoPath(mapPath);
         }
 
         public MapPathInformation(string mapName, string workDir)
         {
             this.mapPath = PathHelper.GetMapPath(mapName, workDir);
             this.mapName = mapName;
-            this.mapSddName = PathHelper.GetSddName(mapName);
-            this.settingsPath = PathHelper.GetSettingsPath(workDir, mapName);
+            this.workDir = workDir;
+            this.settingsPath = PathHelper.GetSettingsPath(mapPath);
+            this.mapInfoPath = PathHelper.GetMapInfoPath(mapPath);
         }
     }
 }
