@@ -54,15 +54,33 @@ namespace MapCreationTool.Controls
             string pyConvPath = IO.Path.Combine(PathHelper.GetApplicationDirectory().FullName, @"Tools\PyMapConv\pymapconv.exe");
             IO.FileInfo pyMapConvFi = new IO.FileInfo(pyConvPath);
 
-            string args = @" -o E:\Zero-K-Maps\Minimi\minimi.smf ";
+            //string args = @" -o E:\Zero-K-Maps\Minimi\minimi.smf ";
+            //args += @"-t e:\Zero-K-Maps\medium\diffuse.bmp ";
+            //args += @"-a e:\Zero-K-Maps\medium\height.png ";
+            //args += @"-x 400 ";
+            //args += @"-n -150 ";
+
+            //ProcessStartInfo startInfo = new ProcessStartInfo
+            //{
+            //    FileName = pyMapConvFi.FullName,
+            //    Arguments = args,
+            //    CreateNoWindow = true,
+            //    UseShellExecute = false,
+            //    RedirectStandardOutput = true,
+            //    WorkingDirectory = pyMapConvFi.Directory.FullName
+            //};
+
+            string args = @"d:\repos\OtherRepositories\Zero-K-MapEditing\springrts_smf_compiler\pymapconv.py ";
+            args += @" -o E:\Zero-K-Maps\Minimi\minimi.smf ";
             args += @"-t e:\Zero-K-Maps\medium\diffuse.bmp ";
             args += @"-a e:\Zero-K-Maps\medium\height.png ";
             args += @"-x 400 ";
             args += @"-n -150 ";
+            Debug.WriteLine("Using args: " + args);
 
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                FileName = pyMapConvFi.FullName,
+                FileName = "python.exe",
                 Arguments = args,
                 CreateNoWindow = true,
                 UseShellExecute = false,
