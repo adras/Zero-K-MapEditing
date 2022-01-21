@@ -7,30 +7,31 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        
-        
+
+
         <Grid DataContext="Self">
             <Grid.RowDefinitions>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
 
                 <RowDefinition Height="35"></RowDefinition>
             </Grid.RowDefinitions>
-
-            <local:CompileDeployControl Grid.Row="15"></local:CompileDeployControl>
+            <ListView ItemsSource="{Binding CompilationResults}">
+                <!--<ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Label Content="{Binding}"></Label>                            
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBox Text="{Binding Path=CompilationResults, RelativeSource={RelativeSource AncestorType=local:CompileMapControl}}"></TextBox>
+            <local:CompileDeployControl Grid.Row="2" OnExecuteAction="CompileDeployControl_OnExecuteAction"></local:CompileDeployControl>
         </Grid>
-            
+
     </ScrollViewer>
 </UserControl>

@@ -56,7 +56,7 @@ namespace MapCreationTool
             if (!blueprintDir.Exists)
             {
                 // TODO: Needs testing
-                string programDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string programDirectory = PathHelper.GetApplicationDirectory().FullName;
                 return new MapCreationResult(type, pathInfo, $"Could not find Map blueprint @ {Path.Combine(programDirectory, blueprintDir.FullName)} ");
             }
             string newBlueprintPath = Path.Combine(workDir, BLUEPRINT_MAP_NAME);

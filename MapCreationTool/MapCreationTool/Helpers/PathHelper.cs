@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,5 +67,13 @@ namespace MapCreationTool.Helpers
 
             return true;
 		}
+
+        public static DirectoryInfo GetApplicationDirectory()
+		{
+            string assemblyPath = Assembly.GetExecutingAssembly().Location;
+            FileInfo assemblyInfo = new FileInfo(assemblyPath);
+            DirectoryInfo result = assemblyInfo.Directory;
+            return result;
+        }
 	}
 }
