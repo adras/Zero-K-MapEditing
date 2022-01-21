@@ -6,4 +6,4 @@
 	url = https://github.com/jk3064/Map-Blueprint.git
 [submodule "springrts_smf_compiler"]
 	path = springrts_smf_compiler
-	url = https://github.com/Beherith/springrts_smf_compiler.git
+	url = https://github.com/adras/springrts_smf_compiler
