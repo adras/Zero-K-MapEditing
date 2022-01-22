@@ -27,43 +27,18 @@ namespace MapCreationTool.Controls.CompileSettings
 			set { SetValue(SettingIsEnabledProperty, value); }
 		}
 
-		public bool SettingEnabledLocked
-		{
-			get { return (bool)GetValue(SettingEnabledLockedProperty); }
-			set { SetValue(SettingEnabledLockedProperty, value); }
-		}
-
-		public string SettingName
-		{
-			get { return (string)GetValue(SettingNameProperty); }
-			set { SetValue(SettingNameProperty, value); }
-		}
-
-		public string SettingValue
-		{
-			get { return (string)GetValue(SettingValueProperty); }
-			set { SetValue(SettingValueProperty, value); }
-		}
-
-		public string SettingDescription
-		{
-			get { return (string)GetValue(SettingDescriptionProperty); }
-			set { SetValue(SettingDescriptionProperty, value); }
-		}
-
-		public bool SettingHasFileBrowser
-		{
-			get { return (bool)GetValue(SettingHasFileBrowserProperty); }
-			set { SetValue(SettingHasFileBrowserProperty, value); }
-		}
-
-
 		public static readonly DependencyProperty SettingIsEnabledProperty = DependencyProperty.Register(
 			nameof(SettingIsEnabled),
 			typeof(bool),
 			typeof(ValueCompileSetting),
 			new PropertyMetadata(true)
 		);
+
+		public bool SettingEnabledLocked
+		{
+			get { return (bool)GetValue(SettingEnabledLockedProperty); }
+			set { SetValue(SettingEnabledLockedProperty, value); }
+		}
 
 		public static readonly DependencyProperty SettingEnabledLockedProperty = DependencyProperty.Register(
 			nameof(SettingEnabledLocked),
@@ -72,6 +47,12 @@ namespace MapCreationTool.Controls.CompileSettings
 			new PropertyMetadata(true)
 		);
 
+
+		public string SettingName
+		{
+			get { return (string)GetValue(SettingNameProperty); }
+			set { SetValue(SettingNameProperty, value); }
+		}
 		public static readonly DependencyProperty SettingNameProperty = DependencyProperty.Register(
 			nameof(SettingName),
 			typeof(string),
@@ -79,6 +60,12 @@ namespace MapCreationTool.Controls.CompileSettings
 			new PropertyMetadata("")
 		);
 
+
+		public string SettingValue
+		{
+			get { return (string)GetValue(SettingValueProperty); }
+			set { SetValue(SettingValueProperty, value); }
+		}
 		public static readonly DependencyProperty SettingValueProperty = DependencyProperty.Register(
 			nameof(SettingValue),
 			typeof(string),
@@ -86,6 +73,12 @@ namespace MapCreationTool.Controls.CompileSettings
 			new PropertyMetadata("")
 		);
 
+
+		public string SettingDescription
+		{
+			get { return (string)GetValue(SettingDescriptionProperty); }
+			set { SetValue(SettingDescriptionProperty, value); }
+		}
 		public static readonly DependencyProperty SettingDescriptionProperty = DependencyProperty.Register(
 			nameof(SettingDescription),
 			typeof(string),
@@ -93,12 +86,20 @@ namespace MapCreationTool.Controls.CompileSettings
 			new PropertyMetadata("")
 		);
 
+
+		public bool SettingHasFileBrowser
+		{
+			get { return (bool)GetValue(SettingHasFileBrowserProperty); }
+			set { SetValue(SettingHasFileBrowserProperty, value); }
+		}
 		public static readonly DependencyProperty SettingHasFileBrowserProperty = DependencyProperty.Register(
 			nameof(SettingHasFileBrowser),
 			typeof(bool),
 			typeof(ValueCompileSetting),
 			new PropertyMetadata(false)
 		);
+
+
 
 		public ValueCompileSetting()
 		{
