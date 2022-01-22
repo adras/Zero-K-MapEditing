@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace MapCreationTool.WPF
+namespace MapCreationTool.WPF.Converters
 {
     internal class BoolVisibilityConverter : IValueConverter
     {

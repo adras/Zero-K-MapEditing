@@ -113,7 +113,7 @@ namespace MapCreationTool.MapConverter
 				pyProcess = new Process();
 			}
 
-			string pyConvPath = Path.Combine(PathHelper.GetApplicationDirectory().FullName, @"Tools\PyMapConv\pymapconv.exe");
+			string pyConvPath = Path.Combine(PathHelper.GetApplicationToolsDirectory().FullName, @"PyMapConv\pymapconv.exe");
 			FileInfo pyMapConvFi = new FileInfo(pyConvPath);
 
 			//string args = @" -o E:\Zero-K-Maps\mini\minimi.smf ";
@@ -158,8 +158,8 @@ namespace MapCreationTool.MapConverter
 				pyProcess.OutputDataReceived += PyProcess_OutputDataReceived;
 				pyProcess.StartInfo = startInfo;
 				pyProcess.Start();
-
-				CompilationResult?.Invoke(this, MapCompilerState.Running, "Started");
+				string executeText = $"Executing {startInfo.FileName} {startInfo.Arguments}";
+				CompilationResult?.Invoke(this, MapCompilerState.Running, $"Executing: {executeText}");
 
 				pyProcess.BeginOutputReadLine();
 				pyProcess.WaitForExit();

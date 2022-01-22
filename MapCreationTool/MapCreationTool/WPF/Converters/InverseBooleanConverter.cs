@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace MapCreationTool.WPF
+namespace MapCreationTool.WPF.Converters
 {
-	[ValueConversion(typeof(bool), typeof(bool))]
-	public class InverseBooleanConverter : IValueConverter
+    [ValueConversion(typeof(bool), typeof(bool))]
+    public class InverseBooleanConverter : IValueConverter
     {
         #region IValueConverter Members
 

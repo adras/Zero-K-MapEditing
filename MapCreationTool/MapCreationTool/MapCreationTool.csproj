@@ -126,7 +126,10 @@
 		<Content Include="..\..\springrts_smf_compiler\nvdxt.exe" Link="Tools\PyMapConv\nvdxt.exe">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		
+		<Content Include="..\..\springrts_smf_compiler\geovent.bmp" Link="Tools\PyMapConv\geovent.bmp">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+
 	</ItemGroup>
 
 	<ItemGroup>

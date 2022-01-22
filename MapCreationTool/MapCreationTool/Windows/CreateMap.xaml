@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:MapCreationTool.Windows"
         xmlns:vm="clr-namespace:MapCreationTool.ViewModels"
         mc:Ignorable="d"
-        xmlns:cv ="clr-namespace:MapCreationTool.Converters"
+        xmlns:wpf ="clr-namespace:MapCreationTool.WPF.Converters"
         d:DataContext="{d:DesignInstance vm:CreateMapViewModel, IsDesignTimeCreatable=true}"
         Title="CreateMap" Height="450" Width="800">
 
     <Window.Resources>
-        <cv:IntToStringConverter x:Key="intStringConverter" />
+        <wpf:IntToStringConverter x:Key="intStringConverter" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

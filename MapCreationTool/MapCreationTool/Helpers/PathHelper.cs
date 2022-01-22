@@ -12,6 +12,7 @@ namespace MapCreationTool.Helpers
     public class PathHelper
     {
         public const string MAP_INFO_NAME = "mapinfo.lua";
+        public const string TOOL_DIRECTORY_NAME = "Tools";
 
         public static string GetMapDirectoryNameFromPath(string path)
         {
@@ -73,6 +74,14 @@ namespace MapCreationTool.Helpers
             string assemblyPath = Assembly.GetExecutingAssembly().Location;
             FileInfo assemblyInfo = new FileInfo(assemblyPath);
             DirectoryInfo result = assemblyInfo.Directory;
+            return result;
+        }
+
+        public static DirectoryInfo GetApplicationToolsDirectory()
+        {
+            DirectoryInfo appDir = GetApplicationDirectory();
+            string toolPath = Path.Combine(appDir.FullName, TOOL_DIRECTORY_NAME);
+            DirectoryInfo result = new DirectoryInfo(toolPath);
             return result;
         }
 	}

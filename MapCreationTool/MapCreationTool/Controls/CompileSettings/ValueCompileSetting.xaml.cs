@@ -16,6 +16,13 @@ using System.Windows.Shapes;
 
 namespace MapCreationTool.Controls.CompileSettings
 {
+	public enum SettingDialogType
+    {
+		None,
+		Open,
+		Save,
+    }
+
 	/// <summary>
 	/// Interaction logic for ValueCompileSetting.xaml
 	/// </summary>
@@ -60,6 +67,18 @@ namespace MapCreationTool.Controls.CompileSettings
 			new PropertyMetadata("")
 		);
 
+		public SettingDialogType SettingDialogType
+		{
+			get { return (SettingDialogType)GetValue(SettingDialogTypeProperty); }
+			set { SetValue(SettingDialogTypeProperty, value); }
+		}
+		public static readonly DependencyProperty SettingDialogTypeProperty = DependencyProperty.Register(
+			nameof(SettingDialogType),
+			typeof(SettingDialogType),
+			typeof(ValueCompileSetting),
+			new PropertyMetadata(SettingDialogType.None)
+		);
+
 
 		public string SettingValue
 		{
@@ -87,18 +106,17 @@ namespace MapCreationTool.Controls.CompileSettings
 		);
 
 
-		public bool SettingHasFileBrowser
+		public string FileDialogFilter
 		{
-			get { return (bool)GetValue(SettingHasFileBrowserProperty); }
-			set { SetValue(SettingHasFileBrowserProperty, value); }
+			get { return (string)GetValue(FileDialogFilterProperty); }
+			set { SetValue(FileDialogFilterProperty, value); }
 		}
-		public static readonly DependencyProperty SettingHasFileBrowserProperty = DependencyProperty.Register(
-			nameof(SettingHasFileBrowser),
-			typeof(bool),
+		public static readonly DependencyProperty FileDialogFilterProperty = DependencyProperty.Register(
+			nameof(FileDialogFilter),
+			typeof(string),
 			typeof(ValueCompileSetting),
-			new PropertyMetadata(false)
+			new PropertyMetadata("")
 		);
-
 
 
 		public ValueCompileSetting()
@@ -112,9 +130,19 @@ namespace MapCreationTool.Controls.CompileSettings
 
 		private void btnBrowseFile_Click(object sender, RoutedEventArgs e)
 		{
-			Forms.SaveFileDialog dialog = new Forms.SaveFileDialog();
+			Forms.FileDialog dialog = null;
+            switch (SettingDialogType)
+            {
+                case SettingDialogType.Open:
+					dialog = new Forms.OpenFileDialog();
+					break;
+                case SettingDialogType.Save:
+					dialog = new Forms.SaveFileDialog();
+                    break;
+			}
+
 			// This is crappy and unflexible, make it a dependencyproperty
-			dialog.Filter = "smf files (*.smf)|*.smt|All files (*.*)|*.*";
+			dialog.Filter = FileDialogFilter;
 			dialog.CheckFileExists = false;
 			dialog.AddExtension = true;
 			Forms.DialogResult result = dialog.ShowDialog();

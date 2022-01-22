@@ -1,4 +1,5 @@
 ﻿using MapCreationTool.Configuration;
+using MapCreationTool.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +12,7 @@ namespace MapCreationTool.Models
     public class ProjectSettings
     {
         public const string DEFAULT_FILE_NAME = "MapCreationTool.xml";
-
+        public const string GEO_VENT_FILE_NAME = "geovent.bmp";
 
         private string startLocations;
 
@@ -72,6 +73,8 @@ namespace MapCreationTool.Models
 
         public static ProjectSettings CreateDefault(MapPathInformation pathInfo)
         {
+            string geoventPath = Path.Combine(PathHelper.GetApplicationToolsDirectory().FullName, GEO_VENT_FILE_NAME);
+
             ProjectSettings defaultSettings = new ProjectSettings
             {
                 DiffuseMapName = Path.Combine(pathInfo.mapPath, "diffuse.bmp"),
@@ -80,8 +83,11 @@ namespace MapCreationTool.Models
                 MetalMapName = Path.Combine(pathInfo.mapPath, "metal.bmp"),
                 StartLocations = Path.Combine(pathInfo.mapPath, @"mapconfig\map_startboxes.lua"),
                 OutSmfFilePath = Path.Combine(pathInfo.mapPath, $@"{pathInfo.mapName}.smf"),
+                GeoventDecalPath = geoventPath,
                 MinHeight = -50,
-                MaxHeight = 200
+                MaxHeight = 200,
+                UseGeoventDecal = true,
+                
             };
 
             return defaultSettings;

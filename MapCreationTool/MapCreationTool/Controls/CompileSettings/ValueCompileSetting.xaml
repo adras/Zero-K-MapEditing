@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MapCreationTool.Controls"
-             xmlns:wpf="clr-namespace:MapCreationTool.WPF"
+             xmlns:wpf="clr-namespace:MapCreationTool.WPF.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <wpf:BoolVisibilityConverter x:Key="boolVisibilityConverter" />
+        <wpf:SettingDialogTypeVisibilityConverter x:Key="dialogTypeVisibilityConverter" />
         <wpf:InverseBooleanConverter x:Key="inverseBooleanConverter"/>
     </UserControl.Resources>
     <Grid>
@@ -34,8 +34,8 @@
         </Label>
         <TextBox Height="25" Grid.Column="2" Text="{Binding Path=SettingValue, RelativeSource={RelativeSource AncestorType=UserControl}}"></TextBox>
         <Button Margin="5" Height="25" Grid.Column="3" Name="btnBrowseFile" Click="btnBrowseFile_Click" 
-                Visibility="{Binding Path=SettingHasFileBrowser,
+                Visibility="{Binding Path=SettingDialogType,
                     RelativeSource={RelativeSource AncestorType=UserControl},
-                    Converter={StaticResource boolVisibilityConverter}}">Select</Button>
+                    Converter={StaticResource dialogTypeVisibilityConverter}}">Select</Button>
     </Grid>
 </UserControl>

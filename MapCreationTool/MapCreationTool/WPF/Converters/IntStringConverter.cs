@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace MapCreationTool.Converters
+namespace MapCreationTool.WPF.Converters
 {
+    [ValueConversion(typeof(int), typeof(string))]
     public class IntToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
