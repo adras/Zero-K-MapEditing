@@ -39,7 +39,7 @@ namespace MapCreationTool
 
             // TODO: Move to dedicated method
             ProjectSettingsSerializer settingsSerializer = new ProjectSettingsSerializer();
-            ProjectSettings defaultSettings = ProjectSettings.CreateDefault(pathInfo.mapPath);
+            ProjectSettings defaultSettings = ProjectSettings.CreateDefault(pathInfo);
             defaultSettings.MapSizeDefinition = mapSizeDef;
 
             settingsSerializer.SerializeToFile(pathInfo.settingsPath, defaultSettings);

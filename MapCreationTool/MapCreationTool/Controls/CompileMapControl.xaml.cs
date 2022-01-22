@@ -1,4 +1,6 @@
 ﻿using MapCreationTool.Helpers;
+using MapCreationTool.MapConverter;
+using MapCreationTool.Models;
 using MapCreationTool.WPF;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
@@ -26,96 +28,13 @@ using IO = System.IO;
 
 namespace MapCreationTool.Controls
 {
-    enum MapCompilerState
-    {
-        Running,
-        Complete,
-    }
-
-    class MapCompiler
-    {
-        public delegate void OnCompilationResult(object sender, MapCompilerState state, string message);
-        public event OnCompilationResult CompilationResult;
-        Process pyProcess;
-
-        public void Compile()
-        {
-            if (pyProcess == null)
-                pyProcess = new Process();
-            else
-            {
-                if (!pyProcess.HasExited)
-                {
-                    pyProcess.Kill();
-                }
-                pyProcess = new Process();
-            }
-
-            string pyConvPath = IO.Path.Combine(PathHelper.GetApplicationDirectory().FullName, @"Tools\PyMapConv\pymapconv.exe");
-            IO.FileInfo pyMapConvFi = new IO.FileInfo(pyConvPath);
-
-            string args = @" -o E:\Zero-K-Maps\mini\minimi.smf ";
-            args += @"-t e:\Zero-K-Maps\medium\diffuse.bmp ";
-            args += @"-a e:\Zero-K-Maps\medium\height.png ";
-            args += @"-x 400 ";
-            args += @"-n -150 ";
-
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = pyMapConvFi.FullName,
-                Arguments = args,
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                WorkingDirectory = pyMapConvFi.Directory.FullName
-            };
-
-            //string args = @"d:\repos\OtherRepositories\Zero-K-MapEditing\springrts_smf_compiler\pymapconv.py ";
-            //args += @" -o E:\Zero-K-Maps\Minimi\minimi.smf ";
-            //args += @"-t e:\Zero-K-Maps\medium\diffuse.bmp ";
-            //args += @"-a e:\Zero-K-Maps\medium\height.png ";
-            //args += @"-x 400 ";
-            //args += @"-n -150 ";
-
-
-            //ProcessStartInfo startInfo = new ProcessStartInfo
-            //{
-            //    FileName = "python.exe",
-            //    Arguments = args,
-            //    CreateNoWindow = true,
-            //    UseShellExecute = false,
-            //    RedirectStandardOutput = true,
-            //    WorkingDirectory = pyMapConvFi.Directory.FullName
-            //};
-            
-            Debug.WriteLine("Using args: " + args);
-            
-            Task.Run(() =>
-            {
-                pyProcess.OutputDataReceived += PyProcess_OutputDataReceived;
-                pyProcess.StartInfo = startInfo;
-                pyProcess.Start();
-
-                CompilationResult?.Invoke(this, MapCompilerState.Running, "Started");
-
-                pyProcess.BeginOutputReadLine();
-                pyProcess.WaitForExit();
-                CompilationResult?.Invoke(this, MapCompilerState.Complete, "Complete");
-            });
-        }
-
-        private void PyProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            CompilationResult?.Invoke(this, MapCompilerState.Running, e.Data);
-            Debug.WriteLine(e.Data);
-        }
-    }
-
     /// <summary>
     /// Interaction logic for CompileMapControl.xaml
     /// </summary>
     public partial class CompileMapControl : UserControl, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+
         string compilationResults;
         MapCompiler compiler;
 
@@ -128,26 +47,41 @@ namespace MapCreationTool.Controls
             }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public ProjectSettings ProjectSettings
+        {
+            get { return (ProjectSettings)GetValue(ProjectSettingsProperty); }
+            set { SetValue(ProjectSettingsProperty, value); }
+        }
+
+        public static readonly DependencyProperty ProjectSettingsProperty = DependencyProperty.Register(
+            nameof(ProjectSettings),
+            typeof(ProjectSettings),
+            typeof(CompileMapControl),
+            new PropertyMetadata(null)
+        );
 
         public CompileMapControl()
         {
             InitializeComponent();
             compiler = new MapCompiler();
             compiler.CompilationResult += Compiler_CompilationResult;
+            
         }
 
         private void Compiler_CompilationResult(object sender, MapCompilerState state, string message)
         {
             CompilationResults += message + "\n";
             Dispatcher.Invoke(() => scrollViewer.ScrollToBottom());
-            
+
         }
 
         private void CompileDeployControl_OnExecuteAction(object sender, ActionTypes actionType)
         {
             CompilationResults = "";
-            compiler.Compile();
+            MapCompilerSettings compileSettings = ProjectSettingsToCompilerSettingsConverter.Convert(ProjectSettings);
+
+            compiler.Compile(compileSettings);
         }
 
     }

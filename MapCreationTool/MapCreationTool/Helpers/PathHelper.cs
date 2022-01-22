@@ -1,4 +1,4 @@
-﻿using MapCreationTool.Configuration;
+﻿using MapCreationTool.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;

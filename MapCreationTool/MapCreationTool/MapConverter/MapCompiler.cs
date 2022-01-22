@@ -1,15 +1,18 @@
-﻿using System;
+﻿using MapCreationTool.Helpers;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MapCreationTool.MapConverter
 {
-	/// <summary>
-	/// 
-	/// </summary>
-	class MapCompilerSetting
+    /// <summary>
+    /// 
+    /// </summary>
+    public class MapCompilerSetting
 	{
 		public string MAP_CONV_EXE_PATH = @"Tools\PyMapConv\pymapconv.exe";
 
@@ -44,7 +47,7 @@ namespace MapCreationTool.MapConverter
 		}
 	}
 
-	class MapCompilerSettings
+	public class MapCompilerSettings
 	{
 		List<MapCompilerSetting> settings;
 		public MapCompilerSettings()
@@ -84,43 +87,90 @@ namespace MapCreationTool.MapConverter
 			foreach (MapCompilerSetting setting in settings)
 			{
 				// Using ToString overload
-				sb.Append(setting);
+				sb.Append($" {setting}");
 			}
 			string result = sb.ToString();
 			return result;
 		}
 	}
 
-	class MapCompiler
+	public class MapCompiler
 	{
-		public static void Compile(List<MapCompilerSetting> settings)
-		{
-			// Spring Map Format (SMF) compiler parameters
-			// Not all parameter descriptions added, see springrts_smf_compiler\pymapconf.py for descriptions
-			// OutFile -o, --outfile <output mapname.smf> (required) The name of the created map file. Should end in .smf. A tilefile (extension .smt) is also created, this name may contain spaces',
-			// DiffuseMap -t --intex <texturemap.bmp> (required) Input bitmap to use for the map. Sizes must be multiples of 1024. Xsize and Ysize are determined from this file; xsize = intex width / 8, ysize = height / 8. Don\'t use Alpha unless you know what you are doing.',
-			// HeightMap -a --heightmap help='|HEIGHT MAP| <heightmap file> (required) Input heightmap to use for the map, this should be 16 bit greyscale PNG image or a 16bit intel byte order single channel .raw image. Must be xsize*64+1 by ysize*64+1',
-			// MetalMap -m --metalmap help='|METAL MAP| <metalmap.bmp> Metal map to use, red channel is amount of metal. Resized to xsize / 2 by ysize / 2.',
-			// MaxHeight -x --maxheight
-			// MinHeight -n --minheight
-			// GeoventDecal -g --geoventfile
-			// Compression -c --compress
-			// Invert -i --invert
-			// Lowpass -l --lowpass
-			// Featureplacement -k --featureplacement
-			// Featurelist -j --featurelist
-			// FeatureMap -f --featuremap
-			// GrassMap -r --grassmap
-			// TypeMap -y --typemap
-			// MiniMap -p --minimap
-			// JustSmf -s --justsmf
-			// nvxdoptions -v --nvdxt_options
-			// HighresFilter --highresheightmapfilter
-			// Dirty -c --dirty
-			// Decompile -d --decompile
-			// SkipTexture -s --skiptexture
+		public delegate void OnCompilationResult(object sender, MapCompilerState state, string message);
+		public event OnCompilationResult CompilationResult;
+		Process pyProcess;
 
-			// Mandatory: --outfile, --intex, --heightmap, --metalmap, --maxheight, --minheight
+		public void Compile(MapCompilerSettings settings)
+		{
+			if (pyProcess == null)
+				pyProcess = new Process();
+			else
+			{
+				if (!pyProcess.HasExited)
+				{
+					pyProcess.Kill();
+				}
+				pyProcess = new Process();
+			}
+
+			string pyConvPath = Path.Combine(PathHelper.GetApplicationDirectory().FullName, @"Tools\PyMapConv\pymapconv.exe");
+			FileInfo pyMapConvFi = new FileInfo(pyConvPath);
+
+			//string args = @" -o E:\Zero-K-Maps\mini\minimi.smf ";
+			//args += @"-t e:\Zero-K-Maps\medium\diffuse.bmp ";
+			//args += @"-a e:\Zero-K-Maps\medium\height.png ";
+			//args += @"-x 400 ";
+			//args += @"-n -150 ";
+			string args = settings.GenerateParameterString();
+
+			ProcessStartInfo startInfo = new ProcessStartInfo
+			{
+				FileName = pyMapConvFi.FullName,
+				Arguments = args,
+				CreateNoWindow = true,
+				UseShellExecute = false,
+				RedirectStandardOutput = true,
+				WorkingDirectory = pyMapConvFi.Directory.FullName
+			};
+
+			//string args = @"d:\repos\OtherRepositories\Zero-K-MapEditing\springrts_smf_compiler\pymapconv.py ";
+			//args += @" -o E:\Zero-K-Maps\Minimi\minimi.smf ";
+			//args += @"-t e:\Zero-K-Maps\medium\diffuse.bmp ";
+			//args += @"-a e:\Zero-K-Maps\medium\height.png ";
+			//args += @"-x 400 ";
+			//args += @"-n -150 ";
+
+
+			//ProcessStartInfo startInfo = new ProcessStartInfo
+			//{
+			//    FileName = "python.exe",
+			//    Arguments = args,
+			//    CreateNoWindow = true,
+			//    UseShellExecute = false,
+			//    RedirectStandardOutput = true,
+			//    WorkingDirectory = pyMapConvFi.Directory.FullName
+			//};
+
+			Debug.WriteLine("Using args: " + args);
+
+			Task.Run(() =>
+			{
+				pyProcess.OutputDataReceived += PyProcess_OutputDataReceived;
+				pyProcess.StartInfo = startInfo;
+				pyProcess.Start();
+
+				CompilationResult?.Invoke(this, MapCompilerState.Running, "Started");
+
+				pyProcess.BeginOutputReadLine();
+				pyProcess.WaitForExit();
+				CompilationResult?.Invoke(this, MapCompilerState.Complete, "Complete");
+			});
+		}
+
+		private void PyProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
+		{
+			CompilationResult?.Invoke(this, MapCompilerState.Running, e.Data);
+			Debug.WriteLine(e.Data);
 		}
 	}
 }

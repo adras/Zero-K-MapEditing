@@ -1,5 +1,4 @@
-﻿using MapCreationTool.Configuration;
-using MapCreationTool.Models;
+﻿using MapCreationTool.Models;
 using MapCreationTool.WPF;
 using System;
 using System.Collections.Generic;

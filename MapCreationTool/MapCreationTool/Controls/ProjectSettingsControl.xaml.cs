@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MapCreationTool.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,35 +16,22 @@ using System.Windows.Shapes;
 
 namespace MapCreationTool.Controls
 {
-	/// <summary>
-	/// Interaction logic for MapSettingsControl.xaml
-	/// </summary>
-	public partial class ProjectSettingsControl : UserControl
+    /// <summary>
+    /// Interaction logic for MapSettingsControl.xaml
+    /// </summary>
+    public partial class ProjectSettingsControl : UserControl
 	{
-		public string SettingHeightMap
+		public ProjectSettings ProjectSettings
 		{
-			get { return (string)GetValue(SettingHeightMapProperty); }
-			set { SetValue(SettingHeightMapProperty, value); }
+			get { return (ProjectSettings)GetValue(ProjectSettingsProperty); }
+			set { SetValue(ProjectSettingsProperty, value); }
 		}
 
-		public static readonly DependencyProperty SettingHeightMapProperty = DependencyProperty.Register(
-			nameof(SettingHeightMap),
-			typeof(string),
+		public static readonly DependencyProperty ProjectSettingsProperty = DependencyProperty.Register(
+			nameof(ProjectSettings),
+			typeof(ProjectSettings),
 			typeof(ProjectSettingsControl),
-			new PropertyMetadata("")
-		);
-
-		public string SettingDiffuseMap
-		{
-			get { return (string)GetValue(SettingDiffuseMapProperty); }
-			set { SetValue(SettingDiffuseMapProperty, value); }
-		}
-
-		public static readonly DependencyProperty SettingDiffuseMapProperty = DependencyProperty.Register(
-			nameof(SettingDiffuseMap),
-			typeof(string),
-			typeof(ProjectSettingsControl),
-			new PropertyMetadata("")
+			new PropertyMetadata(null)
 		);
 
 
