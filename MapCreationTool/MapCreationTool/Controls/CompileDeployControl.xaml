@@ -8,10 +8,13 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"></ColumnDefinition>
+            <ColumnDefinition Width="160"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ComboBox Name="cbxAction" FontSize="16"></ComboBox>
-        <Button Name="btnExecute" FontSize="16" Grid.Column="1" Click="btnExecute_Click">Execute</Button>
+        <Label Name="lblAction" FontSize="16">Action:</Label>
+        <ComboBox Name="cbxAction" FontSize="16" Grid.Column="1"></ComboBox>
+        <Button Name="btnExecute" FontSize="16" Grid.Column="3" Click="btnExecute_Click">Execute</Button>
     </Grid>
 </UserControl>

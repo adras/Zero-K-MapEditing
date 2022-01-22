@@ -11,14 +11,14 @@
     <Grid DataContext="Self">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="35"></RowDefinition>
         </Grid.RowDefinitions>
 
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="scrollViewer">
             <TextBox FontFamily="Courier New" Text="{Binding Path=CompilationResults, RelativeSource={RelativeSource AncestorType=local:CompileMapControl}}"></TextBox>
         </ScrollViewer>
-        <local:CompileDeployControl Grid.Row="2" OnExecuteAction="CompileDeployControl_OnExecuteAction"></local:CompileDeployControl>
+        <local:CompileDeployControl Grid.Row="3" OnExecuteAction="CompileDeployControl_OnExecuteAction"></local:CompileDeployControl>
     </Grid>
 
 </UserControl>
