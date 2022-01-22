@@ -51,9 +51,15 @@ The heightmap of a map can be viewed, if the correct path is given
 
 ## TODO
 * DONE Add image library to allow for creation of images during map creation
+* DONE Implement pymapcomp to allow for map compilation
+* DONE Redesign Update/deploy Map dialog to embedd required features
 
 * Define Project-Settings file with read/write/edit support
-* Implement pymapcomp to allow for map compilation
-* Redesign Update/deploy Map dialog to embedd required features
 * Implement support for .7z creation
+* Complete compilation settings
+* Add support to read and write start-zones
+* Add toggle button to show texture on heightmap
+* Add support to save ProjectSettings
+* Add deploy support
+* Create release pipeline
 

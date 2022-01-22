@@ -65,9 +65,6 @@ namespace MapCreationTool.Windows
             string mapName = ViewModel.MapName;
             string workDir = ViewModel.WorkDir;
 
-            int mapSizeX;
-            int mapSizeY;
-
             if (ViewModel.MapSize.Width == 0)
             {
                 MessageBox.Show("Could not create map. Invalid value for Map-Width. Make sure it's an integer value");

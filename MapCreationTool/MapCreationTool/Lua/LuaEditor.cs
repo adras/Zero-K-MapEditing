@@ -18,7 +18,7 @@ namespace MapCreationTool.Lua
 
 	internal interface IValueProvider<T> : IValueProvider
 	{
-		T GetValue(string input);
+		//T GetValue(string input);
 		string GetValueString(T input);
 	}
 
