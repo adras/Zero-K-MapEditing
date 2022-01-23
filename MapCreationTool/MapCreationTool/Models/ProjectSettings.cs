@@ -34,10 +34,26 @@ namespace MapCreationTool.Models
         private int maxHeight;
         private string geoventDecalPath;
         private string featurePlacementFilePath;
+        
+        private string featureListFilePath;
+        private string featureMapFilePath;
+        private string typeMapFilePath;
+        private string minimapFilePath;
+        private string nvdxtOptions;
+        private string highResMapFilter;
+        private string dirty;
 
         private bool useMetalMap;
         private bool useGeoventDecal;
         private bool useFeaturePlacement;
+        
+        private bool useFeatureList;
+        private bool useFeatureMap;
+        private bool useTypeMap;
+        private bool useMinimap;
+        private bool useNvdxt;
+        private bool useHighResMapFilter;
+        private bool useDirty;
 
         public string OutSmfFilePath { get => outSmfFilePath; set => outSmfFilePath = value; }
         public string HeightMapName { get => heightMapName; set => heightMapName = value; }
@@ -52,6 +68,21 @@ namespace MapCreationTool.Models
         public bool UseGeoventDecal { get => useGeoventDecal; set => useGeoventDecal = value; }
         public string FeaturePlacementFilePath { get => featurePlacementFilePath; set => featurePlacementFilePath = value; }
         public bool UseFeaturePlacement { get => useFeaturePlacement; set => useFeaturePlacement = value; }
+
+        public string FeatureListFilePath { get => featureListFilePath; set => featureListFilePath = value; }
+        public string FeatureMapFilePath { get => featureMapFilePath; set => featureMapFilePath = value; }
+        public string TypeMapFilePath { get => typeMapFilePath; set => typeMapFilePath = value; }
+        public string MinimapFilePath { get => minimapFilePath; set => minimapFilePath = value; }
+        public string NvdxtOptions { get => nvdxtOptions; set => nvdxtOptions = value; }
+        public string HighResMapFilter { get => highResMapFilter; set => highResMapFilter = value; }
+        public string Dirty { get => dirty; set => dirty = value; }
+        public bool UseFeatureList { get => useFeatureList; set => useFeatureList = value; }
+        public bool UseFeatureMap { get => useFeatureMap; set => useFeatureMap = value; }
+        public bool UseTypeMap { get => useTypeMap; set => useTypeMap = value; }
+        public bool UseMinimap { get => useMinimap; set => useMinimap = value; }
+        public bool UseNvdxt { get => useNvdxt; set => useNvdxt = value; }
+        public bool UseHighResMapFilter { get => useHighResMapFilter; set => useHighResMapFilter = value; }
+        public bool UseDirty { get => useDirty; set => useDirty = value; }
         #endregion
 
         internal static ProjectSettings OpenOrCreateDefault(MapPathInformation mapPathInfo)
@@ -86,8 +117,12 @@ namespace MapCreationTool.Models
                 GeoventDecalPath = geoventPath,
                 MinHeight = -50,
                 MaxHeight = 200,
+                NvdxtOptions = "-Sinc -quality_highest",
+                HighResMapFilter = "lanczos",
+
                 UseGeoventDecal = true,
-                
+                UseNvdxt = true,
+                UseHighResMapFilter = true
             };
 
             return defaultSettings;

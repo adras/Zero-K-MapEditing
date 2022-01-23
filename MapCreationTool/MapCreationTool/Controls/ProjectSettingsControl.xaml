@@ -44,6 +44,28 @@
                                          SettingIsEnabled="{Binding Path=UseFeaturePlacement, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=FeaturePlacementFilePath, Mode=TwoWay}" ></compile:ValueCompileSetting>
 
+            <compile:ValueCompileSetting SettingName="Feature list" SettingDescription=" " DataContext="{Binding}"
+                                         SettingIsEnabled="{Binding Path=UseFeatureList, Mode=TwoWay}" SettingEnabledLocked="False" 
+                                         SettingValue="{Binding Path=FeatureListFilePath, Mode=TwoWay}" ></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Feature map" SettingDescription=" " DataContext="{Binding}"
+                                         SettingIsEnabled="{Binding Path=UseFeatureMap, Mode=TwoWay}" SettingEnabledLocked="False" 
+                                         SettingValue="{Binding Path=FeatureMapFilePath, Mode=TwoWay}" ></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Type map" SettingDescription=" " DataContext="{Binding}"
+                                         SettingIsEnabled="{Binding Path=UseTypeMap, Mode=TwoWay}" SettingEnabledLocked="False" 
+                                         SettingValue="{Binding Path=TypeMapFilePath, Mode=TwoWay}" ></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Minimap" SettingDescription=" " DataContext="{Binding}"
+                                         SettingIsEnabled="{Binding Path=UseMinimap, Mode=TwoWay}" SettingEnabledLocked="False" 
+                                         SettingValue="{Binding Path=MinimapFilePath, Mode=TwoWay}" ></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Nvdxt settings" SettingDescription=" " DataContext="{Binding}"
+                                         SettingIsEnabled="{Binding Path=UseNvdxt, Mode=TwoWay}" SettingEnabledLocked="False" 
+                                         SettingValue="{Binding Path=NvdxtOptions, Mode=TwoWay}" ></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="High res map filter" SettingDescription=" " DataContext="{Binding}"
+                                         SettingIsEnabled="{Binding Path=UseHighResMapFilter, Mode=TwoWay}" SettingEnabledLocked="False" 
+                                         SettingValue="{Binding Path=HighResMapFilter, Mode=TwoWay}" ></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Dirty" SettingDescription=" " DataContext="{Binding}"
+                                         SettingIsEnabled="{Binding Path=UseDirty, Mode=TwoWay}" SettingEnabledLocked="False" 
+                                         SettingValue="{Binding Path=Dirty, Mode=TwoWay}" ></compile:ValueCompileSetting>
+
         </StackPanel>
 
         <!--<Grid Grid.Row="5">

@@ -69,7 +69,7 @@ namespace MapCreationTool.Controls
             
         }
 
-        private void Compiler_CompilationResult(object sender, MapCompilerState state, string message)
+        private void Compiler_CompilationResult(object sender, MapCompilerState state, MapCompilerMessageType messageType, string message)
         {
             CompilationResults += message + "\n";
             Dispatcher.Invoke(() => scrollViewer.ScrollToBottom());

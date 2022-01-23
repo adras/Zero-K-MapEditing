@@ -96,7 +96,7 @@ namespace MapCreationTool.MapConverter
 
 	public class MapCompiler
 	{
-		public delegate void OnCompilationResult(object sender, MapCompilerState state, string message);
+		public delegate void OnCompilationResult(object sender, MapCompilerState state, MapCompilerMessageType messageType, string message);
 		public event OnCompilationResult CompilationResult;
 		Process pyProcess;
 
@@ -130,6 +130,7 @@ namespace MapCreationTool.MapConverter
 				CreateNoWindow = true,
 				UseShellExecute = false,
 				RedirectStandardOutput = true,
+				RedirectStandardError = true,
 				WorkingDirectory = pyMapConvFi.Directory.FullName
 			};
 
@@ -156,20 +157,28 @@ namespace MapCreationTool.MapConverter
 			Task.Run(() =>
 			{
 				pyProcess.OutputDataReceived += PyProcess_OutputDataReceived;
+                pyProcess.ErrorDataReceived += PyProcess_ErrorDataReceived;
 				pyProcess.StartInfo = startInfo;
 				pyProcess.Start();
 				string executeText = $"Executing {startInfo.FileName} {startInfo.Arguments}";
-				CompilationResult?.Invoke(this, MapCompilerState.Running, $"Executing: {executeText}");
+				CompilationResult?.Invoke(this, MapCompilerState.Running, MapCompilerMessageType.Output, $"Executing: {executeText}");
 
 				pyProcess.BeginOutputReadLine();
+				pyProcess.BeginErrorReadLine();
 				pyProcess.WaitForExit();
-				CompilationResult?.Invoke(this, MapCompilerState.Complete, "Complete");
+				CompilationResult?.Invoke(this, MapCompilerState.Complete, MapCompilerMessageType.Output, "Complete");
 			});
+		}
+
+        private void PyProcess_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+			CompilationResult?.Invoke(this, MapCompilerState.Running, MapCompilerMessageType.Error, e.Data);
+			Debug.WriteLine(e.Data);
 		}
 
 		private void PyProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
 		{
-			CompilationResult?.Invoke(this, MapCompilerState.Running, e.Data);
+			CompilationResult?.Invoke(this, MapCompilerState.Running, MapCompilerMessageType.Output, e.Data);
 			Debug.WriteLine(e.Data);
 		}
 	}

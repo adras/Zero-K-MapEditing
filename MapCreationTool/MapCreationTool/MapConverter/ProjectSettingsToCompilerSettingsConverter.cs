@@ -20,6 +20,11 @@ namespace MapCreationTool.MapConverter
 
             internal bool AddSettingIfSet(string parameter, string value, bool isSet)
             {
+                // Do not add a setting if the value is empty
+                if (string.IsNullOrEmpty(value))
+                    return false;
+
+                // Make sure the setting is enabled
                 if (isSet)
                 {
                     compilerSettings.AddSetting(new MapCompilerSetting(parameter, value));
@@ -44,8 +49,14 @@ namespace MapCreationTool.MapConverter
             adder.AddSettingIfSet("-g", projectSettings.GeoventDecalPath, projectSettings.UseGeoventDecal);
             adder.AddSettingIfSet("-k", projectSettings.FeaturePlacementFilePath, projectSettings.UseFeaturePlacement);
 
-            // This is enough for now
-
+            adder.AddSettingIfSet("-j", projectSettings.FeatureListFilePath, projectSettings.UseFeatureList);
+            adder.AddSettingIfSet("-f", projectSettings.FeatureMapFilePath, projectSettings.UseFeatureMap);
+            adder.AddSettingIfSet("-y", projectSettings.TypeMapFilePath, projectSettings.UseTypeMap);
+            adder.AddSettingIfSet("-p", projectSettings.MinimapFilePath, projectSettings.UseMinimap);
+            // Special format since these are parameters as well
+            adder.AddSettingIfSet("-v", $"\"{projectSettings.NvdxtOptions}\"", projectSettings.UseNvdxt);
+            adder.AddSettingIfSet("--highresheightmapfilter", projectSettings.HighResMapFilter, projectSettings.UseHighResMapFilter);
+            adder.AddSettingIfSet("-c", projectSettings.Dirty, projectSettings.UseDirty);
 
             return settings;
         }
