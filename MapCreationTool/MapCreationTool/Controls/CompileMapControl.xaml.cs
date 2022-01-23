@@ -36,7 +36,8 @@ namespace MapCreationTool.Controls
         public event PropertyChangedEventHandler? PropertyChanged;
 
         string compilationResults;
-        MapCompiler compiler;
+        //PyMapCompiler compiler;
+        MapCompiler mapCompiler;
 
         public string CompilationResults
         {
@@ -64,9 +65,11 @@ namespace MapCreationTool.Controls
         public CompileMapControl()
         {
             InitializeComponent();
-            compiler = new MapCompiler();
-            compiler.CompilationResult += Compiler_CompilationResult;
-            
+            PyMapCompiler pyMapCompiler = new PyMapCompiler();
+            MapInfoEditor mapInfoEditor = new MapInfoEditor();
+            mapCompiler = new MapCompiler(pyMapCompiler, mapInfoEditor);
+
+            mapCompiler.CompilationResult += Compiler_CompilationResult;
         }
 
         private void Compiler_CompilationResult(object sender, MapCompilerState state, MapCompilerMessageType messageType, string message)
@@ -79,9 +82,9 @@ namespace MapCreationTool.Controls
         private void CompileDeployControl_OnExecuteAction(object sender, ActionTypes actionType)
         {
             CompilationResults = "";
-            MapCompilerSettings compileSettings = ProjectSettingsToCompilerSettingsConverter.Convert(ProjectSettings);
+            PyMapCompilerSettings compileSettings = ProjectSettingsToCompilerSettingsConverter.Convert(ProjectSettings);
 
-            compiler.Compile(compileSettings);
+            mapCompiler.Compile(compileSettings);
         }
 
     }

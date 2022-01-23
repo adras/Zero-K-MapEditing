@@ -11,9 +11,9 @@ namespace MapCreationTool.MapConverter
     {
         private class SettingsAdder
         {
-            MapCompilerSettings compilerSettings;
+            PyMapCompilerSettings compilerSettings;
 
-            internal SettingsAdder(MapCompilerSettings compilerSettings)
+            internal SettingsAdder(PyMapCompilerSettings compilerSettings)
             {
                 this.compilerSettings = compilerSettings;
             }
@@ -27,7 +27,7 @@ namespace MapCreationTool.MapConverter
                 // Make sure the setting is enabled
                 if (isSet)
                 {
-                    compilerSettings.AddSetting(new MapCompilerSetting(parameter, value));
+                    compilerSettings.AddSetting(new PyMapCompilerSetting(parameter, value));
                     return true;
                 }
                 return false;
@@ -36,9 +36,9 @@ namespace MapCreationTool.MapConverter
 
         }
 
-        public static MapCompilerSettings Convert(ProjectSettings projectSettings)
+        public static PyMapCompilerSettings Convert(ProjectSettings projectSettings)
         {
-            MapCompilerSettings settings = new MapCompilerSettings();
+            PyMapCompilerSettings settings = new PyMapCompilerSettings();
             SettingsAdder adder = new SettingsAdder(settings);
             adder.AddSettingIfSet("-o", projectSettings.OutSmfFilePath, true);
             adder.AddSettingIfSet("-t", projectSettings.DiffuseMapName, true);
