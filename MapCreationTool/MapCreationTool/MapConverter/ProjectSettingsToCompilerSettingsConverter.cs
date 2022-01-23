@@ -32,8 +32,6 @@ namespace MapCreationTool.MapConverter
                 }
                 return false;
             }
-
-
         }
 
         public static PyMapCompilerSettings Convert(ProjectSettings projectSettings)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MapCreationTool.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace MapCreationTool.MapConverter
             pyMapCompiler.CompilationResult += PyMapCompiler_CompilationResult;
         }
 
-        public void Compile(PyMapCompilerSettings pyCompilerSettings)
+        public void Compile(PyMapCompilerSettings pyCompilerSettings, ProjectSettings projectSettings)
         {
             pyMapCompiler.Compile(pyCompilerSettings);
         }

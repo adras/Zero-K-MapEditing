@@ -84,7 +84,7 @@ namespace MapCreationTool.Controls
             CompilationResults = "";
             PyMapCompilerSettings compileSettings = ProjectSettingsToCompilerSettingsConverter.Convert(ProjectSettings);
 
-            mapCompiler.Compile(compileSettings);
+            mapCompiler.Compile(compileSettings, ProjectSettings);
         }
 
     }
