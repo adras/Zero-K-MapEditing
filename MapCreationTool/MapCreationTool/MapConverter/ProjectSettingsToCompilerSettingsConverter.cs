@@ -1,6 +1,8 @@
-﻿using MapCreationTool.Models;
+﻿using MapCreationTool.Helpers;
+using MapCreationTool.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +41,11 @@ namespace MapCreationTool.MapConverter
             CompilationSettings compSettings = projectSettings.CompilationSettings;
             PyMapCompilerSettings settings = new PyMapCompilerSettings();
             SettingsAdder adder = new SettingsAdder(settings);
-            adder.AddSettingIfSet("-o", compSettings.OutSmfFilePath, true);
+
+            // we don't want the outsmfFilepath to have any extension. Therefore we remove it. It will be automatically added by pymapconv again
+            string outSmtPath = PathHelper.GetFilePathWithoutExtension(compSettings.OutSmfFilePath);
+
+            adder.AddSettingIfSet("-o", outSmtPath, true);
             adder.AddSettingIfSet("-t", compSettings.DiffuseMapName, true);
             adder.AddSettingIfSet("-a", compSettings.HeightMapName, true);
             adder.AddSettingIfSet("-m", compSettings.MetalMapName, compSettings.UseMetalMap);

@@ -51,6 +51,16 @@ namespace MapCreationTool.Helpers
             return result;
 		}
 
+        internal static string GetFilePathWithoutExtension(string filePath)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            string directoryPath = fileInfo.Directory.FullName;
+            string fileName = Path.GetFileNameWithoutExtension(filePath);
+            string result = Path.Combine(directoryPath, fileName);
+            
+            return result;
+        }
+
         /// <summary>
         /// Returns true if the given map path is actually containing a map
         /// </summary>
@@ -60,7 +70,7 @@ namespace MapCreationTool.Helpers
         /// No maps subdirectory -> Not a map
         /// A bit troublesome if the user stores their map in a related directory
         /// </remarks>
-		internal static bool IsMapDirectory(string fullMapPath)
+        internal static bool IsMapDirectory(string fullMapPath)
 		{
             string mapsPath = Path.Combine(fullMapPath, "maps");
             if (!Directory.Exists(mapsPath))
