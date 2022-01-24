@@ -112,7 +112,8 @@ namespace MapCreationTool.Lua
 
 		public string GetValue(string input)
 		{
-			return input;
+			string result = input.Trim('"');
+			return result;
 		}
 
 		public string GetValueString(string input)
