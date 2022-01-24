@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace MapCreationTool.Models
 {
@@ -23,6 +24,9 @@ namespace MapCreationTool.Models
 
 		public MapPathInformation MapPathInformation { get; set; }
 		public CompilationSettings CompilationSettings { get; set; }
+		
+		[XmlIgnore]
+		public MapInformation MapInformation { get; set; }
 
 		internal static ProjectSettings OpenOrCreateDefault(MapPathInformation mapPathInfo)
 		{

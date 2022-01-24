@@ -11,7 +11,6 @@ namespace MapCreationTool.Tabs
 {
     internal class MapTab : TabBase
     {
-        private MapPathInformation mapPathInfo;
         private ProjectSettings projectSettings;
         public ProjectSettings ProjectSettings { get => projectSettings; set => projectSettings = value; }
 
@@ -28,19 +27,24 @@ namespace MapCreationTool.Tabs
             get => content;
         }
 
-        public MapTab(MapPathInformation pathInfo)
+        public MapTab()
         {
-            this.mapPathInfo = pathInfo;
-            this.header = mapPathInfo.mapName;
             this.content = new EditMapControl();
-
-            // Settings exist when map was opened previously, otherwise default settings will be created
-            // This shouldn't happen here
-            this.projectSettings = ProjectSettings.OpenOrCreateDefault(this.mapPathInfo);
         }
 
-        public void LoadProjectSettings()
+        public void LoadProjectSettings(MapPathInformation pathInfo)
         {
+            // Settings exist when map was opened previously, otherwise default settings will be created
+            this.projectSettings = ProjectSettings.OpenOrCreateDefault(pathInfo);
+        }
+
+		internal void LoadMapInfo()
+		{
+            if (projectSettings == null)
+                throw new NotSupportedException("MapInfo can only be loaded after Project Settings are loaded");
+
+            projectSettings.MapInformation = MapInformation.LoadFrom(projectSettings.MapPathInformation.mapInfoPath);
+            header = projectSettings.MapPathInformation.mapName;
         }
     }
 }

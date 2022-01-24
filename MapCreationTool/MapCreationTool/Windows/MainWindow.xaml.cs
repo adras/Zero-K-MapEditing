@@ -66,8 +66,9 @@ namespace MapCreationTool.Windows
 
 		private void ctrlStart_OnMapOpened(object sender, MapPathInformation mapPathInfo)
 		{
-			MapTab newTab = new MapTab(mapPathInfo);
-			newTab.LoadProjectSettings();
+			MapTab newTab = new MapTab();
+			newTab.LoadProjectSettings(mapPathInfo);
+			newTab.LoadMapInfo();
 
 			ViewModel.Tabs.Add(newTab);
 			ViewModel.SelectedTab = ViewModel.Tabs[ViewModel.Tabs.Count - 1];
@@ -75,8 +76,10 @@ namespace MapCreationTool.Windows
 
 		private void ctrlStart_OnMapCreated(object sender, MapPathInformation mapPathInfo)
 		{
-			MapTab newTab = new MapTab(mapPathInfo);
-			newTab.LoadProjectSettings();
+			MapTab newTab = new MapTab();
+			newTab.LoadProjectSettings(mapPathInfo);
+			newTab.LoadMapInfo();
+			
 
 			ViewModel.Tabs.Add(newTab);
 			ViewModel.SelectedTab = ViewModel.Tabs[ViewModel.Tabs.Count - 1];
