@@ -60,7 +60,7 @@ namespace MapCreationTool.Lua
 		public double? GetValue(string input)
 		{
 			double result;
-			if (!double.TryParse(input, out result))
+			if (!double.TryParse(input, NumberStyles.Float, CultureInfo.InvariantCulture, out result))
 				return null;
 
 			return result;
@@ -248,9 +248,9 @@ namespace MapCreationTool.Lua
 
 			//string rawContent = subContent.Substring(startValueIdx + 1, endValueIdx - startValueIdx-1);
 
-			string beforeValue = fileContent.Substring(0, keyStartIdx+startValueIdx+1);
+			string beforeValue = fileContent.Substring(0, keyStartIdx + startValueIdx + 1);
 
-			string afterValue= fileContent.Substring(keyStartIdx + endValueIdx); 
+			string afterValue = fileContent.Substring(keyStartIdx + endValueIdx);
 
 			string result = $"{beforeValue}{value}{afterValue}";
 			fileContent = result;
