@@ -14,55 +14,55 @@
     <Grid>
 
         <StackPanel Orientation="Vertical">
-            <compile:ValueCompileSetting SettingName="Output file" SettingDescription="The output smf file to create. E.g Zero-Prime.smf (REQUIRED)" DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Output file" SettingDescription="The output smf file to create. E.g Zero-Prime.smf (REQUIRED)" DataContext="{Binding CompilationSettings}"
                                          SettingDialogType="Save" FileDialogFilter="smf files (*.smf)|*.smt|All files (*.*)|*.*"
                                          SettingEnabledLocked="true" SettingIsEnabled="True"  
                                          SettingValue="{Binding Path=OutSmfFilePath, Mode=TwoWay}"></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Include texture" SettingDescription="The diffuse map file to use. (REQUIRED)" DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Include texture" SettingDescription="The diffuse map file to use. (REQUIRED)" DataContext="{Binding CompilationSettings}"
                                          SettingDialogType="Open" FileDialogFilter="All files (*.*)|*.*"
                                          SettingIsEnabled="True" SettingEnabledLocked="True"
                                          SettingValue="{Binding Path=DiffuseMapName, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Height map" SettingDescription="The height map file to use. (REQUIRED)" DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Height map" SettingDescription="The height map file to use. (REQUIRED)" DataContext="{Binding CompilationSettings}"
                                          SettingDialogType="Open" FileDialogFilter="All files (*.*)|*.*"
                                          SettingIsEnabled="True" SettingEnabledLocked="True"
                                          SettingValue="{Binding Path=HeightMapName, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Maximum height" SettingDescription="Engine maximum height - Highest point in map" DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Maximum height" SettingDescription="Engine maximum height - Highest point in map" DataContext="{Binding CompilationSettings}"
                                          SettingIsEnabled="True" SettingEnabledLocked="True"
                                          SettingValue="{Binding Path=MaxHeight, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Minimum height" SettingDescription="Engine minimum height - Lowest point in map" DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Minimum height" SettingDescription="Engine minimum height - Lowest point in map" DataContext="{Binding CompilationSettings}"
                                          SettingIsEnabled="True" SettingEnabledLocked="True"
                                          SettingValue="{Binding Path=MinHeight, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Metal map" SettingDescription="Metal map file to use. Red channel is amount of metal (OPTIONAL)"  DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Metal map" SettingDescription="Metal map file to use. Red channel is amount of metal (OPTIONAL)"  DataContext="{Binding CompilationSettings}"
                                          SettingDialogType="Open" FileDialogFilter="All files (*.*)|*.*"
                                          SettingIsEnabled="{Binding Path=UseMetalMap, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=MetalMapName, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Geovent decal" SettingDescription="Texture to use for geovents. (OPTIONAL)" DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Geovent decal" SettingDescription="Texture to use for geovents. (OPTIONAL)" DataContext="{Binding CompilationSettings}"
                                          SettingDialogType="Open" FileDialogFilter="All files (*.*)|*.*"
                                          SettingIsEnabled="{Binding Path=UseGeoventDecal, Mode=TwoWay}" SettingEnabledLocked="False"
                                          SettingValue="{Binding Path=GeoventDecalPath, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Feature placement" SettingDescription=" " DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Feature placement" SettingDescription=" " DataContext="{Binding CompilationSettings}"
                                          SettingIsEnabled="{Binding Path=UseFeaturePlacement, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=FeaturePlacementFilePath, Mode=TwoWay}" ></compile:ValueCompileSetting>
 
-            <compile:ValueCompileSetting SettingName="Feature list" SettingDescription=" " DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Feature list" SettingDescription=" " DataContext="{Binding CompilationSettings}"
                                          SettingIsEnabled="{Binding Path=UseFeatureList, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=FeatureListFilePath, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Feature map" SettingDescription=" " DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Feature map" SettingDescription=" " DataContext="{Binding CompilationSettings}"
                                          SettingIsEnabled="{Binding Path=UseFeatureMap, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=FeatureMapFilePath, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Type map" SettingDescription=" " DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Type map" SettingDescription=" " DataContext="{Binding CompilationSettings}"
                                          SettingIsEnabled="{Binding Path=UseTypeMap, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=TypeMapFilePath, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Minimap" SettingDescription=" " DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Minimap" SettingDescription=" " DataContext="{Binding CompilationSettings}"
                                          SettingIsEnabled="{Binding Path=UseMinimap, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=MinimapFilePath, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Nvdxt settings" SettingDescription=" " DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Nvdxt settings" SettingDescription=" " DataContext="{Binding CompilationSettings}"
                                          SettingIsEnabled="{Binding Path=UseNvdxt, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=NvdxtOptions, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="High res map filter" SettingDescription=" " DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="High res map filter" SettingDescription=" " DataContext="{Binding CompilationSettings}"
                                          SettingIsEnabled="{Binding Path=UseHighResMapFilter, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=HighResMapFilter, Mode=TwoWay}" ></compile:ValueCompileSetting>
-            <compile:ValueCompileSetting SettingName="Dirty" SettingDescription=" " DataContext="{Binding}"
+            <compile:ValueCompileSetting SettingName="Dirty" SettingDescription=" " DataContext="{Binding CompilationSettings}"
                                          SettingIsEnabled="{Binding Path=UseDirty, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=Dirty, Mode=TwoWay}" ></compile:ValueCompileSetting>
 

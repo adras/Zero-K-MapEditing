@@ -20,7 +20,7 @@
             </Canvas.Background>-->
             <wpf:ZoomBorder x:Name="zoomBorder">
                 <Grid>
-                    <Image Source="{Binding Path=ProjectSettings.DiffuseMapName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}"
+                    <Image Source="{Binding Path=ProjectSettings.CompilationSettings.DiffuseMapName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}"
                        ClipToBounds="True"></Image>
                     <Polyline Name="poly" StrokeThickness="2"
                       Points="{Binding Mode=TwoWay, Path=SelectedBoxCoords, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:EditStartZonesControl}}"

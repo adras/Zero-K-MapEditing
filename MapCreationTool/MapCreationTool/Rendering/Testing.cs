@@ -72,8 +72,8 @@ namespace MapCreationTool.Rendering
             // However this can become a pain when editing is later added
 
             int bit16 = 2 << (16 - 1);
-            double minHeight = terrainControl.ProjectSettings.MinHeight;
-            double maxHeight = terrainControl.ProjectSettings.MaxHeight;
+            double minHeight = terrainControl.ProjectSettings.CompilationSettings.MinHeight;
+            double maxHeight = terrainControl.ProjectSettings.CompilationSettings.MaxHeight;
 
             double colorScaleFactor = 10;
 
@@ -147,7 +147,7 @@ namespace MapCreationTool.Rendering
             if (terrainControl.ProjectSettings == null)
                 return new MeshGeometry3D();
 
-            MeshGeometry3D geometry = LoadHeightmap(terrainControl.ProjectSettings.HeightMapName);
+            MeshGeometry3D geometry = LoadHeightmap(terrainControl.ProjectSettings.CompilationSettings.HeightMapName);
             return geometry;
         }
 

@@ -31,8 +31,10 @@ namespace MapCreationTool.Images
     class ImageCreator
 	{
 
-		public static void CreateImages(MapSizeDefinition mapSize, string mapDir, ProjectSettings settings)
+		public static void CreateImages(MapSizeDefinition mapSize, string mapDir, ProjectSettings projectSettings)
 		{
+			CompilationSettings settings = projectSettings.CompilationSettings;
+
 			// Alternative to Imagesharp: https://csharp.hotexamples.com/examples/System.Windows.Media.Imaging/PngBitmapEncoder/-/php-pngbitmapencoder-class-examples.html
 			// Type: PngBitmapEncoder -> Windows namespace
 

@@ -36,25 +36,26 @@ namespace MapCreationTool.MapConverter
 
         public static PyMapCompilerSettings Convert(ProjectSettings projectSettings)
         {
+            CompilationSettings compSettings = projectSettings.CompilationSettings;
             PyMapCompilerSettings settings = new PyMapCompilerSettings();
             SettingsAdder adder = new SettingsAdder(settings);
-            adder.AddSettingIfSet("-o", projectSettings.OutSmfFilePath, true);
-            adder.AddSettingIfSet("-t", projectSettings.DiffuseMapName, true);
-            adder.AddSettingIfSet("-a", projectSettings.HeightMapName, true);
-            adder.AddSettingIfSet("-m", projectSettings.MetalMapName, projectSettings.UseMetalMap);
-            adder.AddSettingIfSet("-x", projectSettings.MaxHeight.ToString(), true);
-            adder.AddSettingIfSet("-n", projectSettings.MinHeight.ToString(), true);
-            adder.AddSettingIfSet("-g", projectSettings.GeoventDecalPath, projectSettings.UseGeoventDecal);
-            adder.AddSettingIfSet("-k", projectSettings.FeaturePlacementFilePath, projectSettings.UseFeaturePlacement);
+            adder.AddSettingIfSet("-o", compSettings.OutSmfFilePath, true);
+            adder.AddSettingIfSet("-t", compSettings.DiffuseMapName, true);
+            adder.AddSettingIfSet("-a", compSettings.HeightMapName, true);
+            adder.AddSettingIfSet("-m", compSettings.MetalMapName, compSettings.UseMetalMap);
+            adder.AddSettingIfSet("-x", compSettings.MaxHeight.ToString(), true);
+            adder.AddSettingIfSet("-n", compSettings.MinHeight.ToString(), true);
+            adder.AddSettingIfSet("-g", compSettings.GeoventDecalPath, compSettings.UseGeoventDecal);
+            adder.AddSettingIfSet("-k", compSettings.FeaturePlacementFilePath, compSettings.UseFeaturePlacement);
 
-            adder.AddSettingIfSet("-j", projectSettings.FeatureListFilePath, projectSettings.UseFeatureList);
-            adder.AddSettingIfSet("-f", projectSettings.FeatureMapFilePath, projectSettings.UseFeatureMap);
-            adder.AddSettingIfSet("-y", projectSettings.TypeMapFilePath, projectSettings.UseTypeMap);
-            adder.AddSettingIfSet("-p", projectSettings.MinimapFilePath, projectSettings.UseMinimap);
+            adder.AddSettingIfSet("-j", compSettings.FeatureListFilePath, compSettings.UseFeatureList);
+            adder.AddSettingIfSet("-f", compSettings.FeatureMapFilePath, compSettings.UseFeatureMap);
+            adder.AddSettingIfSet("-y", compSettings.TypeMapFilePath, compSettings.UseTypeMap);
+            adder.AddSettingIfSet("-p", compSettings.MinimapFilePath, compSettings.UseMinimap);
             // Special format since these are parameters as well
-            adder.AddSettingIfSet("-v", $"\"{projectSettings.NvdxtOptions}\"", projectSettings.UseNvdxt);
-            adder.AddSettingIfSet("--highresheightmapfilter", projectSettings.HighResMapFilter, projectSettings.UseHighResMapFilter);
-            adder.AddSettingIfSet("-c", projectSettings.Dirty, projectSettings.UseDirty);
+            adder.AddSettingIfSet("-v", $"\"{compSettings.NvdxtOptions}\"", compSettings.UseNvdxt);
+            adder.AddSettingIfSet("--highresheightmapfilter", compSettings.HighResMapFilter, compSettings.UseHighResMapFilter);
+            adder.AddSettingIfSet("-c", compSettings.Dirty, compSettings.UseDirty);
 
             return settings;
         }
