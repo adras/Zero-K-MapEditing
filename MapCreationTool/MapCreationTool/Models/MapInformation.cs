@@ -10,7 +10,16 @@ namespace MapCreationTool.Models
 {
 	public class MapInformation
 	{
-		internal LuaEditor editor;
+		private const string AUTHOR = "author";
+		private const string VERSION = "version";
+		private const string SHORTNAME = "shortname";
+		private const string NAME = "name";
+		private const string MAX_METAL = "maxMetal";
+		private const string MAP_HARDNESS = "maphardness";
+		private const string GRAVITY = "gravity";
+		private const string EXTRACTOR_RADIUS = "extractorRadius";
+		private const string DESCRIPTION = "description";
+		private LuaEditor editor;
 
 		public MapInformation()
 		{
@@ -46,23 +55,41 @@ namespace MapCreationTool.Models
 		{
 			MapInformation result = new MapInformation();
 			result.editor.Load(mapInfoPath);
-			result.ReadValues();
+			result.GetValues();
 
 			return result;
 		}
-
-		private void ReadValues()
+		internal void SaveAs(string mapInfoPath)
 		{
-			Author = editor.GetValue<string>("author");
-			Description = editor.GetValue<string>("description");
-			ExtractorRadius = editor.GetValue<double>("extractorRadius");
-			Gravity = editor.GetValue<int>("gravity");
-			MapHardness = editor.GetValue<int>("maphardness");
-			MaxMetal = editor.GetValue<double>("maxMetal");
-			Name = editor.GetValue<string>("name");
-			ShortName = editor.GetValue<string>("shortname");
-			Version = editor.GetValue<string>("version");
+			SetValues();
+			editor.Save(mapInfoPath);
 		}
+
+		private void GetValues()
+		{
+			Author = editor.GetValue<string>(AUTHOR);
+			Description = editor.GetValue<string>(DESCRIPTION);
+			ExtractorRadius = editor.GetValue<double>(EXTRACTOR_RADIUS);
+			Gravity = editor.GetValue<int>(GRAVITY);
+			MapHardness = editor.GetValue<int>(MAP_HARDNESS);
+			MaxMetal = editor.GetValue<double>(MAX_METAL);
+			Name = editor.GetValue<string>(NAME);
+			ShortName = editor.GetValue<string>(SHORTNAME);
+			Version = editor.GetValue<string>(VERSION);
+		}
+		private void SetValues()
+		{
+			editor.SetValue(AUTHOR, Author);
+			editor.SetValue(DESCRIPTION, Description);
+			editor.SetValue(EXTRACTOR_RADIUS, ExtractorRadius);
+			editor.SetValue(GRAVITY, Gravity);
+			editor.SetValue(MAP_HARDNESS, MapHardness);
+			editor.SetValue(MAX_METAL, MaxMetal);
+			editor.SetValue(NAME, Name);
+			editor.SetValue(SHORTNAME, ShortName);
+			editor.SetValue(VERSION, Version);
+		}
+
 
 	}
 }

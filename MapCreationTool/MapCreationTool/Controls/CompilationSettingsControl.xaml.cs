@@ -19,7 +19,7 @@ namespace MapCreationTool.Controls
     /// <summary>
     /// Interaction logic for MapSettingsControl.xaml
     /// </summary>
-    public partial class ProjectSettingsControl : UserControl
+    public partial class CompilationSettingsControl : UserControl
 	{
 		public ProjectSettings ProjectSettings
 		{
@@ -30,12 +30,12 @@ namespace MapCreationTool.Controls
 		public static readonly DependencyProperty ProjectSettingsProperty = DependencyProperty.Register(
 			nameof(ProjectSettings),
 			typeof(ProjectSettings),
-			typeof(ProjectSettingsControl),
+			typeof(CompilationSettingsControl),
 			new PropertyMetadata(null)
 		);
 
 
-		public ProjectSettingsControl()
+		public CompilationSettingsControl()
 		{
 			InitializeComponent();
 		}

@@ -9,8 +9,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <TabControl TabStripPlacement="Left" >
-            <TabItem Header="Map Settings" FontSize="16">
-                <local:ProjectSettingsControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:ProjectSettingsControl>
+            <TabItem Header="MapInfo.lua" FontSize="16">
+                <local:MapInfoSettingsControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:MapInfoSettingsControl>
             </TabItem>
             <TabItem Header="Terrain" FontSize="16">
                 <local:TerrainControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:TerrainControl>
@@ -20,6 +20,9 @@
             </TabItem>
             <TabItem Header="Start-Zones" FontSize="16">
                 <local:EditStartZonesControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:EditStartZonesControl>
+            </TabItem>
+            <TabItem Header="Compile Settings" FontSize="16">
+                <local:CompilationSettingsControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:CompilationSettingsControl>
             </TabItem>
             <TabItem Header="Compile" FontSize="16">
                 <local:CompileMapControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:CompileMapControl>

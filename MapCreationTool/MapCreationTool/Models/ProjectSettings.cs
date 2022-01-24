@@ -1,5 +1,6 @@
 ﻿using MapCreationTool.Configuration;
 using MapCreationTool.Helpers;
+using MapCreationTool.WPF;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,23 +11,29 @@ using System.Xml.Serialization;
 
 namespace MapCreationTool.Models
 {
-	public class ProjectSettings
+	public class ProjectSettings : PropertyChangedBase
 	{
 		public const string DEFAULT_FILE_NAME = "MapCreationTool.xml";
 		public const string GEO_VENT_FILE_NAME = "geovent.bmp";
 
 		private string startLocations;
+		private MapPathInformation mapPathInformation;
 		private MapSizeDefinition mapSizeDefinition;
+		private MapInformation mapInformation;
+		private CompilationSettings compilationSettings;
 
-		public string StartLocations { get => startLocations; set => startLocations = value; }
+		public string StartLocations { get => startLocations; set { startLocations = value; OnPropertyChanged(); } }
+		public MapPathInformation MapPathInformation { get => mapPathInformation; set { mapPathInformation = value; OnPropertyChanged(); } }
+		public MapSizeDefinition MapSizeDefinition { get => mapSizeDefinition; set { mapSizeDefinition = value; OnPropertyChanged(); } }
+		public CompilationSettings CompilationSettings { get => compilationSettings; set { compilationSettings = value; OnPropertyChanged(); } }
 
-		public MapSizeDefinition MapSizeDefinition { get => mapSizeDefinition; set => mapSizeDefinition = value; }
-
-		public MapPathInformation MapPathInformation { get; set; }
-		public CompilationSettings CompilationSettings { get; set; }
-		
+		/// <summary>
+		/// Contains the information of mapinfo.lua
+		/// </summary>
+		/// <remarks>Not intended to be serialized with project settings, because it has it's own file: mapinfo.lua</remarks>
 		[XmlIgnore]
-		public MapInformation MapInformation { get; set; }
+		public MapInformation MapInformation { get => mapInformation; set { mapInformation = value; OnPropertyChanged(); } }
+
 
 		internal static ProjectSettings OpenOrCreateDefault(MapPathInformation mapPathInfo)
 		{
