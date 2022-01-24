@@ -34,34 +34,6 @@ namespace MapCreationTool.Windows
 		{
 			InitializeComponent();
 			DataContext = ViewModel = new MainWindowViewModel();
-
-
-			// Just for testing
-			//try
-			//{
-			//	TestLuaEditor();
-			//}
-			//catch (Exception e)
-			//{
-
-			//}
-		}
-
-		private void TestLuaEditor()
-		{
-			LuaEditor editor = new LuaEditor();
-			editor.Load(@"mapinfo.lua");
-
-			int? test1 = editor.GetValue<int>("maphardness");
-			bool? test2 = editor.GetValue<bool>("notDeformable");
-			string test3 = editor.GetValue<string>("name");
-			double test4 = editor.GetValue<double>("extractorRadius");
-
-			editor.SetValue("maphardness", 99);
-			editor.SetValue("notDeformable", true);
-			editor.SetValue("name", "NewName");
-			editor.SetValue("extractorRadius", 441.293);
-			editor.Save("mapinfoTest.lua");
 		}
 
 		private void ctrlStart_OnMapOpened(object sender, MapPathInformation mapPathInfo)

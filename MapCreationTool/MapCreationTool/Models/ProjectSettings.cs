@@ -66,7 +66,7 @@ namespace MapCreationTool.Models
 					HeightMapName = Path.Combine(pathInfo.mapPath, "height.png"),
 					GrassMapName = Path.Combine(pathInfo.mapPath, "grass.bmp"),
 					MetalMapName = Path.Combine(pathInfo.mapPath, "metal.bmp"),
-					OutSmfFilePath = Path.Combine(pathInfo.mapPath, $@"{pathInfo.mapName}.smf"),
+					OutSmfFilePath = Path.Combine(pathInfo.mapPath, $@"maps\{pathInfo.mapName}.smf"),
 					GeoventDecalPath = geoventPath,
 					MinHeight = -50,
 					MaxHeight = 200,
