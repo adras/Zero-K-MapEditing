@@ -15,15 +15,13 @@ namespace MapCreationTool.Models
 		public const string GEO_VENT_FILE_NAME = "geovent.bmp";
 
 		private string startLocations;
-
-
 		private MapSizeDefinition mapSizeDefinition;
 
 		public string StartLocations { get => startLocations; set => startLocations = value; }
 
 		public MapSizeDefinition MapSizeDefinition { get => mapSizeDefinition; set => mapSizeDefinition = value; }
 
-
+		public MapPathInformation MapPathInformation { get; set; }
 		public CompilationSettings CompilationSettings { get; set; }
 
 		internal static ProjectSettings OpenOrCreateDefault(MapPathInformation mapPathInfo)
@@ -50,6 +48,7 @@ namespace MapCreationTool.Models
 			ProjectSettings defaultSettings = new ProjectSettings
 			{
 				StartLocations = Path.Combine(pathInfo.mapPath, @"mapconfig\map_startboxes.lua"),
+				MapPathInformation = pathInfo,
 				CompilationSettings = new CompilationSettings
 				{
 					DiffuseMapName = Path.Combine(pathInfo.mapPath, "diffuse.bmp"),
