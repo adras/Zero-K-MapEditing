@@ -33,6 +33,10 @@ namespace MapCreationTool.Models
         /// </summary>
         public string mapInfoPath;
 
+		public MapPathInformation()
+		{
+            // only for serialization purposes
+		}
 
         public MapPathInformation(string fullMapPath)
         {
