@@ -183,8 +183,20 @@ namespace MapCreationTool.Lua
 				throw new NotSupportedException($"Reading types of: {typeof(T).Name} is not supported");
 
 			string stringValue = GetValueFromContent(key);
+			if (stringValue == null)
+			{
+				throw new InvalidOperationException($"Could not read value for key: {key}. Value not found ");
+			}
 
-			T value = (T)providers[valueType].GetValue(stringValue);
+			object valueObject = providers[valueType].GetValue(stringValue);
+			if (valueObject == null)
+			{
+				// Check when this happens and improve exception message
+				// It's related to an attempt to read the wrong type. e.g. read int, but value was double
+				throw new InvalidOperationException($"Could not read value '{stringValue}' of {key} as type: {valueType.Name}");
+			}
+
+			T value = (T)valueObject;
 			return value;
 		}
 
