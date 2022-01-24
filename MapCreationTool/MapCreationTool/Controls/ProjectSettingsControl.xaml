@@ -12,8 +12,38 @@
              d:DataContext="{d:DesignInstance models:ProjectSettings, IsDesignTimeCreatable=true}"
              DataContext="{Binding Path=ProjectSettings}">
     <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+        <StackPanel Orientation="Vertical">
+            <Label>Mapinfo</Label>
+            <compile:ValueCompileSetting SettingName="Name" SettingDescription="mapinfo.name" DataContext="{Binding MapInformation}"
+                                         SettingIsEnabled="True" SettingEnabledLocked="True"
+                                         SettingValue="{Binding Path=Name, Mode=TwoWay}"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Short Name" SettingDescription="mapinfo.shortname" DataContext="{Binding MapInformation}"
+                                         SettingIsEnabled="True" SettingEnabledLocked="True"
+                                         SettingValue="{Binding Path=ShortName, Mode=TwoWay}"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Author" SettingDescription="mapinfo.author" DataContext="{Binding MapInformation}"
+                                         SettingIsEnabled="True" SettingEnabledLocked="True"
+                                         SettingValue="{Binding Path=Author, Mode=TwoWay}"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Version" SettingDescription="mapinfo.version" DataContext="{Binding MapInformation}"
+                                         SettingIsEnabled="True" SettingEnabledLocked="True"
+                                         SettingValue="{Binding Path=Version, Mode=TwoWay}"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="MapHardness" SettingDescription="mapinfo.maphardness" DataContext="{Binding MapInformation}"
+                                         SettingIsEnabled="True" SettingEnabledLocked="True"
+                                         SettingValue="{Binding Path=MapHardness, Mode=TwoWay}"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Gravity" SettingDescription="mapinfo.gravity" DataContext="{Binding MapInformation}"
+                                         SettingIsEnabled="True" SettingEnabledLocked="True"
+                                         SettingValue="{Binding Path=Gravity, Mode=TwoWay}"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Max Metal" SettingDescription="mapinfo.maxMetal" DataContext="{Binding MapInformation}"
+                                         SettingIsEnabled="True" SettingEnabledLocked="True"
+                                         SettingValue="{Binding Path=MaxMetal, Mode=TwoWay}"></compile:ValueCompileSetting>
+            <compile:ValueCompileSetting SettingName="Extractor Radius" SettingDescription="mapinfo.extractorRadius" DataContext="{Binding MapInformation}"
+                                         SettingIsEnabled="True" SettingEnabledLocked="True"
+                                         SettingValue="{Binding Path=ExtractorRadius, Mode=TwoWay}"></compile:ValueCompileSetting>
+        </StackPanel>
 
         <StackPanel Orientation="Vertical">
+            <Label>Compilation</Label>
             <compile:ValueCompileSetting SettingName="Output file" SettingDescription="The output smf file to create. E.g Zero-Prime.smf (REQUIRED)" DataContext="{Binding CompilationSettings}"
                                          SettingDialogType="Save" FileDialogFilter="smf files (*.smf)|*.smt|All files (*.*)|*.*"
                                          SettingEnabledLocked="true" SettingIsEnabled="True"  
@@ -68,12 +98,7 @@
 
         </StackPanel>
 
-        <!--<Grid Grid.Row="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="200"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Name="btnSave" Grid.Column="1">Save</Button>
-        </Grid>-->
+        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
