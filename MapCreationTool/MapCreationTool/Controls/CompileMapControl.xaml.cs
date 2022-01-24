@@ -76,7 +76,6 @@ namespace MapCreationTool.Controls
         {
             CompilationResults += message + "\n";
             Dispatcher.Invoke(() => scrollViewer.ScrollToBottom());
-
         }
 
         private void CompileDeployControl_OnExecuteAction(object sender, ActionTypes actionType)

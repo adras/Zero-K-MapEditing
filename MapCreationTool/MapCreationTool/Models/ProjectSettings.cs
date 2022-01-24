@@ -14,7 +14,7 @@ namespace MapCreationTool.Models
 	public class ProjectSettings : PropertyChangedBase
 	{
 		public const string DEFAULT_FILE_NAME = "MapCreationTool.xml";
-		public const string GEO_VENT_FILE_NAME = "geovent.bmp";
+		public const string GEO_VENT_FILE_NAME = @"PyMapConv\geovent.bmp";
 
 		private string startLocations;
 		private MapPathInformation mapPathInformation;

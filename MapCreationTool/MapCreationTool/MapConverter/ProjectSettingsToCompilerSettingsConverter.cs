@@ -42,10 +42,7 @@ namespace MapCreationTool.MapConverter
             PyMapCompilerSettings settings = new PyMapCompilerSettings();
             SettingsAdder adder = new SettingsAdder(settings);
 
-            // we don't want the outsmfFilepath to have any extension. Therefore we remove it. It will be automatically added by pymapconv again
-            string outSmtPath = PathHelper.GetFilePathWithoutExtension(compSettings.OutSmfFilePath);
-
-            adder.AddSettingIfSet("-o", outSmtPath, true);
+            adder.AddSettingIfSet("-o", compSettings.OutSmfFilePath, true);
             adder.AddSettingIfSet("-t", compSettings.DiffuseMapName, true);
             adder.AddSettingIfSet("-a", compSettings.HeightMapName, true);
             adder.AddSettingIfSet("-m", compSettings.MetalMapName, compSettings.UseMetalMap);

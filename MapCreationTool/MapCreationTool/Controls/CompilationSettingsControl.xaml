@@ -15,7 +15,7 @@
         <StackPanel Orientation="Vertical">
 
             <compile:ValueCompileSetting SettingName="Output file" SettingDescription="The output smf file to create. E.g Zero-Prime.smf (REQUIRED)" DataContext="{Binding CompilationSettings}"
-                                         SettingDialogType="Save" FileDialogFilter="smf files (*.smf)|*.smt|All files (*.*)|*.*"
+                                         SettingDialogType="Save" FileDialogFilter="smf files (*.smf)|*.smf|All files (*.*)|*.*"
                                          SettingEnabledLocked="true" SettingIsEnabled="True"  
                                          SettingValue="{Binding Path=OutSmfFilePath, Mode=TwoWay}"></compile:ValueCompileSetting>
             <compile:ValueCompileSetting SettingName="Include texture" SettingDescription="The diffuse map file to use. (REQUIRED)" DataContext="{Binding CompilationSettings}"
