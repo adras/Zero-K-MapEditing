@@ -5,11 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MapCreationTool.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Viewport3D Name="viewPortMain" RenderOptions.EdgeMode="Aliased" IsVisibleChanged="viewPortMain_IsVisibleChanged">
+             d:DesignHeight="450" d:DesignWidth="800" KeyUp="Grid_KeyUp" Focusable="True" IsTabStop="True">
+
+    <Grid KeyUp="Grid_KeyUp">
+        <Viewport3D KeyUp="Grid_KeyUp" Name="viewPortMain" RenderOptions.EdgeMode="Aliased" IsVisibleChanged="viewPortMain_IsVisibleChanged">
             <ModelVisual3D x:Name="modelVisual3D">
+                <!-- 
+                Hit testing last answer
+                    https://stackoverflow.com/questions/4045553/arbitrary-ray-test-using-c-sharp-and-wpf
                 
+                https://stackoverflow.com/questions/40659224/ray-hit-testing-with-model3d
+                
+                -->
             </ModelVisual3D>
         </Viewport3D>
     </Grid>

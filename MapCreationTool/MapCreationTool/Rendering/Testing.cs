@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using System.IO;
+using System.Windows.Input;
 
 namespace MapCreationTool.Rendering
 {
@@ -26,6 +27,7 @@ namespace MapCreationTool.Rendering
         DeltaTime deltaTime;
         TerrainControl terrainControl;
         GeometryModel3D geometryModel;
+        ISharp.Image<Rgba32> heightImage;
 
         public Testing(TerrainControl terrainControl)
         {
@@ -63,7 +65,7 @@ namespace MapCreationTool.Rendering
 
             // Note: Casting, depending on the image type, this needs to be resolved somehow
             // Ideally we want 48 bit type here
-            ISharp.Image<Rgba32> heightImage = (ISharp.Image<Rgba32>)ISharp.Image.Load(filePath);
+             heightImage = (ISharp.Image<Rgba32>)ISharp.Image.Load(filePath);
             double halfWidth = heightImage.Width / 2.0;
             double halfHeight = heightImage.Height / 2.0;
 
@@ -115,17 +117,34 @@ namespace MapCreationTool.Rendering
 
             return meshGeometry;
         }
+        Point3DCollection points;
+		internal void TestRayCast(Key key)
+		{
+            MeshGeometry3D geom = geometryModel.Geometry as MeshGeometry3D;
 
-        /// <summary>
-        /// Rescales the given val defined by the range oldMin->oldMax to be in the range newMin->newMax
-        /// </summary>
-        /// <param name="oldMin"></param>
-        /// <param name="oldMax"></param>
-        /// <param name="newMin"></param>
-        /// <param name="newMax"></param>
-        /// <param name="val"></param>
-        /// <returns></returns>
-        private static double Rescale(double oldMin, double oldMax, double newMin, double newMax, double val)
+            for (int x = 50; x < 100; x++)
+			{
+                for (int y = 50; y < 100; y++)
+				{
+                    int idx = x + y * heightImage.Width;
+                    Point3D current = geom.Positions[idx];
+                    current.Z += 10;
+                    geom.Positions[idx] = current;
+
+                }
+            }
+		}
+
+		/// <summary>
+		/// Rescales the given val defined by the range oldMin->oldMax to be in the range newMin->newMax
+		/// </summary>
+		/// <param name="oldMin"></param>
+		/// <param name="oldMax"></param>
+		/// <param name="newMin"></param>
+		/// <param name="newMax"></param>
+		/// <param name="val"></param>
+		/// <returns></returns>
+		private static double Rescale(double oldMin, double oldMax, double newMin, double newMax, double val)
         {
             // https://stackoverflow.com/questions/929103/convert-a-number-range-to-another-range-maintaining-ratio
             double oldDelta = oldMax - oldMin;

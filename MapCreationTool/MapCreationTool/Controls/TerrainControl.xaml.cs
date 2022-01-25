@@ -2,6 +2,7 @@
 using MapCreationTool.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,5 +57,11 @@ namespace MapCreationTool.Controls
                     testing.SetMeshGeometry(geom);
                 //});
         }
-    }
+
+		private void Grid_KeyUp(object sender, KeyEventArgs e)
+		{
+            //Debug.WriteLine("Keypress " + DateTime.Now.Millisecond);
+            //testing.TestRayCast(e.Key);
+		}
+	}
 }
