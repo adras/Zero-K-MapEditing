@@ -48,4 +48,9 @@ The amount of change is then multiplied by this factor
 It seems like WPF rendering performance is not sufficient for bigger heightmaps. 4x4 maps are fine, but 12x16 is also problematic.
 Check out other rendering engines see: https://www.reddit.com/r/csharp/comments/k4tqjy/3d_rendering_engineframework_for_games/
 
+## Tech-Investigation results
+### Silk.NET
+25.01.2021 Doesnt't support a WPF control which is a requirement to embed it into the existing application. Would require a
+complete rebuilt of the UI, facing possible issues with not existing controls, e.g. configurable/bindable listviews etc
+
 
