@@ -46,4 +46,6 @@ The amount of change is then multiplied by this factor
 
 # Performance
 It seems like WPF rendering performance is not sufficient for bigger heightmaps. 4x4 maps are fine, but 12x16 is also problematic.
-Check out other rendering engines like: https://github.com/stride3d/stride
+Check out other rendering engines see: https://www.reddit.com/r/csharp/comments/k4tqjy/3d_rendering_engineframework_for_games/
+
+
