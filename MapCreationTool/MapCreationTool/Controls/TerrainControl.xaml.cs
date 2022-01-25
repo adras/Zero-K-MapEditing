@@ -60,8 +60,23 @@ namespace MapCreationTool.Controls
 
 		private void Grid_KeyUp(object sender, KeyEventArgs e)
 		{
-            //Debug.WriteLine("Keypress " + DateTime.Now.Millisecond);
-            //testing.TestRayCast(e.Key);
+			Debug.WriteLine("Keypress " + DateTime.Now.Millisecond);
+			testing.TestRayCast(e.Key, mousePosOnPlane);
 		}
-	}
+        Point3D mousePosOnPlane;
+
+		private void UserControl_MouseMove(object sender, MouseEventArgs e)
+		{
+			HitTestResult? test = VisualTreeHelper.HitTest(viewPortMain, e.GetPosition(viewPortMain));
+            RayHitTestResult rayHit = test as RayHitTestResult;
+
+            Point3D planePos = rayHit.PointHit;
+            Point3D heightMapPos = testing.GetHeightmapPoint(planePos);
+            mousePosOnPlane = heightMapPos;
+            if (e.MiddleButton == MouseButtonState.Pressed)
+			{
+                testing.TestRayCast(Key.A, mousePosOnPlane);
+			}
+        }
+    }
 }
