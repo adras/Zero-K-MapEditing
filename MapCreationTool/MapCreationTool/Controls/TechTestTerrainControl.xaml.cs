@@ -1,4 +1,6 @@
 ﻿using MapCreationTool.Models;
+using MapCreationTool.NewRendering;
+using OpenTK.Windowing.Common;
 using OpenTK.Wpf;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,8 @@ namespace MapCreationTool.Controls
 	/// </summary>
 	public partial class TechTestTerrainControl : UserControl
 	{
+		TerrainRenderer renderer;
+
 		public ProjectSettings ProjectSettings
 		{
 			get { return (ProjectSettings)GetValue(ProjectSettingsProperty); }
@@ -41,15 +45,23 @@ namespace MapCreationTool.Controls
 
 			GLWpfControlSettings settings = new GLWpfControlSettings
 			{
-				
+				MajorVersion = 2,
+				MinorVersion = 1
 			};
+			renderer = new TerrainRenderer();
 			openTk.Start(settings);
+			renderer.Ready();
 			openTk.Render += OpenTk_Render;
 		}
 
 		private void OpenTk_Render(TimeSpan obj)
 		{
-		
+			renderer.Render();
+		}
+
+		private void openTkControl_Render(TimeSpan obj)
+		{
+
 		}
 	}
 }

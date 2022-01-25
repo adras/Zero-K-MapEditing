@@ -8,6 +8,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <opentk:GLWpfControl Name="openTk"></opentk:GLWpfControl>
+        <opentk:GLWpfControl Name="openTk">
+            
+        </opentk:GLWpfControl>
+        <Border
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="10"
+            BorderBrush="CornflowerBlue"
+            BorderThickness="2">
+            <Label
+                Background="#FFE6931C"
+                Content="Overlaid label with border"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center" />
+        </Border>
     </Grid>
 </UserControl>
