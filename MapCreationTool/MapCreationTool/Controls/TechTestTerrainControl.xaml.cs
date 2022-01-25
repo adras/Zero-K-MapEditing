@@ -1,4 +1,5 @@
 ﻿using MapCreationTool.Models;
+using OpenTK.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,18 @@ namespace MapCreationTool.Controls
 		public TechTestTerrainControl()
 		{
 			InitializeComponent();
+
+			GLWpfControlSettings settings = new GLWpfControlSettings
+			{
+				
+			};
+			openTk.Start(settings);
+			openTk.Render += OpenTk_Render;
+		}
+
+		private void OpenTk_Render(TimeSpan obj)
+		{
+		
 		}
 	}
 }
