@@ -53,4 +53,5 @@ Check out other rendering engines see: https://www.reddit.com/r/csharp/comments/
 25.01.2021 Doesnt't support a WPF control which is a requirement to embed it into the existing application. Would require a
 complete rebuilt of the UI, facing possible issues with not existing controls, e.g. configurable/bindable listviews etc
 
-
+TODO:
+* Investigate if it's possible to create a WPF control for silk.net. OpenTK.WPFControl might be a canditate to figure out how this could work.
