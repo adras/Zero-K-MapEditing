@@ -12,7 +12,7 @@ DONE Existing maps can be opened, if a directory exists. 7z-map files are not su
 
 ## View heightmap
 The heightmap of a map can be viewed, if the correct path is given
-* Add file browser to select heightmap file
+* DONE Add file browser to select heightmap file
 
 ## Map Size Calculator
 * DONE Allows for calculation of image sizes for metal, diffuce, height, grass maps
@@ -33,13 +33,14 @@ The heightmap of a map can be viewed, if the correct path is given
 * DONE Opens or creates a project file
 
 ## Project File
-* Contains map-related settings like compile options for map compiler
-* Contains all other map-related settings
+* ONGOING Contains map-related settings like compile options for map compiler
+* ONGOING Contains all other map-related settings
 
 ## Update/Deploy Map
-* Allows to recompile/update the map
+* DONE Allows to recompile/update the map
 * Allows to deploy the compiled map to game directory
-* Allows to change setting from project file
+* DONE Allows to change setting from project file
+* DONE Allow setting of compile parameters
 * Allow to deploy as directory or as 7z
 
 ## Project file / Application settings
@@ -53,13 +54,17 @@ The heightmap of a map can be viewed, if the correct path is given
 * DONE Add image library to allow for creation of images during map creation
 * DONE Implement pymapcomp to allow for map compilation
 * DONE Redesign Update/deploy Map dialog to embedd required features
+* DONE Complete compilation settings
+* DONE Add support to load mapinfo.lua
+* DONE Add support to edit some values of mapinfo.lua
+* DONE Add support to save mapinfo.lua
 
 * Define Project-Settings file with read/write/edit support
 * Implement support for .7z creation
-* Complete compilation settings
 * Add support to read and write start-zones
 * Add toggle button to show texture on heightmap
 * Add support to save ProjectSettings
 * Add deploy support
-* Create release pipeline
+* Create github release pipeline
+* TENTATIVE Add support to edit heightmap
 
