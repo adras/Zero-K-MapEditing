@@ -6,7 +6,9 @@ Goal of this tool is to help users with map-creation in the game Zero-K.
 Right now there's no official release yet, since this is in a very early prototype stage. 
 
 ## Download
-Sorry, no downloads yet. Please see Build instructions on how to build it yourself
+A very early prototype can be found in [Releases](https://github.com/adras/Zero-K-MapEditing/releases)
+
+Be aware though, that it might crash any time.
 
 ## Build instructions
 * Get Visual Studio e.g. Visual Studio Community Edition
