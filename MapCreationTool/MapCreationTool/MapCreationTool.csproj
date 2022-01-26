@@ -9,6 +9,10 @@
 		<Platforms>AnyCPU;x86;x64</Platforms>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Remove="Converters\**" />
 		<Compile Remove="Tools\**" />

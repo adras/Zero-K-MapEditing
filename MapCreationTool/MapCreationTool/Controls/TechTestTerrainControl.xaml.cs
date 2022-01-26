@@ -1,6 +1,8 @@
 ﻿using MapCreationTool.Models;
 using MapCreationTool.NewRendering;
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
+using OpenTK.Windowing.Desktop;
 using OpenTK.Wpf;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -46,8 +49,10 @@ namespace MapCreationTool.Controls
 			GLWpfControlSettings settings = new GLWpfControlSettings
 			{
 				MajorVersion = 2,
-				MinorVersion = 1
+				MinorVersion = 1,
+				//ContextToUse = context
 			};
+
 			renderer = new TerrainRenderer();
 			openTk.Start(settings);
 			renderer.Ready();
@@ -62,6 +67,44 @@ namespace MapCreationTool.Controls
 		private void openTkControl_Render(TimeSpan obj)
 		{
 
+		}
+
+		private void UserControl_Loaded(object sender, RoutedEventArgs e)
+		{
+			// GLFWGraphicsContext context = new GLFWGraphicsContext()
+			// Exception, memory corrupt when using this context
+			//Window currentWindow = Window.GetWindow(this);
+			//IntPtr handle = new WindowInteropHelper(currentWindow).Handle;
+			//GLFWGraphicsContext context = null;
+			//unsafe
+			//{
+			//	// Requires a OpenTK.Windowing.GraphicsLibraryFramework.Window
+			//	context = new GLFWGraphicsContext((OpenTK.Windowing.GraphicsLibraryFramework.Window*)handle.ToPointer());
+			//}
+
+
+
+		}
+
+		private void UserControl_KeyUp(object sender, KeyEventArgs e)
+		{
+			Vector3 delta = Vector3.Zero;
+			switch (e.Key)
+			{
+				case Key.A:
+					delta = new Vector3(-0.1f, 0, 0);
+					break;
+				case Key.D:
+					delta = new Vector3(0.1f, 0, 0);
+					break;
+				case Key.S:
+					delta = new Vector3(0, 0, -0.1f);
+					break;
+				case Key.W:
+					delta = new Vector3(0, 0, 0.1f);
+					break;
+			}
+			renderer.Move(delta);
 		}
 	}
 }
