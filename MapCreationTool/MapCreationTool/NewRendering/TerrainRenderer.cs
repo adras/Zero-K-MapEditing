@@ -32,13 +32,10 @@ namespace MapCreationTool.NewRendering
 
 		public void Render()
 		{
-			//Matrix4 model;
-			//Matrix4 view;
-			//Matrix4 projection;
-			//Matrix4 mvp = model * view * projection
-			// Gl.LoadMatrix????
-			//Matrix4 test = new Matrix4();
-			//Matrix4 view = Matrix4.LookAt(...);
+			// Before image loader is implemented, the vertex buffers should be tested
+			// here with a simple triangle/rectangle
+			// light and normals could also be tested
+			// https://opentk.net/learn/chapter1/2-hello-triangle.html
 
 			Matrix4 view = camera.Update();
 
