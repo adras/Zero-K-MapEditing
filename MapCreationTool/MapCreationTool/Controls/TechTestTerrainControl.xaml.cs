@@ -92,19 +92,38 @@ namespace MapCreationTool.Controls
 			switch (e.Key)
 			{
 				case Key.A:
-					delta = new Vector3(-0.1f, 0, 0);
+					delta = -renderer.camera.Right * 2;
 					break;
 				case Key.D:
-					delta = new Vector3(0.1f, 0, 0);
-					break;
-				case Key.S:
-					delta = new Vector3(0, 0, -0.1f);
+					delta = renderer.camera.Right * 2;
 					break;
 				case Key.W:
-					delta = new Vector3(0, 0, 0.1f);
+					delta = renderer.camera.Front * 2;
 					break;
+				case Key.S:
+					delta = -renderer.camera.Front * 2;
+					break;
+
 			}
 			renderer.Move(delta);
+		}
+		Vector3 lastPos = Vector3.Zero;
+		private void UserControl_MouseMove(object sender, MouseEventArgs e)
+		{
+			Point mousePoint = e.GetPosition(openTk);
+			Vector3 mouseVect = new Vector3((float)mousePoint.X, (float)mousePoint.Y, 0);
+			Vector3 delta;
+			if (lastPos != Vector3.Zero)
+				delta = mouseVect - lastPos;
+			else
+				delta = Vector3.Zero;
+
+			if (e.RightButton == MouseButtonState.Pressed)
+			{
+				renderer.MouseMove(delta);
+			}
+
+			lastPos = mouseVect;
 		}
 	}
 }

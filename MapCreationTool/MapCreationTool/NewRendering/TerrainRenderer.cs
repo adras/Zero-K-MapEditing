@@ -12,13 +12,14 @@ namespace MapCreationTool.NewRendering
 	class TerrainRenderer
 	{
 		private static readonly Stopwatch _stopwatch = Stopwatch.StartNew();
-		Camera camera;
+		public Camera camera;
 		Shader shader;
 		int VertexArrayObject;
 
 		public TerrainRenderer()
 		{
-			camera = new Camera();
+			camera = new Camera(new Vector3(0, 0, 3), 4.0f/3.0f);
+
 			shader = new Shader();
 		}
 
@@ -88,10 +89,10 @@ namespace MapCreationTool.NewRendering
 			GL.LoadIdentity();
 
 			shader.Use();
-			camera.Update();
+
 			Matrix4 model = Matrix4.Identity;//  * Matrix4.CreateRotationX((float)MathHelper.DegreesToRadians(_time));
-			Matrix4 view = camera.viewMatrix;
-			Matrix4 proj = camera.projectionMatrix;
+			Matrix4 view = camera.GetViewMatrix();
+			Matrix4 proj = camera.GetProjectionMatrix();
 
 			shader.SetMatrix4("model", model);
 			shader.SetMatrix4("view", view);
@@ -152,7 +153,16 @@ namespace MapCreationTool.NewRendering
 
 		internal void Move(Vector3 delta)
 		{
-			camera.position += delta;
+			camera.Position += delta;
+			camera.Pitch += 4;
+		}
+
+		internal void MouseMove(Vector3 delta)
+		{
+
+			camera.Yaw += delta.X;
+			camera.Pitch -= delta.Y;
+
 		}
 	}
 }
