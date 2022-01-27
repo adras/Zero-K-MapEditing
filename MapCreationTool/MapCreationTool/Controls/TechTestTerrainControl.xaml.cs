@@ -55,7 +55,7 @@ namespace MapCreationTool.Controls
 
 			renderer = new TerrainRenderer();
 			openTk.Start(settings);
-			renderer.Ready();
+			renderer.Startup();
 			openTk.Render += OpenTk_Render;
 		}
 
