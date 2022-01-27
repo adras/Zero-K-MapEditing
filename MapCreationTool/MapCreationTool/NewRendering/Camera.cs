@@ -13,9 +13,8 @@ namespace MapCreationTool.NewRendering
 	// https://stackoverflow.com/questions/45374853/opentk-gl-matrixmode-and-gl-loadmatrix-not-found
 	public class Camera
 	{
-		Matrix4 modelMatrix;
-		Matrix4 viewMatrix;
-		Matrix4 projectionMatrix;
+		public Matrix4 viewMatrix;
+		public Matrix4 projectionMatrix;
 
 		public Vector3 position;
 		public Vector3 lookAt;
@@ -26,10 +25,8 @@ namespace MapCreationTool.NewRendering
 			position = new Vector3(0, 0, 1);
 		}
 
-		public Matrix4 Update()
+		public void Update()
 		{
-			modelMatrix = Matrix4.Identity;
-
 			//Vector3 up = Vector3.Cross(position, lookAt);
 			Vector3 up = new Vector3(0, 1, 0);
 			viewMatrix = Matrix4.LookAt(position, lookAt, up);
@@ -37,10 +34,6 @@ namespace MapCreationTool.NewRendering
 			projectionMatrix = Matrix4.CreatePerspectiveFieldOfView(
 				MathHelper.DegreesToRadians(45),
 				4.0f / 3.0f, 0.01f, 100f);
-
-			Matrix4 result = modelMatrix * viewMatrix * projectionMatrix;
-
-			return result;
 		}
 
 	}

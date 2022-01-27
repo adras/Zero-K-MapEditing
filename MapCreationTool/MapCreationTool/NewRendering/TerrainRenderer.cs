@@ -23,6 +23,8 @@ namespace MapCreationTool.NewRendering
 		}
 
 		int VertexBufferObject;
+		private float _time;
+
 		public void Startup()
 		{
 			// Load shaders
@@ -85,11 +87,20 @@ namespace MapCreationTool.NewRendering
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 			GL.LoadIdentity();
 
-			Matrix4 view = camera.Update();
-			GL.LoadMatrix(ref view);
 			shader.Use();
+			camera.Update();
+			Matrix4 model = Matrix4.Identity;//  * Matrix4.CreateRotationX((float)MathHelper.DegreesToRadians(_time));
+			Matrix4 view = camera.viewMatrix;
+			Matrix4 proj = camera.projectionMatrix;
+
+			shader.SetMatrix4("model", model);
+			shader.SetMatrix4("view", view);
+			shader.SetMatrix4("projection", proj);
+
 			GL.BindVertexArray(VertexArrayObject);
 			GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
+
+			GL.Finish();
 		}
 
 		//public void Render()
