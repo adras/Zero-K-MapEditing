@@ -20,7 +20,7 @@ namespace MapCreationTool.NewRendering
 
 		public TerrainRenderer()
 		{
-			camera = new Camera(new Vector3(0, 0, 3), 4.0f / 3.0f);
+			camera = new Camera(new Vector3(0, 0, 60), 4.0f / 3.0f);
 
 			shader = new Shader();
 		}
@@ -39,18 +39,18 @@ namespace MapCreationTool.NewRendering
 			VertexArrayObject = GL.GenVertexArray();
 
 
-		float[] vertices =
-		{
+			float[] vertices =
+			{
 			 0.5f,  0.5f, 0.0f, // top right
              0.5f, -0.5f, 0.0f, // bottom right
             -0.5f, -0.5f, 0.0f, // bottom left
             -0.5f,  0.5f, 0.0f, // top left
         };
 
-		// Then, we create a new array: indices.
-		// This array controls how the EBO will use those vertices to create triangles
-		uint[] indices =
-		{
+			// Then, we create a new array: indices.
+			// This array controls how the EBO will use those vertices to create triangles
+			uint[] indices =
+			{
             // Note that indices start at 0!
             0, 1, 3, // The first triangle will be the bottom-right half of the triangle
             1, 2, 3  // Then the second will be the top-right half of the triangle
@@ -58,12 +58,10 @@ namespace MapCreationTool.NewRendering
 
 
 
-		//imageData = ImageLoader.LoadImage(imagePath, 0, 300);
-		//vertices = imageData.vertices;
-		//uint[] indices = imageData.indices;
-		imageData = new ImageData();
-			imageData.vertices = vertices;
-			imageData.indices = indices;
+			imageData = ImageLoader.LoadImage(imagePath, 0, 300);
+			//imageData = new ImageData();
+			//imageData.vertices = vertices;
+			//imageData.indices = indices;
 
 
 
@@ -87,7 +85,7 @@ namespace MapCreationTool.NewRendering
 			GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
 			// We also upload data to the EBO the same way as we did with VBOs.
 			GL.BufferData(BufferTarget.ElementArrayBuffer, imageData.indices.Length * sizeof(uint), imageData.indices, BufferUsageHint.StaticDraw);
-			
+
 			shader.Use();
 		}
 
@@ -120,52 +118,6 @@ namespace MapCreationTool.NewRendering
 			GL.Finish();
 		}
 
-		//public void Render()
-		//{
-		//	// Before image loader is implemented, the vertex buffers should be tested
-		//	// here with a simple triangle/rectangle
-		//	// light and normals could also be tested
-		//	// https://opentk.net/learn/chapter1/2-hello-triangle.html
-
-
-		//	Matrix4 view = camera.Update();
-
-		//	float hue = (float)_stopwatch.Elapsed.TotalSeconds * 0.15f % 1;
-		//	Color4 c = Color4.FromHsv(new Vector4(hue, 0.75f, 0.75f, 1));
-		//	GL.ClearColor(c);
-		//	GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-		//	GL.LoadIdentity();
-
-		//	GL.LoadMatrix(ref view);
-
-		//	GL.Begin(PrimitiveType.Triangles);
-
-		//	GL.Color4(Color4.Red);
-		//	GL.Vertex2(-0.20f, 0.12f);
-
-		//	GL.Color4(Color4.Green);
-		//	GL.Vertex2(0.28f, -0.12f);
-
-		//	GL.Color4(Color4.Blue);
-		//	GL.Vertex2(-0.28f, -0.12f);
-
-		//	GL.End();
-
-		//	//GL.Begin(PrimitiveType.Triangles);
-
-		//	//GL.Color4(Color4.Red);
-		//	//GL.Vertex2(-0.2, 0);
-
-		//	//GL.Color4(Color4.Green);
-		//	//GL.Vertex2(0.2, 0);
-
-		//	//GL.Color4(Color4.Blue);
-		//	//GL.Vertex2(0, 0.2);
-
-		//	//GL.End();
-
-		//	GL.Finish();
-		//}
 
 		internal void Move(Vector3 delta)
 		{
