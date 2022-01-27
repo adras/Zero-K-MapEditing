@@ -75,19 +75,19 @@ namespace MapCreationTool.NewRendering
 			// later.
 
 			// First, we have to get the number of active uniforms in the shader.
-			GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
+			GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out int numberOfUniforms);
 
 			// Next, allocate the dictionary to hold the locations.
 			_uniformLocations = new Dictionary<string, int>();
 
 			// Loop over all the uniforms,
-			for (var i = 0; i < numberOfUniforms; i++)
+			for (int i = 0; i < numberOfUniforms; i++)
 			{
 				// get the name of this uniform,
-				var key = GL.GetActiveUniform(Handle, i, out _, out _);
+				string? key = GL.GetActiveUniform(Handle, i, out _, out _);
 
 				// get the location,
-				var location = GL.GetUniformLocation(Handle, key);
+				int location = GL.GetUniformLocation(Handle, key);
 
 				// and then add it to the dictionary.
 				_uniformLocations.Add(key, location);
