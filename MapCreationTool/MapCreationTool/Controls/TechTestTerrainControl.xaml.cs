@@ -46,17 +46,8 @@ namespace MapCreationTool.Controls
 		{
 			InitializeComponent();
 
-			GLWpfControlSettings settings = new GLWpfControlSettings
-			{
-				MajorVersion = 2,
-				MinorVersion = 1,
-				//ContextToUse = context
-			};
 
 			renderer = new TerrainRenderer();
-			openTk.Start(settings);
-			renderer.Startup();
-			openTk.Render += OpenTk_Render;
 		}
 
 		private void OpenTk_Render(TimeSpan obj)
@@ -124,6 +115,24 @@ namespace MapCreationTool.Controls
 			}
 
 			lastPos = mouseVect;
+		}
+
+		private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			if ((bool)e.NewValue != true)
+				return;
+
+			GLWpfControlSettings settings = new GLWpfControlSettings
+			{
+				MajorVersion = 2,
+				MinorVersion = 1,
+				//ContextToUse = context
+			};
+
+			openTk.Start(settings);
+			renderer.Startup(ProjectSettings.CompilationSettings.HeightMapName);
+			openTk.Render += OpenTk_Render;
+
 		}
 	}
 }

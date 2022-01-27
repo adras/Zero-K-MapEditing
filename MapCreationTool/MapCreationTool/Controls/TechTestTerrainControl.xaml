@@ -10,7 +10,7 @@
              Loaded="UserControl_Loaded" 
              Focusable="True" IsTabStop="True" 
              KeyUp="UserControl_KeyUp"
-             MouseMove="UserControl_MouseMove">
+             MouseMove="UserControl_MouseMove" IsVisibleChanged="UserControl_IsVisibleChanged">
     <Grid>
         <opentk:GLWpfControl Name="openTk">
             
