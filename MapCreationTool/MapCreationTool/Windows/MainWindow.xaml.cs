@@ -1,6 +1,7 @@
 ﻿using MapCreationTool.Configuration;
 using MapCreationTool.Lua;
 using MapCreationTool.Models;
+using MapCreationTool.NewRendering;
 using MapCreationTool.Tabs;
 using MapCreationTool.ViewModels;
 using System;
@@ -34,6 +35,7 @@ namespace MapCreationTool.Windows
 		{
 			InitializeComponent();
 			DataContext = ViewModel = new MainWindowViewModel();
+
 		}
 
 		private void ctrlStart_OnMapOpened(object sender, MapPathInformation mapPathInfo)
