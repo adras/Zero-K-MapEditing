@@ -33,58 +33,27 @@ namespace MapCreationTool.NewRendering
 			// Find a better place for the files, also the extension is weird, could be .glsl I guess
 			shader.Load(@"NewRendering\shader.vert", @"NewRendering\lighting.frag");
 
-	
-
-
-			float[] vertices =
-			{
-			 0.5f,  0.5f, 0.0f,  0, 0, -1f,   // top right
-             0.5f, -0.5f, 0.0f,  0, 0, -1f,   // bottom right
-            -0.5f, -0.5f, 0.0f,  0, 0, -1f,   // bottom left
-            -0.5f,  0.5f, 0.0f,  0, 0, -1f,   // top left
-			};
-
-			// Then, we create a new array: indices.
-			// This array controls how the EBO will use those vertices to create triangles
-			uint[] indices =
-			{
-            // Note that indices start at 0!
-            0, 1, 3, // The first triangle will be the bottom-right half of the triangle
-            1, 2, 3  // Then the second will be the top-right half of the triangle
-			};
-
-
-
 			imageData = ImageLoader.LoadImage(imagePath, 0, 300);
-			//imageData = new ImageData();
-			//imageData.vertices = vertices;
-			//imageData.indices = indices;
 
-
-			// Setup vertex buffer
-			// Create a new buffer
 
 			VertexBufferObject = GL.GenBuffer();
 			GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
 			GL.BufferData(BufferTarget.ArrayBuffer, imageData.vertices.Length * sizeof(float), imageData.vertices, BufferUsageHint.StaticDraw);
 
-			{
-				//int _vaoModel = GL.GenVertexArray();
-				VertexArrayObject = GL.GenVertexArray();
-				GL.BindVertexArray(VertexArrayObject);
+			VertexArrayObject = GL.GenVertexArray();
+			GL.BindVertexArray(VertexArrayObject);
 
-				int positionLocation = shader.GetAttribLocation("aPos");
-				GL.EnableVertexAttribArray(positionLocation);
-				GL.VertexAttribPointer(positionLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
+			int positionLocation = shader.GetAttribLocation("aPos");
+			GL.EnableVertexAttribArray(positionLocation);
+			GL.VertexAttribPointer(positionLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
 
-				int normalLocation = shader.GetAttribLocation("aNormal");
-				GL.EnableVertexAttribArray(normalLocation);
-				GL.VertexAttribPointer(normalLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
+			int normalLocation = shader.GetAttribLocation("aNormal");
+			GL.EnableVertexAttribArray(normalLocation);
+			GL.VertexAttribPointer(normalLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
 
-				//var texCoordLocation = shader.GetAttribLocation("aTexCoords");
-				//GL.EnableVertexAttribArray(texCoordLocation);
-				//GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 8 * sizeof(float), 6 * sizeof(float));
-			}
+			//var texCoordLocation = shader.GetAttribLocation("aTexCoords");
+			//GL.EnableVertexAttribArray(texCoordLocation);
+			//GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 8 * sizeof(float), 6 * sizeof(float));
 
 
 			//VertexArrayObject = GL.GenVertexArray();
