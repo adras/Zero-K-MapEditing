@@ -141,6 +141,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="NewRendering\lighting.frag">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="NewRendering\shader.frag">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

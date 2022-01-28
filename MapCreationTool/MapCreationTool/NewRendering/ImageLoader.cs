@@ -33,8 +33,9 @@ namespace MapCreationTool.NewRendering
 
 			float colorScaleFactor = 10;
 
+			Random r = new Random();
 
-			float[] vertices = new float[heightImage.Width * heightImage.Height * 3];
+			float[] vertices = new float[heightImage.Width * heightImage.Height * (3+3)];
 			int vIdx = 0;
 			// Although the tutorial uses floats, let's try with vectors
 			// This could also be an array, since size isn't changed
@@ -48,18 +49,23 @@ namespace MapCreationTool.NewRendering
 					float xPos = x - halfWidth;
 					float yPos = y - halfHeight;
 					float zPos = Rescale(0, bit16, minHeight, maxHeight, row[x].R * colorScaleFactor);
-					//Point3D point = new Point3D(xPos, yPos, zPos);
-					//vertices.Add(point);
 
-					//Vector3 vector = new Vector3(xPos, yPos, zPos);
-					//vectors.Add(vector);
 					vertices[vIdx++] = xPos;
 					vertices[vIdx++] = yPos;
 					vertices[vIdx++] = zPos;
+					
+					// normals will be generated with triangles, therefore just skip the index here
+					vIdx += 3;
+
+					// vertices[vIdx++] = (float)r.NextDouble();
+					// vertices[vIdx++] = (float)r.NextDouble();
+					// vertices[vIdx++] = (float)r.NextDouble();
 				}
 			}
+
 			uint[] indices = new uint[heightImage.Width * heightImage.Height * 6];
 			int iIdx = 0;
+			int nIdx = 3;
 			for (int y = 0; y < heightImage.Height - 1; y += 1)
 			{
 				for (int x = 0; x < heightImage.Width - 1; x += 1)
@@ -67,13 +73,6 @@ namespace MapCreationTool.NewRendering
 					int idx1 = x + y * heightImage.Width;
 					int idx2 = x + y * heightImage.Width;
 					int idx3 = x + (y + 1) * heightImage.Width;
-					// vertexIndices.Add(idx1);
-					// vertexIndices.Add(idx2 + 1);
-					// vertexIndices.Add(idx3);
-					// 
-					// vertexIndices.Add(idx3 + 1);
-					// vertexIndices.Add(idx3);
-					// vertexIndices.Add(idx1 + 1);
 
 					indices[iIdx++] = (uint)idx1;
 					indices[iIdx++] = (uint)idx2 + 1;
@@ -84,6 +83,43 @@ namespace MapCreationTool.NewRendering
 					indices[iIdx++] = (uint)idx1 + 1;
 				}
 			}
+
+			// Divide and capitulate to performance
+			// Calculate normals
+			for (int idx = 0; idx < indices.Length-3; idx++)
+			{
+				// Get the startIndices for three vertices, this is the index of the x coordinate
+				uint vIdx1 = indices[idx]*6;
+				uint vIdx2 = indices[idx+1]*6;
+				uint vIdx3 = indices[idx+2]*6;
+
+				// create three vectors
+				Vector3 a = new Vector3(vertices[vIdx1], vertices[vIdx1 + 1], vertices[vIdx1 + 2]);
+				Vector3 b = new Vector3(vertices[vIdx2], vertices[vIdx2 + 1], vertices[vIdx2 + 2]);
+				Vector3 c = new Vector3(vertices[vIdx3], vertices[vIdx3 + 1], vertices[vIdx3 + 2]);
+
+				// Create two deltas
+				Vector3 deltaAB = a - b;
+				Vector3 deltaBC = b - c;
+
+				// Calculate normal
+				Vector3 normal = Vector3.Cross(deltaAB, deltaBC);
+				normal.Normalize();
+
+				// Assign normal to all three points
+				vertices[vIdx1 + 3] = normal.X;
+				vertices[vIdx1 + 4] = normal.Y;
+				vertices[vIdx1 + 5] = normal.Z;
+
+				vertices[vIdx2 + 3] = normal.X;
+				vertices[vIdx2 + 4] = normal.Y;
+				vertices[vIdx2 + 5] = normal.Z;
+
+				vertices[vIdx3 + 3] = normal.X;
+				vertices[vIdx3 + 4] = normal.Y;
+				vertices[vIdx3 + 5] = normal.Z;
+			}
+
 			ImageData result = new ImageData { vertices = vertices, indices = indices };
 			return result;
 		}

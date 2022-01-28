@@ -31,21 +31,18 @@ namespace MapCreationTool.NewRendering
 		{
 			// Load shaders
 			// Find a better place for the files, also the extension is weird, could be .glsl I guess
-			shader.Load(@"NewRendering\shader.vert", @"NewRendering\shader.frag");
+			shader.Load(@"NewRendering\shader.vert", @"NewRendering\lighting.frag");
 
-			// Setup vertex buffer
-			// Create a new buffer
-			VertexBufferObject = GL.GenBuffer();
-			VertexArrayObject = GL.GenVertexArray();
+	
 
 
 			float[] vertices =
 			{
-			 0.5f,  0.5f, 0.0f, // top right
-             0.5f, -0.5f, 0.0f, // bottom right
-            -0.5f, -0.5f, 0.0f, // bottom left
-            -0.5f,  0.5f, 0.0f, // top left
-        };
+			 0.5f,  0.5f, 0.0f,  0, 0, -1f,   // top right
+             0.5f, -0.5f, 0.0f,  0, 0, -1f,   // bottom right
+            -0.5f, -0.5f, 0.0f,  0, 0, -1f,   // bottom left
+            -0.5f,  0.5f, 0.0f,  0, 0, -1f,   // top left
+			};
 
 			// Then, we create a new array: indices.
 			// This array controls how the EBO will use those vertices to create triangles
@@ -54,7 +51,7 @@ namespace MapCreationTool.NewRendering
             // Note that indices start at 0!
             0, 1, 3, // The first triangle will be the bottom-right half of the triangle
             1, 2, 3  // Then the second will be the top-right half of the triangle
-        };
+			};
 
 
 
@@ -64,16 +61,37 @@ namespace MapCreationTool.NewRendering
 			//imageData.indices = indices;
 
 
+			// Setup vertex buffer
+			// Create a new buffer
 
 			VertexBufferObject = GL.GenBuffer();
 			GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
 			GL.BufferData(BufferTarget.ArrayBuffer, imageData.vertices.Length * sizeof(float), imageData.vertices, BufferUsageHint.StaticDraw);
 
-			VertexArrayObject = GL.GenVertexArray();
-			GL.BindVertexArray(VertexArrayObject);
+			{
+				//int _vaoModel = GL.GenVertexArray();
+				VertexArrayObject = GL.GenVertexArray();
+				GL.BindVertexArray(VertexArrayObject);
 
-			GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
-			GL.EnableVertexAttribArray(0);
+				int positionLocation = shader.GetAttribLocation("aPos");
+				GL.EnableVertexAttribArray(positionLocation);
+				GL.VertexAttribPointer(positionLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
+
+				int normalLocation = shader.GetAttribLocation("aNormal");
+				GL.EnableVertexAttribArray(normalLocation);
+				GL.VertexAttribPointer(normalLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
+
+				//var texCoordLocation = shader.GetAttribLocation("aTexCoords");
+				//GL.EnableVertexAttribArray(texCoordLocation);
+				//GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 8 * sizeof(float), 6 * sizeof(float));
+			}
+
+
+			//VertexArrayObject = GL.GenVertexArray();
+			//GL.BindVertexArray(VertexArrayObject);
+
+			//GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
+			//GL.EnableVertexAttribArray(0);
 
 			// We create/bind the Element Buffer Object EBO the same way as the VBO, except there is a major difference here which can be REALLY confusing.
 			// The binding spot for ElementArrayBuffer is not actually a global binding spot like ArrayBuffer is. 
@@ -111,6 +129,18 @@ namespace MapCreationTool.NewRendering
 			shader.SetMatrix4("model", model);
 			shader.SetMatrix4("view", view);
 			shader.SetMatrix4("projection", proj);
+
+			// No texture yet, when texture is implemented, enable this again
+			//shader.SetInt("material.diffuse", 0);
+			//shader.SetInt("material.specular", 1);
+			//shader.SetVector3("material.specular", new Vector3(0.5f, 0.5f, 0.5f));
+			shader.SetFloat("material.shininess", 32.0f);
+
+			// Directional light needs a direction, in this example we just use (-0.2, -1.0, -0.3f) as the lights direction
+			shader.SetVector3("light.direction", new Vector3(-0.2f, -1.0f, -0.3f));
+			shader.SetVector3("light.ambient", new Vector3(0.2f));
+			shader.SetVector3("light.diffuse", new Vector3(0.5f));
+			shader.SetVector3("light.specular", new Vector3(1.0f));
 
 			GL.BindVertexArray(VertexArrayObject);
 
