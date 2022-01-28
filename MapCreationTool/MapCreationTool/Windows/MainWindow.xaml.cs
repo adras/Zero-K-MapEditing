@@ -36,6 +36,8 @@ namespace MapCreationTool.Windows
 			InitializeComponent();
 			DataContext = ViewModel = new MainWindowViewModel();
 
+			var test = NewCamera.AngleAxis(new OpenTK.Mathematics.Vector3(0, 0, 1), 1);
+
 		}
 
 		private void ctrlStart_OnMapOpened(object sender, MapPathInformation mapPathInfo)
