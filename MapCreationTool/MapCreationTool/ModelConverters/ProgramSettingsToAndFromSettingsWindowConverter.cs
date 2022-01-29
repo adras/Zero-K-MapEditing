@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace MapCreationTool.ModelConverters
 {
-    internal class ProgramSettingsSettingsWindowConverter
+    // Name is an ode to my favorite programmer, all hail to Sven!
+    internal class ProgramSettingsToAndFromSettingsWindowConverter
     {
         public static void ApplySettingsFromViewModel(ProgramSettings current, SettingsWindowViewModel viewModel)
         {
