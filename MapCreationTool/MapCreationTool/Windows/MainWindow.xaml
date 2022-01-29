@@ -19,7 +19,7 @@
             <ctrl:StartControl x:Name="ctrlStart" Grid.Column="0" 
                                OnMapOpened="ctrlStart_OnMapOpened" 
                                OnMapCreated="ctrlStart_OnMapCreated"
-                               OnSettingsClicked="ctrlStart_OnCalculatorClicked">
+                               OnSettingsClicked="ctrlStart_OnSettingsClicked">
             </ctrl:StartControl>
 
 

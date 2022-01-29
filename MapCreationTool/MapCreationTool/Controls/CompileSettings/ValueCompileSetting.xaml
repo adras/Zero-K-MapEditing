@@ -12,6 +12,9 @@
         <wpf:InverseBooleanConverter x:Key="inverseBooleanConverter"/>
     </UserControl.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25"></ColumnDefinition>
             <ColumnDefinition Width="125"></ColumnDefinition>

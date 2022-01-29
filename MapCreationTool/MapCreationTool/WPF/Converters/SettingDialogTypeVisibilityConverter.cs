@@ -27,12 +27,16 @@ namespace MapCreationTool.WPF.Converters
                 case SettingDialogType.None:
                     result = Visibility.Hidden;
                     break;
-                case SettingDialogType.Open:
+                case SettingDialogType.OpenFile:
                     result = Visibility.Visible;
                     break;
-                case SettingDialogType.Save:
+                case SettingDialogType.SaveFile:
                     result = Visibility.Visible;
                     break;
+                case SettingDialogType.OpenDirectory:
+                    result = Visibility.Visible;
+                    break;
+
             }
             return result;
         }

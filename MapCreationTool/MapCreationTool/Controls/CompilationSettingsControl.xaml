@@ -15,15 +15,15 @@
         <StackPanel Orientation="Vertical">
 
             <compile:ValueCompileSetting SettingName="Output file" SettingDescription="The output smf file to create. E.g Zero-Prime.smf (REQUIRED)" DataContext="{Binding CompilationSettings}"
-                                         SettingDialogType="Save" FileDialogFilter="smf files (*.smf)|*.smf|All files (*.*)|*.*"
+                                         SettingDialogType="SaveFile" FileDialogFilter="smf files (*.smf)|*.smf|All files (*.*)|*.*"
                                          SettingEnabledLocked="true" SettingIsEnabled="True"  
                                          SettingValue="{Binding Path=OutSmfFilePath, Mode=TwoWay}"></compile:ValueCompileSetting>
             <compile:ValueCompileSetting SettingName="Include texture" SettingDescription="The diffuse map file to use. (REQUIRED)" DataContext="{Binding CompilationSettings}"
-                                         SettingDialogType="Open" FileDialogFilter="All files (*.*)|*.*"
+                                         SettingDialogType="OpenFile" FileDialogFilter="All files (*.*)|*.*"
                                          SettingIsEnabled="True" SettingEnabledLocked="True"
                                          SettingValue="{Binding Path=DiffuseMapName, Mode=TwoWay}" ></compile:ValueCompileSetting>
             <compile:ValueCompileSetting SettingName="Height map" SettingDescription="The height map file to use. (REQUIRED)" DataContext="{Binding CompilationSettings}"
-                                         SettingDialogType="Open" FileDialogFilter="All files (*.*)|*.*"
+                                         SettingDialogType="OpenFile" FileDialogFilter="All files (*.*)|*.*"
                                          SettingIsEnabled="True" SettingEnabledLocked="True"
                                          SettingValue="{Binding Path=HeightMapName, Mode=TwoWay}" ></compile:ValueCompileSetting>
             <compile:ValueCompileSetting SettingName="Maximum height" SettingDescription="Engine maximum height - Highest point in map" DataContext="{Binding CompilationSettings}"
@@ -33,11 +33,11 @@
                                          SettingIsEnabled="True" SettingEnabledLocked="True"
                                          SettingValue="{Binding Path=MinHeight, Mode=TwoWay}" ></compile:ValueCompileSetting>
             <compile:ValueCompileSetting SettingName="Metal map" SettingDescription="Metal map file to use. Red channel is amount of metal (OPTIONAL)"  DataContext="{Binding CompilationSettings}"
-                                         SettingDialogType="Open" FileDialogFilter="All files (*.*)|*.*"
+                                         SettingDialogType="OpenFile" FileDialogFilter="All files (*.*)|*.*"
                                          SettingIsEnabled="{Binding Path=UseMetalMap, Mode=TwoWay}" SettingEnabledLocked="False" 
                                          SettingValue="{Binding Path=MetalMapName, Mode=TwoWay}" ></compile:ValueCompileSetting>
             <compile:ValueCompileSetting SettingName="Geovent decal" SettingDescription="Texture to use for geovents. (OPTIONAL)" DataContext="{Binding CompilationSettings}"
-                                         SettingDialogType="Open" FileDialogFilter="All files (*.*)|*.*"
+                                         SettingDialogType="OpenFile" FileDialogFilter="All files (*.*)|*.*"
                                          SettingIsEnabled="{Binding Path=UseGeoventDecal, Mode=TwoWay}" SettingEnabledLocked="False"
                                          SettingValue="{Binding Path=GeoventDecalPath, Mode=TwoWay}" ></compile:ValueCompileSetting>
             <compile:ValueCompileSetting SettingName="Feature placement" SettingDescription=" " DataContext="{Binding CompilationSettings}"

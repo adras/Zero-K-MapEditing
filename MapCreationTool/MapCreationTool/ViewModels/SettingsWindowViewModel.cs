@@ -1,12 +1,13 @@
-﻿using System;
+﻿using MapCreationTool.WPF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MapCreationTool.Configuration
+namespace MapCreationTool.ViewModels
 {
-    public class ProgramSettings
+    internal class SettingsWindowViewModel : PropertyChangedBase
     {
         private string gameDirectory;
 
@@ -20,16 +21,8 @@ namespace MapCreationTool.Configuration
             set
             {
                 gameDirectory = value;
+                OnPropertyChanged();
             }
-        }
-
-        public static ProgramSettings CreateDefault()
-        {
-            ProgramSettings defaultSettings = new ProgramSettings
-            {
-
-            };
-            return defaultSettings;
         }
     }
 }

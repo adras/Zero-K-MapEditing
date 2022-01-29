@@ -19,8 +19,9 @@ namespace MapCreationTool.Controls.CompileSettings
 	public enum SettingDialogType
     {
 		None,
-		Open,
-		Save,
+		OpenFile,
+		SaveFile,
+		OpenDirectory
     }
 
 	/// <summary>
@@ -130,26 +131,62 @@ namespace MapCreationTool.Controls.CompileSettings
 
 		private void btnBrowseFile_Click(object sender, RoutedEventArgs e)
 		{
-			Forms.FileDialog dialog = null;
-            switch (SettingDialogType)
-            {
-                case SettingDialogType.Open:
-					dialog = new Forms.OpenFileDialog();
+			HandleBrowseClicked();
+		}
+
+		private void HandleBrowseClicked()
+        {
+			switch (SettingDialogType)
+			{
+				case SettingDialogType.OpenFile:
+					HandleOpenFileDialog();
 					break;
-                case SettingDialogType.Save:
-					dialog = new Forms.SaveFileDialog();
-                    break;
+				case SettingDialogType.SaveFile:
+					HandleSaveFileDialog();
+					break;
+				case SettingDialogType.OpenDirectory:
+					HandleOpenDirectoryDialog();
+					break;
 			}
 
-			// This is crappy and unflexible, make it a dependencyproperty
-			dialog.Filter = FileDialogFilter;
-			dialog.CheckFileExists = false;
-			dialog.AddExtension = true;
+		}
+
+        private void HandleOpenDirectoryDialog()
+        {
+			Forms.FolderBrowserDialog dialog = new Forms.FolderBrowserDialog();
 			Forms.DialogResult result = dialog.ShowDialog();
 
 			if (result != Forms.DialogResult.OK)
 				return;
 
+			SettingValue = dialog.SelectedPath;
+		}
+
+		private void HandleSaveFileDialog()
+        {
+			Forms.FileDialog dialog = new Forms.SaveFileDialog();
+			dialog.Filter = FileDialogFilter;
+			dialog.CheckFileExists = false;
+			dialog.AddExtension = true;
+
+			Forms.DialogResult result = dialog.ShowDialog();
+			if (result != Forms.DialogResult.OK)
+				return;
+			
+			SettingValue = dialog.FileName;
+		}
+
+        private void HandleOpenFileDialog()
+        {
+			Forms.FileDialog dialog = new Forms.OpenFileDialog();
+			dialog.Filter = FileDialogFilter;
+			dialog.CheckFileExists = false;
+			dialog.AddExtension = true;
+
+			Forms.DialogResult result = dialog.ShowDialog();
+			if (result != Forms.DialogResult.OK)
+				return;
+		
 			SettingValue = dialog.FileName;
 		}
 	}

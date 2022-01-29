@@ -1,4 +1,5 @@
 ﻿using MapCreationTool.Configuration;
+using MapCreationTool.Extensions;
 using MapCreationTool.Lua;
 using MapCreationTool.Models;
 using MapCreationTool.Tabs;
@@ -26,8 +27,6 @@ namespace MapCreationTool.Windows
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-
-
 		public MainWindowViewModel ViewModel { get; set; }
 
 		public MainWindow()
@@ -57,8 +56,15 @@ namespace MapCreationTool.Windows
 			ViewModel.SelectedTab = ViewModel.Tabs[ViewModel.Tabs.Count - 1];
 		}
 
-		private void ctrlStart_OnCalculatorClicked(object sender, EventArgs e)
-		{
-		}
-	}
+        private void ctrlStart_OnSettingsClicked(object sender, EventArgs e)
+        {
+			SettingsWindow window = new SettingsWindow();
+			window.Center(this);
+			bool? result = window.ShowDialog();
+			if (result == false)
+				return;
+
+			
+        }
+    }
 }
