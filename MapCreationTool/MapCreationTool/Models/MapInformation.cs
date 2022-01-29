@@ -54,8 +54,11 @@ namespace MapCreationTool.Models
 		public static MapInformation LoadFrom(string mapInfoPath)
 		{
 			MapInformation result = new MapInformation();
-			result.editor.Load(mapInfoPath);
-			result.GetValues();
+			bool loadResult = result.editor.Load(mapInfoPath);
+			if (loadResult)
+			{
+				result.GetValues();
+			}
 
 			return result;
 		}
