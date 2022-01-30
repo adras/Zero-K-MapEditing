@@ -9,13 +9,15 @@
              d:DesignHeight="450" d:DesignWidth="800" 
              Loaded="UserControl_Loaded" 
              Focusable="True" IsTabStop="True" 
-             KeyUp="UserControl_KeyUp"
+             PreviewKeyDown="UserControl_PreviewKeyDown"
              MouseMove="UserControl_MouseMove" IsVisibleChanged="UserControl_IsVisibleChanged">
     <Grid>
         <opentk:GLWpfControl Name="openTk">
             
         </opentk:GLWpfControl>
-        <Border
+        
+        <!-- Border is just an example-->
+        <!--<Border
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Margin="10"
@@ -26,6 +28,6 @@
                 Content="Overlaid label with border"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center" />
-        </Border>
+        </Border>-->
     </Grid>
 </UserControl>

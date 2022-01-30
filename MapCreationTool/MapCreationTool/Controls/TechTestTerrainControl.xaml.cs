@@ -6,6 +6,7 @@ using OpenTK.Windowing.Desktop;
 using OpenTK.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,7 +78,7 @@ namespace MapCreationTool.Controls
 
 		}
 
-		private void UserControl_KeyUp(object sender, KeyEventArgs e)
+		private void UserControl_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			Vector3 delta = Vector3.Zero;
 			switch (e.Key)
@@ -134,5 +135,7 @@ namespace MapCreationTool.Controls
 			openTk.Render += OpenTk_Render;
 
 		}
-	}
+
+  
+    }
 }
