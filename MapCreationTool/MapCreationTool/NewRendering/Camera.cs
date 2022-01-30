@@ -56,9 +56,7 @@ namespace MapCreationTool.NewRendering
 				// We clamp the pitch value between -89 and 89 to prevent the camera from going upside down, and a bunch
 				// of weird "bugs" when you are using euler angles for rotation.
 				// If you want to read more about this you can try researching a topic called gimbal lock
-				var angle = MathHelper.Clamp(value, -179f, 0f);
-				Debug.WriteLine($"Value: {value}");
-				//float angle = value;
+				float angle = MathHelper.Clamp(value, -179f, 0f);
 				pitch = MathHelper.DegreesToRadians(angle);
 				UpdateVectors();
 			}

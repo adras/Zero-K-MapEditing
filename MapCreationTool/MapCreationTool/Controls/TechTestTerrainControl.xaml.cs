@@ -53,6 +53,7 @@ namespace MapCreationTool.Controls
 
 		private void OpenTk_Render(TimeSpan obj)
 		{
+			renderer.Update();
 			renderer.Render();
 		}
 
@@ -78,27 +79,6 @@ namespace MapCreationTool.Controls
 
 		}
 
-		private void UserControl_PreviewKeyDown(object sender, KeyEventArgs e)
-		{
-			Vector3 delta = Vector3.Zero;
-			switch (e.Key)
-			{
-				case Key.A:
-					delta = -renderer.camera.Right * 2;
-					break;
-				case Key.D:
-					delta = renderer.camera.Right * 2;
-					break;
-				case Key.W:
-					delta = renderer.camera.Front * 2;
-					break;
-				case Key.S:
-					delta = -renderer.camera.Front * 2;
-					break;
-
-			}
-			renderer.Move(delta);
-		}
 		Vector3 lastPos = Vector3.Zero;
 		private void UserControl_MouseMove(object sender, MouseEventArgs e)
 		{
@@ -133,7 +113,6 @@ namespace MapCreationTool.Controls
 			openTk.Start(settings);
 			renderer.Startup(ProjectSettings.CompilationSettings.HeightMapName);
 			openTk.Render += OpenTk_Render;
-
 		}
 
   

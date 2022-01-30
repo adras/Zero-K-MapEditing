@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MapCreationTool.NewRendering
 {
@@ -74,6 +75,33 @@ namespace MapCreationTool.NewRendering
 			GL.BufferData(BufferTarget.ElementArrayBuffer, imageData.indices.Length * sizeof(uint), imageData.indices, BufferUsageHint.StaticDraw);
 
 			shader.Use();
+		}
+
+        internal void Update()
+        {
+			Vector3 delta = Vector3.Zero;
+			float speed = 0.5f;
+			if (Keyboard.IsKeyDown(Key.LeftShift))
+				speed = 1.5f;
+
+			if (Keyboard.IsKeyDown(Key.A))
+            {
+				delta -= camera.Right * speed;
+			}
+			if (Keyboard.IsKeyDown(Key.D))
+			{
+				delta += camera.Right * speed;
+			}
+			if (Keyboard.IsKeyDown(Key.W))
+			{
+				delta += camera.Front * speed;
+			}
+			if (Keyboard.IsKeyDown(Key.S))
+			{
+				delta -= camera.Front * speed;
+			}
+			Move(delta);
+
 		}
 
 		public void ShutDown()
