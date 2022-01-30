@@ -121,7 +121,7 @@ namespace MapCreationTool.NewRendering
 		internal void Move(Vector3 delta)
 		{
 			camera.Position += delta;
-			camera.Pitch += 4;
+			//camera.Pitch += 4;
 		}
 
 		internal void MouseMove(Vector3 delta)

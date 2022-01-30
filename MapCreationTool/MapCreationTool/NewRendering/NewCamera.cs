@@ -74,25 +74,13 @@ namespace MapCreationTool.NewRendering
             }
         }
 
-        public NewCamera()
+        public NewCamera(Vector3 position, Vector3 lookAt)
         {
-            // Let's just assume some initial stuff
-            this.position = new Vector3(0, 0, -3).Normalized();
-            this.left = new Vector3(-1, 0, 0).Normalized();
-            this.forward = new Vector3(0, 0, 1).Normalized();
-            this.up = Vector3.Cross(left, forward);
+            this.position = position;
+            Vector3 delta = lookAt- position;
+            Forward = delta.Normalized();
         }
 
-        public static Vector3 AngleAxis(Vector3 aAxis, float rad)
-        {
-            aAxis.Normalize();
-            
-            aAxis *= MathF.Sin(rad);
-            Quaternion quat = new Quaternion(aAxis.X, aAxis.Y, aAxis.Z, rad);
 
-            
-            quat.ToAxisAngle(out Vector3 result, out float angle);
-            return result;
-        }
     }
 }
