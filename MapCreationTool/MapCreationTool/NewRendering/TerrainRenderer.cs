@@ -154,7 +154,6 @@ namespace MapCreationTool.NewRendering
 
 		internal void MouseMove(Vector3 delta)
 		{
-
 			camera.Yaw += delta.X;
 			camera.Pitch -= delta.Y;
 
