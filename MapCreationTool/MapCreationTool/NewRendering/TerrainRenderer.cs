@@ -18,18 +18,22 @@ namespace MapCreationTool.NewRendering
 		int VertexArrayObject;
 		int VertexBufferObject;
 		int ElementBufferObject;
-
+		TestTriangle triangle;
 		public TerrainRenderer()
 		{
 			camera = new Camera(new Vector3(0, 0, 60), 4.0f / 3.0f);
 
 			shader = new Shader();
+
+
+			triangle = new TestTriangle();
 		}
 
 		private float _time;
 		ImageData imageData;
 		public void Startup(string imagePath)
 		{
+			
 			// Load shaders
 			// Find a better place for the files, also the extension is weird, could be .glsl I guess
 			shader.Load(@"NewRendering\shader.vert", @"NewRendering\lighting.frag");
@@ -75,6 +79,9 @@ namespace MapCreationTool.NewRendering
 			GL.BufferData(BufferTarget.ElementArrayBuffer, imageData.indices.Length * sizeof(uint), imageData.indices, BufferUsageHint.StaticDraw);
 
 			shader.Use();
+			
+
+			triangle.Start();
 		}
 
         internal void Update()
@@ -113,6 +120,7 @@ namespace MapCreationTool.NewRendering
 
 		public void Render()
 		{
+			
 			GL.ClearColor(Color4.DarkGray);
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 			GL.LoadIdentity();
@@ -143,6 +151,8 @@ namespace MapCreationTool.NewRendering
 
 			GL.DrawElements(PrimitiveType.Triangles, imageData.indices.Length, DrawElementsType.UnsignedInt, 0);
 			GL.Finish();
+			
+			triangle.Render();
 		}
 
 
