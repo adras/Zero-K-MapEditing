@@ -62,8 +62,8 @@ namespace MapCreationTool.NewRendering
 				//1, 2, 3
 				0, 1, 3
 			};
-			imageData.vertices = _vertices;
-			imageData.indices = _indices;
+			//imageData.vertices = _vertices;
+			//imageData.indices = _indices;
 
 
 			VertexBufferObject = GL.GenBuffer();
@@ -146,7 +146,7 @@ namespace MapCreationTool.NewRendering
 		public void Render()
 		{
 
-			GL.ClearColor(Color4.DarkGray);
+			GL.ClearColor(Color4.AntiqueWhite);
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 			GL.LoadIdentity();
 
