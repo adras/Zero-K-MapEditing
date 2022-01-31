@@ -12,10 +12,19 @@
            
              MouseMove="UserControl_MouseMove" IsVisibleChanged="UserControl_IsVisibleChanged">
     <Grid>
-        <opentk:GLWpfControl Name="openTk">
-            
-        </opentk:GLWpfControl>
-        
+
+
+        <opentk:GLWpfControl Name="openTk" Grid.Row="2"></opentk:GLWpfControl>
+        <Border HorizontalAlignment="Left"            VerticalAlignment="Top"            Margin="10">
+            <StackPanel Orientation="Vertical">
+                <Label Name="lblPitch" Content="test" Foreground="White" Background="Black"/>
+                <Label Name="lblYaw" Content="test" Foreground="White" Background="Black"/>
+                <Label Name="lblPosition" Content="test" Foreground="White" Background="Black"/>
+                <Label Name="lblLookAt" Content="test" Foreground="White" Background="Black"/>
+            </StackPanel>
+
+        </Border>
+
         <!-- Border is just an example-->
         <!--<Border
             HorizontalAlignment="Right"

@@ -94,6 +94,10 @@ namespace MapCreationTool.Controls
             if (e.RightButton == MouseButtonState.Pressed)
             {
                 renderer.MouseMove(delta);
+                lblPitch.Content = $"Pitch: {renderer.camera.Pitch}";
+                lblYaw.Content = $"Yaw: {renderer.camera.Yaw}";
+                lblPosition.Content = $"Pos: {renderer.camera.Position}";
+                lblLookAt.Content = $"LookAt: {renderer.camera.Front}";
             }
             float width = (float)this.ActualWidth;
             float height = (float)this.ActualHeight;

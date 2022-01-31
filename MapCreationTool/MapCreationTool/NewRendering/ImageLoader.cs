@@ -51,7 +51,7 @@ namespace MapCreationTool.NewRendering
 					float zPos = Rescale(0, bit16, minHeight, maxHeight, row[x].R * colorScaleFactor);
 
 					vertices[vIdx++] = xPos;
-					vertices[vIdx++] = yPos;
+					vertices[vIdx++] = -yPos; // Flip y axis
 					vertices[vIdx++] = zPos;
 
 					// normals will be generated with triangles, therefore just skip the index here
