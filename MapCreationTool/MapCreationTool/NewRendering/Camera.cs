@@ -102,12 +102,12 @@ namespace MapCreationTool.NewRendering
 		private void UpdateVectors()
 		{
 			// I made it, I don't understand it, I won't explain it :P
-			front.X = MathF.Sin(pitch) * MathF.Sin(yaw) ;
-            front.Y = MathF.Sin(pitch) * MathF.Cos(yaw);
+			front.X = MathF.Sin(pitch) * MathF.Sin(yaw);
+			front.Y = MathF.Sin(pitch) * MathF.Cos(yaw);
 			front.Z = MathF.Cos(pitch);
-            front.Normalize();
+			front.Normalize();
 
-            right = Vector3.Cross(-Vector3.UnitZ, front).Normalized();
+			right = Vector3.Cross(-Vector3.UnitZ, front).Normalized();
 			up = Vector3.Cross(right, front).Normalized();
 		}
 	}

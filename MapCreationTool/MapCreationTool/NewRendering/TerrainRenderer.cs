@@ -43,16 +43,17 @@ namespace MapCreationTool.NewRendering
 			float[] _vertices =
 		    {
 				// Position         normal
-				 0.5f,  0.5f, 0.0f, 0f, 0, -1.0f, // top right
-				 0.5f, -0.5f, 0.0f, 0f, 0, -1.0f, // bottom right
-				-0.5f, -0.5f, 0.0f, 0f, 0, -1.0f, // bottom left
-				-0.5f,  0.5f, 0.0f, 0f, 0, -1.0f  // top left
+				 0.5f,  0.5f, -1.0f, 0f, 0, -1.0f, // top right
+				 0.5f, -1.0f, -1.0f, 0f, 0, -1.0f, // bottom right
+				-0.5f, -0.5f, -1.0f, 0f, 0, -1.0f, // bottom left
+				-0.5f,  0.5f, -1.0f, 0f, 0, -1.0f  // top left
 			};
 
 			uint[] _indices =
 			{
 				0, 1, 3,
-				1, 2, 3
+				//1, 2, 3
+				0, 1, 3
 			};
 			imageData.vertices = _vertices;
 			imageData.indices = _indices;
@@ -147,6 +148,15 @@ namespace MapCreationTool.NewRendering
 			Matrix4 model = Matrix4.Identity;//  * Matrix4.CreateRotationX((float)MathHelper.DegreesToRadians(_time));
 			Matrix4 view = camera.GetViewMatrix();
 			Matrix4 proj = camera.GetProjectionMatrix();
+
+
+			model = Matrix4.Identity;
+		    view  = Matrix4.Identity;
+			proj  = Matrix4.Identity;
+			//view = Matrix4.CreateTranslation(new Vector3(0.2f, 1, 0));
+			//model = Matrix4.CreateTranslation(new Vector3(0, 0, -1));
+			//view = Matrix4.LookAt(new Vector3(0, 0, 1), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+			proj = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver2, 4.0f / 3.0f, 0.01f, 1000f);
 
 			shader.SetMatrix4("model", model);
 			shader.SetMatrix4("view", view);

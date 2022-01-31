@@ -10,13 +10,13 @@ namespace MapCreationTool.NewRendering.HitTest
 {
     public static class CameraExtensions
     {
-        public static Vector3 ScreenToPointRay(this Camera camera, Vector3 mousePos)
+        public static Vector3 ScreenToPointRay(this Camera camera, Vector3 mousePos, Matrix4 matrix)
         {
             Matrix4 proj = camera.GetProjectionMatrix();
             Matrix4 view = camera.GetViewMatrix();
 
 
-            Matrix4 newMatrix = Matrix4.Invert(view * proj);
+            //Matrix4 newMatrix = Matrix4.Invert(view * proj);
 
             //Vector4 v4 = new Vector4(mousePos);
             //v4.W = 1;
@@ -30,8 +30,8 @@ namespace MapCreationTool.NewRendering.HitTest
             
             
 
-            //Vector4 test =  mouse4 * newMatrix;
-            Vector4 test = Vector4.TransformColumn(newMatrix, mouse4);
+            Vector4 test =  mouse4 * matrix;
+            //Vector4 test = Vector4.TransformColumn(newMatrix, mouse4);
             
             //test.W = 1.0f / test.W;
             //test.X *= test.W;
