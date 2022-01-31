@@ -106,12 +106,12 @@ namespace MapCreationTool.Controls
 			//centeredMouse.Y *= -1;
 
 
-			//Matrix4 proj = renderer. camera.GetProjectionMatrix();
-			//Matrix4 view = renderer.camera.GetViewMatrix();
+			Matrix4 proj = renderer.camera.GetProjectionMatrix();
+			Matrix4 view = renderer.camera.GetViewMatrix();
 			//Matrix4 newMatrix = Matrix4.Invert(view * proj);
-			Matrix4 model = Matrix4.Identity;
-			Matrix4 view = Matrix4.LookAt(new Vector3(0, 0, 2), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
-			Matrix4 proj = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver2, 4.0f / 3.0f, 0.01f, 10f);
+			//Matrix4 model = Matrix4.Identity;
+			//Matrix4 view = Matrix4.LookAt(new Vector3(0, 0, 2), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+			//Matrix4 proj = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver2, 4.0f / 3.0f, 0.01f, 10f);
 			Matrix4 newMatrix = view * proj;
 
 			newMatrix = Matrix4.Invert(newMatrix);

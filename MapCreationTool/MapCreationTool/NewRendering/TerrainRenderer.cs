@@ -21,7 +21,9 @@ namespace MapCreationTool.NewRendering
 		TestTriangle triangle;
 		public TerrainRenderer()
 		{
-			camera = new Camera(new Vector3(0, 0, 60), 4.0f / 3.0f);
+			camera = new Camera(new Vector3(0, 0, 2), 4.0f / 3.0f);
+			camera.Pitch = -180;
+			camera.Yaw = 180;
 
 			shader = new Shader();
 
@@ -145,18 +147,16 @@ namespace MapCreationTool.NewRendering
 
 			shader.Use();
 
-			Matrix4 model = Matrix4.Identity;//  * Matrix4.CreateRotationX((float)MathHelper.DegreesToRadians(_time));
+			Matrix4 model = Matrix4.Identity;
 			Matrix4 view = camera.GetViewMatrix();
 			Matrix4 proj = camera.GetProjectionMatrix();
 
+			//model = Matrix4.Identity;
+			//view  = Matrix4.Identity;
+			//proj  = Matrix4.Identity;
 
-			model = Matrix4.Identity;
-		    view  = Matrix4.Identity;
-			proj  = Matrix4.Identity;
-			//view = Matrix4.CreateTranslation(new Vector3(0.2f, 1, 0));
-			//model = Matrix4.CreateTranslation(new Vector3(0, 0, -1));
-			view = Matrix4.LookAt(new Vector3(0, 0, 2), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
-			proj = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver2, 4.0f / 3.0f, 0.01f, 10f);
+			//view = Matrix4.LookAt(new Vector3(0, 0, 2), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+			//proj = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver2, 4.0f / 3.0f, 0.01f, 10f);
 
 			shader.SetMatrix4("model", model);
 			shader.SetMatrix4("view", view);
