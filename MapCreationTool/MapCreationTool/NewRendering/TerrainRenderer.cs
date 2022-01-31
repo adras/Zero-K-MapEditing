@@ -40,6 +40,23 @@ namespace MapCreationTool.NewRendering
 
 			imageData = ImageLoader.LoadImage(imagePath, 0, 300);
 
+			float[] _vertices =
+		    {
+				// Position         normal
+				 0.5f,  0.5f, 0.0f, 0f, 0, -1.0f, // top right
+				 0.5f, -0.5f, 0.0f, 0f, 0, -1.0f, // bottom right
+				-0.5f, -0.5f, 0.0f, 0f, 0, -1.0f, // bottom left
+				-0.5f,  0.5f, 0.0f, 0f, 0, -1.0f  // top left
+			};
+
+			uint[] _indices =
+			{
+				0, 1, 3,
+				1, 2, 3
+			};
+			imageData.vertices = _vertices;
+			imageData.indices = _indices;
+
 
 			VertexBufferObject = GL.GenBuffer();
 			GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
@@ -152,7 +169,7 @@ namespace MapCreationTool.NewRendering
 			GL.DrawElements(PrimitiveType.Triangles, imageData.indices.Length, DrawElementsType.UnsignedInt, 0);
 			GL.Finish();
 			
-			triangle.Render();
+			//triangle.Render();
 		}
 
 
