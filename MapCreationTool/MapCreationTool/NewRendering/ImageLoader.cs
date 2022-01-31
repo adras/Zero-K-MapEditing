@@ -70,21 +70,22 @@ namespace MapCreationTool.NewRendering
 			{
 				for (int x = 0; x < heightImage.Width - 1; x += 1)
 				{
-					int idxA1 = x + y * heightImage.Width;
-					int idxA2 = x + y * heightImage.Width + 1;
-					int idxA3 = x + (y + 1) * heightImage.Width + 1;
+                    int idxA1 = x + y * heightImage.Width + 1;
+					int idxA2 = x + (y + 1) * heightImage.Width + 1;
+					int idxA3 = x + y * heightImage.Width;
 
-					int idxB1 = x + y * heightImage.Width;
-					int idxB2 = x + (y + 1) * heightImage.Width + 1;
-					int idxB3 = x + (y + 1) * heightImage.Width;
+                    int idxB1 = x + (y + 1) * heightImage.Width + 1;
+                    int idxB2 = x + (y + 1) * heightImage.Width;
+					int idxB3 = x + y * heightImage.Width;
 
 					indices[iIdx++] = (uint)idxA1;
 					indices[iIdx++] = (uint)idxA2;
 					indices[iIdx++] = (uint)idxA3;
 
-					indices[iIdx++] = (uint)idxB1;
-					indices[iIdx++] = (uint)idxB2;
-					indices[iIdx++] = (uint)idxB3;
+                    indices[iIdx++] = (uint)idxB1;
+                    indices[iIdx++] = (uint)idxB2;
+                    indices[iIdx++] = (uint)idxB3;
+                    //iIdx +=3;
 				}
 			}
 
@@ -109,7 +110,7 @@ namespace MapCreationTool.NewRendering
 				// Calculate normal
 				Vector3 normal = Vector3.Cross(deltaAB, deltaBC);
 				normal.Normalize();
-				normal = new Vector3((float)r.NextDouble(), (float)r.NextDouble(), (float)r.NextDouble());
+				//normal = new Vector3((float)r.NextDouble(), (float)r.NextDouble(), (float)r.NextDouble());
 				if (float.IsNaN(normal.X))
 				{
 

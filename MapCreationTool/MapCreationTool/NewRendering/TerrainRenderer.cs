@@ -64,9 +64,16 @@ namespace MapCreationTool.NewRendering
 			};
 			//imageData.vertices = _vertices;
 			//imageData.indices = _indices;
+			
+			// AdrAs: Enable the depth buffer to make sure that triangles behind other triangles are not rendered
+			GL.Enable(EnableCap.DepthTest);
+
+			// AdrAs: Just for fun also make the front faces filled, and the back faces wireframe, to help identify future issues
+            GL.PolygonMode(MaterialFace.Back, PolygonMode.Line);
+            GL.PolygonMode(MaterialFace.Front, PolygonMode.Fill);
 
 
-			VertexBufferObject = GL.GenBuffer();
+            VertexBufferObject = GL.GenBuffer();
 			GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
 			GL.BufferData(BufferTarget.ArrayBuffer, imageData.vertices.Length * sizeof(float), imageData.vertices, BufferUsageHint.StaticDraw);
 
@@ -77,28 +84,28 @@ namespace MapCreationTool.NewRendering
 			GL.EnableVertexAttribArray(positionLocation);
 			GL.VertexAttribPointer(positionLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
 
-			int normalLocation = shader.GetAttribLocation("aNormal");
-			GL.EnableVertexAttribArray(normalLocation);
-			GL.VertexAttribPointer(normalLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
+            int normalLocation = shader.GetAttribLocation("aNormal");
+            GL.EnableVertexAttribArray(normalLocation);
+            GL.VertexAttribPointer(normalLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
 
-			//var texCoordLocation = shader.GetAttribLocation("aTexCoords");
-			//GL.EnableVertexAttribArray(texCoordLocation);
-			//GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 8 * sizeof(float), 6 * sizeof(float));
+            //var texCoordLocation = shader.GetAttribLocation("aTexCoords");
+            //GL.EnableVertexAttribArray(texCoordLocation);
+            //GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 8 * sizeof(float), 6 * sizeof(float));
 
 
-			//VertexArrayObject = GL.GenVertexArray();
-			//GL.BindVertexArray(VertexArrayObject);
+            //VertexArrayObject = GL.GenVertexArray();
+            //GL.BindVertexArray(VertexArrayObject);
 
-			//GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
-			//GL.EnableVertexAttribArray(0);
+            //GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
+            //GL.EnableVertexAttribArray(0);
 
-			// We create/bind the Element Buffer Object EBO the same way as the VBO, except there is a major difference here which can be REALLY confusing.
-			// The binding spot for ElementArrayBuffer is not actually a global binding spot like ArrayBuffer is. 
-			// Instead it's actually a property of the currently bound VertexArrayObject, and binding an EBO with no VAO is undefined behaviour.
-			// This also means that if you bind another VAO, the current ElementArrayBuffer is going to change with it.
-			// Another sneaky part is that you don't need to unbind the buffer in ElementArrayBuffer as unbinding the VAO is going to do this,
-			// and unbinding the EBO will remove it from the VAO instead of unbinding it like you would for VBOs or VAOs.
-			ElementBufferObject = GL.GenBuffer();
+            // We create/bind the Element Buffer Object EBO the same way as the VBO, except there is a major difference here which can be REALLY confusing.
+            // The binding spot for ElementArrayBuffer is not actually a global binding spot like ArrayBuffer is. 
+            // Instead it's actually a property of the currently bound VertexArrayObject, and binding an EBO with no VAO is undefined behaviour.
+            // This also means that if you bind another VAO, the current ElementArrayBuffer is going to change with it.
+            // Another sneaky part is that you don't need to unbind the buffer in ElementArrayBuffer as unbinding the VAO is going to do this,
+            // and unbinding the EBO will remove it from the VAO instead of unbinding it like you would for VBOs or VAOs.
+            ElementBufferObject = GL.GenBuffer();
 			GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
 			// We also upload data to the EBO the same way as we did with VBOs.
 			GL.BufferData(BufferTarget.ElementArrayBuffer, imageData.indices.Length * sizeof(uint), imageData.indices, BufferUsageHint.StaticDraw);
