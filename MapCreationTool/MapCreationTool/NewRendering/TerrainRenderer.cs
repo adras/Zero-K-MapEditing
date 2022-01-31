@@ -21,8 +21,13 @@ namespace MapCreationTool.NewRendering
 		TestTriangle triangle;
 		public TerrainRenderer()
 		{
+			// Zoom out, set aspect ratio
 			camera = new Camera(new Vector3(0, 0, 2), 4.0f / 3.0f);
+
+			// Look down
 			camera.Pitch = -180;
+
+			// Look ???
 			camera.Yaw = 180;
 
 			shader = new Shader();
@@ -35,7 +40,7 @@ namespace MapCreationTool.NewRendering
 		ImageData imageData;
 		public void Startup(string imagePath)
 		{
-			
+
 			// Load shaders
 			// Find a better place for the files, also the extension is weird, could be .glsl I guess
 			shader.Load(@"NewRendering\shader.vert", @"NewRendering\lighting.frag");
@@ -43,7 +48,7 @@ namespace MapCreationTool.NewRendering
 			imageData = ImageLoader.LoadImage(imagePath, 0, 300);
 
 			float[] _vertices =
-		    {
+			{
 				// Position         normal
 				 0.5f,  0.5f, 0.0f, 0f, 0, -1.0f, // top right
 				 0.5f, -1.0f, 0.0f, 0f, 0, -1.0f, // bottom right
@@ -99,20 +104,20 @@ namespace MapCreationTool.NewRendering
 			GL.BufferData(BufferTarget.ElementArrayBuffer, imageData.indices.Length * sizeof(uint), imageData.indices, BufferUsageHint.StaticDraw);
 
 			shader.Use();
-			
+
 
 			triangle.Start();
 		}
 
-        internal void Update()
-        {
+		internal void Update()
+		{
 			Vector3 delta = Vector3.Zero;
 			float speed = 0.5f;
 			if (Keyboard.IsKeyDown(Key.LeftShift))
 				speed = 1.5f;
 
 			if (Keyboard.IsKeyDown(Key.A))
-            {
+			{
 				delta -= camera.Right * speed;
 			}
 			if (Keyboard.IsKeyDown(Key.D))
@@ -140,7 +145,7 @@ namespace MapCreationTool.NewRendering
 
 		public void Render()
 		{
-			
+
 			GL.ClearColor(Color4.DarkGray);
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 			GL.LoadIdentity();
@@ -178,7 +183,7 @@ namespace MapCreationTool.NewRendering
 
 			GL.DrawElements(PrimitiveType.Triangles, imageData.indices.Length, DrawElementsType.UnsignedInt, 0);
 			GL.Finish();
-			
+
 			//triangle.Render();
 		}
 
