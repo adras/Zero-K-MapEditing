@@ -90,9 +90,6 @@ namespace MapCreationTool.Controls
             //	// Requires a OpenTK.Windowing.GraphicsLibraryFramework.Window
             //	context = new GLFWGraphicsContext((OpenTK.Windowing.GraphicsLibraryFramework.Window*)handle.ToPointer());
             //}
-
-
-
         }
 
         Vector3 lastPos = Vector3.Zero;
@@ -218,6 +215,11 @@ namespace MapCreationTool.Controls
 
             Vector3? result = Madness.GetHit(renderer.imageData, ray);
             Debug.WriteLine($"Hit: {result}");
+        }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            renderer.camera.AspectRatio = (float)e.NewSize.Width / (float)e.NewSize.Height;
         }
     }
 }
