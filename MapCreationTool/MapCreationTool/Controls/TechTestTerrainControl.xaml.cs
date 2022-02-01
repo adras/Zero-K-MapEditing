@@ -30,7 +30,7 @@ namespace MapCreationTool.Controls
     public partial class TechTestTerrainControl : UserControl
     {
         TerrainRenderer renderer;
-        private bool useTexture;
+        private bool useTexture = true;
 
         public ProjectSettings ProjectSettings
         {

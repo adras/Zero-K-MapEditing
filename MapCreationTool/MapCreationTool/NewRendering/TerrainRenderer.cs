@@ -19,7 +19,7 @@ namespace MapCreationTool.NewRendering
 		int VertexBufferObject;
 		int ElementBufferObject;
 		TestTriangle triangle;
-		public bool useTexture;
+		public bool useTexture = true;
 
 		public TerrainRenderer()
 		{
