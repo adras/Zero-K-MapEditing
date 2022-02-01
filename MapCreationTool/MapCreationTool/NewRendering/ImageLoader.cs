@@ -35,7 +35,7 @@ namespace MapCreationTool.NewRendering
 
 			Random r = new Random();
 
-			float[] vertices = new float[heightImage.Width * heightImage.Height * (3 + 3)];
+			float[] vertices = new float[heightImage.Width * heightImage.Height * (3 + 3 + 2)];
 			int vIdx = 0;
 			// Although the tutorial uses floats, let's try with vectors
 			// This could also be an array, since size isn't changed
@@ -57,9 +57,11 @@ namespace MapCreationTool.NewRendering
 					// normals will be generated with triangles, therefore just skip the index here
 					vIdx += 3;
 
-					// vertices[vIdx++] = (float)r.NextDouble();
-					// vertices[vIdx++] = (float)r.NextDouble();
-					// vertices[vIdx++] = (float)r.NextDouble();
+					// Set texture coordinate
+					float s = x / (float)heightImage.Width;
+					float t = y / (float)heightImage.Height;
+					vertices[vIdx++] = s;
+					vertices[vIdx++] = t;
 				}
 			}
 
@@ -94,9 +96,9 @@ namespace MapCreationTool.NewRendering
 			for (int idx = 0; idx < indices.Length - 3; idx++)
 			{
 				// Get the startIndices for three vertices, this is the index of the x coordinate
-				uint vIdx1 = indices[idx] * 6;
-				uint vIdx2 = indices[idx + 1] * 6;
-				uint vIdx3 = indices[idx + 2] * 6;
+				uint vIdx1 = indices[idx] *     (3+3+2);
+				uint vIdx2 = indices[idx + 1] * (3+3+2);
+				uint vIdx3 = indices[idx + 2] * (3+3+2);
 
 				// create three vectors
 				Vector3 a = new Vector3(vertices[vIdx1], vertices[vIdx1 + 1], vertices[vIdx1 + 2]);

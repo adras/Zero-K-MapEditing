@@ -23,28 +23,28 @@ uniform vec3 viewPos;
 out vec4 FragColor;
 
 in vec3 Normal;
-// in vec2 TexCoords;
+in vec2 TexCoords;
 
 void main()
 {
-    // ambient
-    vec3 ambient = light.ambient ;
-
-    // diffuse 
-    vec3 norm = normalize(Normal);
-    vec3 lightDir = normalize(-light.direction);    //We still normalize the light direction since we techically dont know,
-                                                    //wether it was normalized for us or not.
-    float diff = max(dot(norm, lightDir), 0.0);
-    vec3 diffuse = light.diffuse * diff ;
-
-    // specular
-    vec3 viewDir = normalize(viewPos);
-    vec3 reflectDir = reflect(-lightDir, norm);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-    vec3 specular = light.specular * spec;
-
-    vec3 result = ambient + diffuse + specular;
-    FragColor = vec4(result, 1.0);
+     // ambient
+     vec3 ambient = light.ambient * vec3(texture(material.diffuse, TexCoords));
+ 
+     // diffuse 
+     vec3 norm = normalize(Normal);
+     vec3 lightDir = normalize(-light.direction);    //We still normalize the light direction since we techically dont know,
+                                                     //wether it was normalized for us or not.
+     float diff = max(dot(norm, lightDir), 0.0);
+     vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TexCoords));
+ 
+     // specular
+     vec3 viewDir = normalize(viewPos);
+     vec3 reflectDir = reflect(-lightDir, norm);
+     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+     vec3 specular = light.specular * spec * vec3(texture(material.specular, TexCoords));
+ 
+     vec3 result = ambient + diffuse + specular;
+     FragColor = vec4(result, 1.0);
 }
 
 // Textured

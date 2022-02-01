@@ -36,9 +36,9 @@ namespace MapCreationTool.NewRendering
 			triangle = new TestTriangle();
 		}
 
-		private float _time;
 		ImageData imageData;
-		public void Startup(string imagePath)
+		Texture diffuseTexture;
+		public void Startup(string imagePath, string diffusePath)
 		{
 
 			// Load shaders
@@ -46,6 +46,7 @@ namespace MapCreationTool.NewRendering
 			shader.Load(@"NewRendering\shader.vert", @"NewRendering\lighting.frag");
 
 			imageData = ImageLoader.LoadImage(imagePath, 0, 300);
+			diffuseTexture = Texture.LoadImage(diffusePath);
 
 			float[] _vertices =
 			{
@@ -69,8 +70,8 @@ namespace MapCreationTool.NewRendering
 			GL.Enable(EnableCap.DepthTest);
 
 			// AdrAs: Just for fun also make the front faces filled, and the back faces wireframe, to help identify future issues
-            GL.PolygonMode(MaterialFace.Back, PolygonMode.Line);
-            GL.PolygonMode(MaterialFace.Front, PolygonMode.Fill);
+            GL.PolygonMode(MaterialFace.Back, PolygonMode.Fill);
+            GL.PolygonMode(MaterialFace.Front, PolygonMode.Line);
 
 
             VertexBufferObject = GL.GenBuffer();
@@ -82,15 +83,15 @@ namespace MapCreationTool.NewRendering
 
 			int positionLocation = shader.GetAttribLocation("aPos");
 			GL.EnableVertexAttribArray(positionLocation);
-			GL.VertexAttribPointer(positionLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
+			GL.VertexAttribPointer(positionLocation, 3, VertexAttribPointerType.Float, false, 8 * sizeof(float), 0);
 
             int normalLocation = shader.GetAttribLocation("aNormal");
             GL.EnableVertexAttribArray(normalLocation);
-            GL.VertexAttribPointer(normalLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
+            GL.VertexAttribPointer(normalLocation, 3, VertexAttribPointerType.Float, false, 8 * sizeof(float), 3 * sizeof(float));
 
-            //var texCoordLocation = shader.GetAttribLocation("aTexCoords");
-            //GL.EnableVertexAttribArray(texCoordLocation);
-            //GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 8 * sizeof(float), 6 * sizeof(float));
+            int texCoordLocation = shader.GetAttribLocation("aTexCoords");
+            GL.EnableVertexAttribArray(texCoordLocation);
+            GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 8 * sizeof(float), 6 * sizeof(float));
 
 
             //VertexArrayObject = GL.GenVertexArray();
@@ -110,6 +111,7 @@ namespace MapCreationTool.NewRendering
 			// We also upload data to the EBO the same way as we did with VBOs.
 			GL.BufferData(BufferTarget.ElementArrayBuffer, imageData.indices.Length * sizeof(uint), imageData.indices, BufferUsageHint.StaticDraw);
 
+			diffuseTexture.Use(TextureUnit.Texture0);
 			shader.Use();
 
 
@@ -156,7 +158,7 @@ namespace MapCreationTool.NewRendering
 			GL.ClearColor(Color4.AntiqueWhite);
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 			GL.LoadIdentity();
-
+			diffuseTexture.Use(TextureUnit.Texture0);
 			shader.Use();
 
 			Matrix4 model = Matrix4.Identity;
@@ -178,12 +180,18 @@ namespace MapCreationTool.NewRendering
 			//shader.SetInt("material.diffuse", 0);
 			//shader.SetInt("material.specular", 1);
 			//shader.SetVector3("material.specular", new Vector3(0.5f, 0.5f, 0.5f));
+			
+			
+			
 			shader.SetFloat("material.shininess", 32.0f);
+
+
+
 
 			// Directional light needs a direction, in this example we just use (-0.2, -1.0, -0.3f) as the lights direction
 			shader.SetVector3("light.direction", new Vector3(-0.2f, -1.0f, -0.3f));
-			shader.SetVector3("light.ambient", new Vector3(0.2f));
-			shader.SetVector3("light.diffuse", new Vector3(0.5f));
+			shader.SetVector3("light.ambient", new Vector3(0.8f));
+			shader.SetVector3("light.diffuse", new Vector3(1.5f));
 			shader.SetVector3("light.specular", new Vector3(1.0f));
 
 			GL.BindVertexArray(VertexArrayObject);

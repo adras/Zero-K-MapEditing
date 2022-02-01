@@ -152,7 +152,7 @@ namespace MapCreationTool.Controls
             if (!initialized)
             {
                 openTk.Start(settings);
-                renderer.Startup(ProjectSettings.CompilationSettings.HeightMapName);
+                renderer.Startup(ProjectSettings.CompilationSettings.HeightMapName, ProjectSettings.CompilationSettings.DiffuseMapName);
                 openTk.Render += OpenTk_Render;
             }
 
