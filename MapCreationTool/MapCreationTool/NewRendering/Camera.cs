@@ -84,6 +84,7 @@ namespace MapCreationTool.NewRendering
 			// To fix this, use the calculation from the example camera. When pitch and yaw are not behaving correctly, rotate
 			// The data created by the ImageLoader to match the way the camera works
 			// Camera seems to be off, when it comes to pitch and yaw.
+			// Correct implementation can probably be found here: https://learnopengl.com/Getting-started/Camera
 			front.X = MathF.Sin(pitch) * MathF.Sin(yaw);
 			front.Y = MathF.Sin(pitch) * MathF.Cos(yaw);
 			front.Z = MathF.Cos(pitch);
