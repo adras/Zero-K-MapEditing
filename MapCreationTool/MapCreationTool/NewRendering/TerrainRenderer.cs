@@ -190,8 +190,8 @@ namespace MapCreationTool.NewRendering
 
 			// Directional light needs a direction, in this example we just use (-0.2, -1.0, -0.3f) as the lights direction
 			shader.SetVector3("light.direction", new Vector3(-0.2f, -1.0f, -0.3f));
-			shader.SetVector3("light.ambient", new Vector3(0.8f));
-			shader.SetVector3("light.diffuse", new Vector3(1.5f));
+			shader.SetVector3("light.ambient", new Vector3(0.6f));
+			shader.SetVector3("light.diffuse", new Vector3(1.0f));
 			shader.SetVector3("light.specular", new Vector3(1.0f));
 
 			GL.BindVertexArray(VertexArrayObject);
