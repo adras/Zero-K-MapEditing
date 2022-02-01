@@ -199,8 +199,8 @@ namespace MapCreationTool.Controls
             newMatrix = Matrix4.Invert(newMatrix);
 
             // Base on: https://stackoverflow.com/questions/51116554/simple-opentk-raycasting
-            Vector4 mouseNear = new Vector4(centeredMouse.X, centeredMouse.Y, 0, 1);
-            Vector4 mouseFar = new Vector4(centeredMouse.X, centeredMouse.Y, 1, 1);
+            Vector4 mouseNear = new Vector4(centeredMouse.X, -centeredMouse.Y, 0, 1);
+            Vector4 mouseFar = new Vector4(centeredMouse.X, -centeredMouse.Y, 1, 1);
             Vector4 rayNear = mouseNear * newMatrix;
             Vector4 rayFar = mouseFar * newMatrix;
 
