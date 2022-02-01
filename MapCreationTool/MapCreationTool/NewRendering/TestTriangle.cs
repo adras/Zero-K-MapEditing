@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace MapCreationTool.NewRendering
 {
+	// A simple implementation of a triangle
+	// Just instantiate it, call start once, and render during the update loop, and you will see a triangle
+	// This uses the triangle shaders, therefore it is independent to a camera which might me implemented in other shaders
+
 	class TestTriangle
 	{
 		float[] vertices = {
