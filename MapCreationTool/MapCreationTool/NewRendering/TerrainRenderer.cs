@@ -159,6 +159,7 @@ namespace MapCreationTool.NewRendering
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 			GL.LoadIdentity();
 			diffuseTexture.Use(TextureUnit.Texture0);
+			diffuseTexture.Use(TextureUnit.Texture1);
 			shader.Use();
 
 			Matrix4 model = Matrix4.Identity;
@@ -177,12 +178,10 @@ namespace MapCreationTool.NewRendering
 			shader.SetMatrix4("projection", proj);
 
 			// No texture yet, when texture is implemented, enable this again
-			//shader.SetInt("material.diffuse", 0);
-			//shader.SetInt("material.specular", 1);
-			//shader.SetVector3("material.specular", new Vector3(0.5f, 0.5f, 0.5f));
-			
-			
-			
+			shader.SetVector3("viewPos", camera.Position);
+			shader.SetInt("material.diffuse", 0);
+			shader.SetInt("material.specular", 1);
+			shader.SetVector3("material.specular", new Vector3(0.5f, 0.5f, 0.5f));
 			shader.SetFloat("material.shininess", 32.0f);
 
 
