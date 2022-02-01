@@ -70,7 +70,7 @@ namespace MapCreationTool.NewRendering.HitTest
             }
         }
 
-        public static Vector3? GetHit(ImageData data, Ray ray)
+        public static HitInfo GetHit(ImageData data, Ray ray)
         {
             for (int i = 0; i < data.indices.Length; i += 3)
             {
@@ -90,7 +90,10 @@ namespace MapCreationTool.NewRendering.HitTest
                 Vector3? hit = IntersectionWith(ray, a, b, c);
                 
                 if (hit != null)
-                    return hit.Value;
+                {
+                    HitInfo hitInfo = new HitInfo(vIdx1, vIdx2, vIdx3, hit.Value);
+                    return hitInfo;
+                }
             }
             return null;
         }

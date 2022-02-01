@@ -111,7 +111,7 @@ namespace MapCreationTool.NewRendering
             ElementBufferObject = GL.GenBuffer();
 			GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
 			// We also upload data to the EBO the same way as we did with VBOs.
-			GL.BufferData(BufferTarget.ElementArrayBuffer, imageData.indices.Length * sizeof(uint), imageData.indices, BufferUsageHint.StaticDraw);
+			GL.BufferData(BufferTarget.ElementArrayBuffer, imageData.indices.Length * sizeof(uint), imageData.indices, BufferUsageHint.DynamicDraw);
 
 			diffuseTexture.Use(TextureUnit.Texture0);
 			shader.Use();
@@ -204,6 +204,12 @@ namespace MapCreationTool.NewRendering
 			//triangle.Render();
 		}
 
+        internal void UpdateImageData()
+        {
+			
+			GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
+			GL.BufferData(BufferTarget.ArrayBuffer, imageData.vertices.Length * sizeof(float), imageData.vertices, BufferUsageHint.StaticDraw);
+		}
 
 		internal void Move(Vector3 delta)
 		{
