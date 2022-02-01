@@ -63,5 +63,10 @@ namespace MapCreationTool.Windows
 		private void ctrlStart_OnCalculatorClicked(object sender, EventArgs e)
 		{
 		}
-	}
+
+        private void _tabControl_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+			e.Handled = true;
+        }
+    }
 }
