@@ -9,6 +9,10 @@
 		<Platforms>AnyCPU;x86;x64</Platforms>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Remove="Converters\**" />
 		<Compile Remove="Tools\**" />
@@ -130,24 +134,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="OpenTK" Version="4.3.0" />
+		<PackageReference Include="OpenTK.Core" Version="4.3.0" />
+		<PackageReference Include="OpenTK.GLWpfControl" Version="4.1.0" />
 		<PackageReference Include="SixLabors.ImageSharp" Version="1.0.4" />
 		<PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta13" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Rendering\heightmap-Flat.bmp">
+	  <None Update="NewRendering\lighting.frag">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Rendering\heightmap-small.bmp">
+	  <None Update="NewRendering\shader.frag">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Rendering\heightmap-smallx.bmp">
+	  <None Update="NewRendering\shader.vert">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Rendering\heightmap-smallx2.bmp">
+	  <None Update="NewRendering\triangle.frag">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Rendering\heightmap.bmp">
+	  <None Update="NewRendering\triangle.vert">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

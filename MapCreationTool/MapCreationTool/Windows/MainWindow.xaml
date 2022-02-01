@@ -23,7 +23,7 @@
             </ctrl:StartControl>
 
 
-            <TabControl Grid.Row="1" x:Name="_tabControl" ItemsSource="{Binding Path=Tabs}" SelectedItem="{Binding Path=SelectedTab}">
+            <TabControl Grid.Row="1" x:Name="_tabControl" ItemsSource="{Binding Path=Tabs}" SelectedItem="{Binding Path=SelectedTab}" PreviewKeyDown="_tabControl_PreviewKeyDown">
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="TabItem">
                         <Setter Property="Header" Value="{Binding Path=Header}"/>

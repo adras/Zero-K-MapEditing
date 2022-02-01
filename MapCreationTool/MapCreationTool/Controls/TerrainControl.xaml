@@ -4,20 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MapCreationTool.Controls"
+             xmlns:opentk="clr-namespace:OpenTK.Wpf;assembly=GLWpfControl"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" KeyUp="Grid_KeyUp" Focusable="True" IsTabStop="True" MouseMove="UserControl_MouseMove">
+             d:DesignHeight="450" d:DesignWidth="800" 
+             Loaded="UserControl_Loaded" 
+           
+           
+             MouseMove="UserControl_MouseMove" IsVisibleChanged="UserControl_IsVisibleChanged" MouseUp="UserControl_MouseUp" SizeChanged="UserControl_SizeChanged">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
 
-    <Grid KeyUp="Grid_KeyUp">
-        <Viewport3D KeyUp="Grid_KeyUp" Name="viewPortMain" RenderOptions.EdgeMode="Aliased" IsVisibleChanged="viewPortMain_IsVisibleChanged">
-            <ModelVisual3D x:Name="modelVisual3D">
-                <!-- 
-                Hit testing last answer
-                    https://stackoverflow.com/questions/4045553/arbitrary-ray-test-using-c-sharp-and-wpf
-                
-                https://stackoverflow.com/questions/40659224/ray-hit-testing-with-model3d
-                
-                -->
-            </ModelVisual3D>
-        </Viewport3D>
+        <CheckBox Content="UseTexture" IsChecked="{Binding Path=UseTexture, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TerrainControl}}"></CheckBox>
+        
+        <opentk:GLWpfControl Name="openTk" Grid.Row="1"></opentk:GLWpfControl>
+        <Border HorizontalAlignment="Left"    Grid.Row="1"        VerticalAlignment="Top"            Margin="10">
+            <StackPanel Orientation="Vertical">
+                <Label Name="lblPitch" Content="test" Foreground="White" Background="Black"/>
+                <Label Name="lblYaw" Content="test" Foreground="White" Background="Black"/>
+                <Label Name="lblPosition" Content="test" Foreground="White" Background="Black"/>
+                <Label Name="lblLookAt" Content="test" Foreground="White" Background="Black"/>
+            </StackPanel>
+
+        </Border>
+
+        <!-- Border is just an example-->
+        <!--<Border
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="10"
+            BorderBrush="CornflowerBlue"
+            BorderThickness="2">
+            <Label
+                Background="#FFE6931C"
+                Content="Overlaid label with border"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center" />
+        </Border>-->
     </Grid>
 </UserControl>
