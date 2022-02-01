@@ -24,7 +24,7 @@ namespace MapCreationTool.NewRendering.HitTest
             edge2 = vertex2 - vertex0;
 
             // maybe the other way round
-            Vector3 rayVector =  ray.target - ray.origin;
+            Vector3 rayVector = ray.direction;
 
             h = Vector3.Cross(rayVector, edge2);
 
@@ -58,7 +58,7 @@ namespace MapCreationTool.NewRendering.HitTest
             
             if (t > EPSILON) // ray intersection
             {
-                Vector3 result = t * rayVector + ray.origin;
+                Vector3 result =  ray.origin + t * rayVector;
 
                 // outIntersectionPoint.set(0.0, 0.0, 0.0);
                 // outIntersectionPoint.scaleAdd(t, rayVector, rayOrigin);

@@ -137,12 +137,12 @@ namespace MapCreationTool.Controls
 
             // Base on: https://stackoverflow.com/questions/51116554/simple-opentk-raycasting
             Vector4 mouseNear = new Vector4(centeredMouse.X, centeredMouse.Y, 0, 1);
-            Vector4 mouseFar = new Vector4(centeredMouse.X, centeredMouse.Y, 0, 1);
+            Vector4 mouseFar = new Vector4(centeredMouse.X, centeredMouse.Y, 1, 1);
             Vector4 rayNear = mouseNear * newMatrix;
             Vector4 rayFar = mouseFar * newMatrix;
 
             rayNear = (1 / rayNear.W) * rayNear;
-            rayFar = (1 / rayNear.W) * rayFar;
+            rayFar = (1 / rayFar.W) * rayFar;
 
             // Debug.WriteLine($"centeredMouse: {centeredMouse} - Near: {rayNear}, Far: {rayFar}");
             // Debug.WriteLine($"TEST: {rayNear * (10.0f / 0.1f)}");
@@ -203,20 +203,21 @@ namespace MapCreationTool.Controls
 
             // Base on: https://stackoverflow.com/questions/51116554/simple-opentk-raycasting
             Vector4 mouseNear = new Vector4(centeredMouse.X, centeredMouse.Y, 0, 1);
-            Vector4 mouseFar = new Vector4(centeredMouse.X, centeredMouse.Y, 0, 1);
+            Vector4 mouseFar = new Vector4(centeredMouse.X, centeredMouse.Y, 1, 1);
             Vector4 rayNear = mouseNear * newMatrix;
             Vector4 rayFar = mouseFar * newMatrix;
 
             rayNear = (1 / rayNear.W) * rayNear;
-            rayFar = (1 / rayNear.W) * rayFar;
+            rayFar = (1 / rayFar.W) * rayFar;
 
 
             Vector3 origin = new Vector3(rayNear);
             Vector3 target = new Vector3(rayFar);
             Ray ray = new Ray(origin, target);
+            Debug.WriteLine($"Ray: {ray}");
 
             Vector3? result = Madness.GetHit(renderer.imageData, ray);
-            Debug.WriteLine(result);
+            Debug.WriteLine($"Hit: {result}");
         }
     }
 }
