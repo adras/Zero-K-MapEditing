@@ -9,7 +9,13 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=true}"
         Title="Zero-K Map Tool"  Width="1200" Height="800">
+    <Window.Resources>
+        <InputBindingCollection x:Key="inputCollection" x:Shared="False">
+            <KeyBinding Key="Del" Command="{Binding DeleteItemCommand}"/>
+        </InputBindingCollection>
+    </Window.Resources>
     <Window.Content>
+        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
@@ -23,11 +29,14 @@
             </ctrl:StartControl>
 
 
-            <TabControl Grid.Row="1" x:Name="_tabControl" ItemsSource="{Binding Path=Tabs}" SelectedItem="{Binding Path=SelectedTab}" PreviewKeyDown="_tabControl_PreviewKeyDown">
+            <TabControl Grid.Row="1" x:Name="_tabControl" ItemsSource="{Binding Path=Tabs}" SelectedItem="{Binding Path=SelectedTab}">
+                <TabControl.InputBindings>
+                </TabControl.InputBindings>
                 <TabControl.ItemContainerStyle>
                     <Style TargetType="TabItem">
                         <Setter Property="Header" Value="{Binding Path=Header}"/>
                         <Setter Property="Content" Value="{Binding Path=Content}"/>
+                  
                     </Style>
                 </TabControl.ItemContainerStyle>
             </TabControl>

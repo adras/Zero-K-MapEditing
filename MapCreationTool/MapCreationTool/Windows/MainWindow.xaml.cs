@@ -1,4 +1,5 @@
 ﻿using MapCreationTool.Configuration;
+using MapCreationTool.Extensions;
 using MapCreationTool.Lua;
 using MapCreationTool.Models;
 using MapCreationTool.NewRendering;
@@ -54,19 +55,20 @@ namespace MapCreationTool.Windows
 			MapTab newTab = new MapTab();
 			newTab.LoadProjectSettings(mapPathInfo);
 			newTab.LoadMapInfo();
-			
 
 			ViewModel.Tabs.Add(newTab);
 			ViewModel.SelectedTab = ViewModel.Tabs[ViewModel.Tabs.Count - 1];
 		}
 
-		private void ctrlStart_OnCalculatorClicked(object sender, EventArgs e)
-		{
+
+        private void ctrlStart_OnSettingsClicked(object sender, EventArgs e)
+        {
+			SettingsWindow window = new SettingsWindow();
+			window.Center(this);
+			bool? result = window.ShowDialog();
+			if (result == false)
+				return;
 		}
 
-        private void _tabControl_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-			e.Handled = true;
-        }
     }
 }
