@@ -12,11 +12,8 @@
             <TabItem Header="MapInfo.lua" FontSize="16">
                 <local:MapInfoSettingsControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:MapInfoSettingsControl>
             </TabItem>
-            <TabItem Header="Terrain" FontSize="16">
-                <local:TerrainControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:TerrainControl>
-            </TabItem>
             <TabItem Header="Terrain-TechTest" FontSize="16">
-                <local:TechTestTerrainControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:TechTestTerrainControl>
+                <local:TerrainControl Margin="10, 10" ProjectSettings="{Binding Path=ViewModel.SelectedTab.ProjectSettings, RelativeSource={RelativeSource AncestorType={x:Type wnd:MainWindow }}}"></local:TerrainControl>
             </TabItem>
             <TabItem Header="Metal placement" FontSize="16">
                 <Label>Coming soon</Label>
