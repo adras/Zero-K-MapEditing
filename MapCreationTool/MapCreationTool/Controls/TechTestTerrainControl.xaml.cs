@@ -30,11 +30,26 @@ namespace MapCreationTool.Controls
     public partial class TechTestTerrainControl : UserControl
     {
         TerrainRenderer renderer;
+        private bool useTexture;
 
         public ProjectSettings ProjectSettings
         {
             get { return (ProjectSettings)GetValue(ProjectSettingsProperty); }
             set { SetValue(ProjectSettingsProperty, value); }
+        }
+
+        public bool UseTexture
+        {
+            get
+            {
+                return useTexture;
+            }
+
+            set
+            {
+                useTexture = value;
+                renderer.useTexture = value;
+            }
         }
 
         public static readonly DependencyProperty ProjectSettingsProperty = DependencyProperty.Register(

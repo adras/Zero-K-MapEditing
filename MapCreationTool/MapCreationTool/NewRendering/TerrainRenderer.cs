@@ -19,6 +19,8 @@ namespace MapCreationTool.NewRendering
 		int VertexBufferObject;
 		int ElementBufferObject;
 		TestTriangle triangle;
+		public bool useTexture;
+
 		public TerrainRenderer()
 		{
 			// Zoom out, set aspect ratio
@@ -184,7 +186,8 @@ namespace MapCreationTool.NewRendering
 			shader.SetVector3("material.specular", new Vector3(0.5f, 0.5f, 0.5f));
 			shader.SetFloat("material.shininess", 32.0f);
 
-
+			shader.SetBool("useTexture", useTexture);
+			shader.SetVector3("noTextureColor", new Vector3(1.0f, 1.0f, 0.7f));
 
 
 			// Directional light needs a direction, in this example we just use (-0.2, -1.0, -0.3f) as the lights direction

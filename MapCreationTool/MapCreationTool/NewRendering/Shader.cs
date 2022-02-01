@@ -158,6 +158,17 @@ namespace MapCreationTool.NewRendering
         }
 
         /// <summary>
+        /// Set a uniform float on this shader.
+        /// </summary>
+        /// <param name="name">The name of the uniform</param>
+        /// <param name="data">The data to set</param>
+        public void SetBool(string name, bool data)
+        {
+            GL.UseProgram(Handle);
+            GL.Uniform1(_uniformLocations[name], (data) ? 1 : 0);
+        }
+
+        /// <summary>
         /// Set a uniform Matrix4 on this shader
         /// </summary>
         /// <param name="name">The name of the uniform</param>

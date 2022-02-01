@@ -12,10 +12,15 @@
            
              MouseMove="UserControl_MouseMove" IsVisibleChanged="UserControl_IsVisibleChanged">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
 
-
-        <opentk:GLWpfControl Name="openTk" Grid.Row="2"></opentk:GLWpfControl>
-        <Border HorizontalAlignment="Left"            VerticalAlignment="Top"            Margin="10">
+        <CheckBox Content="UseTexture" IsChecked="{Binding Path=UseTexture, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TechTestTerrainControl}}"></CheckBox>
+        
+        <opentk:GLWpfControl Name="openTk" Grid.Row="1"></opentk:GLWpfControl>
+        <Border HorizontalAlignment="Left"    Grid.Row="1"        VerticalAlignment="Top"            Margin="10">
             <StackPanel Orientation="Vertical">
                 <Label Name="lblPitch" Content="test" Foreground="White" Background="Black"/>
                 <Label Name="lblYaw" Content="test" Foreground="White" Background="Black"/>
