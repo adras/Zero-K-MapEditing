@@ -182,7 +182,7 @@ namespace MapCreationTool.Controls
             Debug.WriteLine($"Ray: {ray}");
 
             HitInfo result = Madness.GetHit(renderer.imageData, ray);
-            Debug.WriteLine($"Hit: {result.hitLocation}");
+            Debug.WriteLine($"Hit: {result?.hitLocation}");
             if (result == null)
                 return;
 
