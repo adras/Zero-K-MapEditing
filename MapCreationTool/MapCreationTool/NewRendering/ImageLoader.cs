@@ -14,6 +14,8 @@ namespace MapCreationTool.NewRendering
 	{
 		public float[] vertices;
 		public uint[] indices;
+		public int width;
+		public int height;
 	}
 
 
@@ -132,7 +134,7 @@ namespace MapCreationTool.NewRendering
 				vertices[vIdx3 + 5] = normal.Z;
 			}
 
-			ImageData result = new ImageData { vertices = vertices, indices = indices };
+			ImageData result = new ImageData { vertices = vertices, indices = indices, width = heightImage.Width, height = heightImage.Height };
 			return result;
 		}
 

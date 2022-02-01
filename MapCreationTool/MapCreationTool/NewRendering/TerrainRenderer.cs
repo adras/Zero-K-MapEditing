@@ -38,7 +38,7 @@ namespace MapCreationTool.NewRendering
 			triangle = new TestTriangle();
 		}
 
-		ImageData imageData;
+		public ImageData imageData;
 		Texture diffuseTexture;
 		public void Startup(string imagePath, string diffusePath)
 		{

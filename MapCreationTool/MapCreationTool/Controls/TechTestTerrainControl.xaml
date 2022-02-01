@@ -10,7 +10,7 @@
              Loaded="UserControl_Loaded" 
            
            
-             MouseMove="UserControl_MouseMove" IsVisibleChanged="UserControl_IsVisibleChanged">
+             MouseMove="UserControl_MouseMove" IsVisibleChanged="UserControl_IsVisibleChanged" MouseUp="UserControl_MouseUp">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>
