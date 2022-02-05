@@ -117,31 +117,11 @@ namespace MapCreationTool.Controls
 
 
             HitInfo result = Madness.GetHit(renderer.vertexData, ray);
+            if (result == null)
+                return;
             float brushStrength = (float)sliderStrength.Value;
             float brushSize = (float)sliderSize.Value;
             editor.DrawSmoothBrush(result, renderer.vertexData, brushSize, brushStrength);
-            //if (result == null)
-            //    return;
-
-            //int vHitIdx = (int)result.vIdxA;
-
-            //// Do some rectangle manipulation
-            //// NOTE: TODO: Normals also need to be recalculated
-            //for (int x = 0; x < 8; x++)
-            //{
-            //    for (int y = 0; y < 8; y++)
-            //    {
-            //        int offset = (x + y * renderer.imageData.width) * (3 + 3 + 2);
-            //        int xIdx = vHitIdx + offset;
-
-            //        // Plus two, because we would like to set the Z-Coordinate
-            //        int targetIdx = xIdx + 2;
-            //        if (targetIdx >= renderer.imageData.vertices.Length || targetIdx < 0)
-            //            continue;
-
-            //        renderer.imageData.vertices[targetIdx] += 5.0f;
-            //    }
-            //}
 
             renderer.UpdateImageData();
         }
