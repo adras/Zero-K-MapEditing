@@ -1,10 +1,4 @@
 ﻿using MapCreationTool.WPF;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -21,7 +15,7 @@ namespace MapCreationTool.Models
             get => name;
             set
             {
-                name = value; 
+                name = value;
                 OnPropertyChanged();
             }
         }
@@ -41,7 +35,7 @@ namespace MapCreationTool.Models
             get => boxCoords;
             set
             {
-                boxCoords = value; 
+                boxCoords = value;
                 OnPropertyChanged();
             }
         }
@@ -50,7 +44,7 @@ namespace MapCreationTool.Models
         public StartZoneInfo()
         {
             BoxCoords = new PointCollection();
-            
+
         }
 
         internal void AddPointNotify(Point mousePos)

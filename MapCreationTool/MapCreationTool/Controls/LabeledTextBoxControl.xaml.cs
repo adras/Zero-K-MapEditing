@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MapCreationTool.Controls
 {
@@ -34,32 +22,32 @@ namespace MapCreationTool.Controls
         );
 
         public string TextBoxValue
-		{
-			get { return (string)GetValue(TextBoxValueProperty); }
-			set { SetValue(TextBoxValueProperty, value); }
-		}
+        {
+            get { return (string)GetValue(TextBoxValueProperty); }
+            set { SetValue(TextBoxValueProperty, value); }
+        }
 
-		public static readonly DependencyProperty TextBoxValueProperty = DependencyProperty.Register(
-			nameof(TextBoxValue),
-			typeof(string),
-			typeof(LabeledTextBoxControl),
-			new PropertyMetadata("")
-		);
+        public static readonly DependencyProperty TextBoxValueProperty = DependencyProperty.Register(
+            nameof(TextBoxValue),
+            typeof(string),
+            typeof(LabeledTextBoxControl),
+            new PropertyMetadata("")
+        );
 
-		public int LabelWidth
-		{
-			get { return (int)GetValue(LabelWidthProperty); }
-			set { SetValue(LabelWidthProperty, value); }
-		}
+        public int LabelWidth
+        {
+            get { return (int)GetValue(LabelWidthProperty); }
+            set { SetValue(LabelWidthProperty, value); }
+        }
 
-		public static readonly DependencyProperty LabelWidthProperty = DependencyProperty.Register(
-			nameof(LabelWidth),
-			typeof(int),
-			typeof(LabeledTextBoxControl),
-			new PropertyMetadata(100)
-		);
+        public static readonly DependencyProperty LabelWidthProperty = DependencyProperty.Register(
+            nameof(LabelWidth),
+            typeof(int),
+            typeof(LabeledTextBoxControl),
+            new PropertyMetadata(100)
+        );
 
-		public LabeledTextBoxControl()
+        public LabeledTextBoxControl()
         {
             InitializeComponent();
         }

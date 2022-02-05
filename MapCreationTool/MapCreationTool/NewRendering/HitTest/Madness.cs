@@ -1,9 +1,4 @@
 ﻿using OpenTK.Mathematics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MapCreationTool.NewRendering.HitTest
 {
@@ -29,7 +24,7 @@ namespace MapCreationTool.NewRendering.HitTest
             h = Vector3.Cross(rayVector, edge2);
 
             a = Vector3.Dot(edge1, h);
-            
+
 
             if (a > -EPSILON && a < EPSILON)
             {
@@ -55,10 +50,10 @@ namespace MapCreationTool.NewRendering.HitTest
 
             // At this stage we can compute t to find out where the intersection point is on the line.
             float t = f * Vector3.Dot(edge2, q);
-            
+
             if (t > EPSILON) // ray intersection
             {
-                Vector3 result =  ray.origin + t * rayVector;
+                Vector3 result = ray.origin + t * rayVector;
 
                 // outIntersectionPoint.set(0.0, 0.0, 0.0);
                 // outIntersectionPoint.scaleAdd(t, rayVector, rayOrigin);
@@ -75,8 +70,8 @@ namespace MapCreationTool.NewRendering.HitTest
             for (int i = 0; i < data.indices.Length; i += 3)
             {
                 uint idx1 = data.indices[i];
-                uint idx2 = data.indices[i+1];
-                uint idx3 = data.indices[i+2];
+                uint idx2 = data.indices[i + 1];
+                uint idx3 = data.indices[i + 2];
 
                 uint vIdx1 = idx1 * (3 + 3 + 2);
                 uint vIdx2 = idx2 * (3 + 3 + 2);
@@ -88,7 +83,7 @@ namespace MapCreationTool.NewRendering.HitTest
                 Vector3 c = new Vector3(data.vertices[vIdx3], data.vertices[vIdx3 + 1], data.vertices[vIdx3 + 2]);
 
                 Vector3? hit = IntersectionWith(ray, a, b, c);
-                
+
                 if (hit != null)
                 {
                     HitInfo hitInfo = new HitInfo(vIdx1, vIdx2, vIdx3, hit.Value);

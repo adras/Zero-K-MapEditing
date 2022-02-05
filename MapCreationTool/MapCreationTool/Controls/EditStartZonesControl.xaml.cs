@@ -1,21 +1,11 @@
 ﻿using MapCreationTool.Models;
-using MapCreationTool.WPF;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MapCreationTool.Controls
 {
@@ -38,7 +28,7 @@ namespace MapCreationTool.Controls
 
         public int Count { get { return points.Count; } }
 
-        public Point? GetPointAtIndex (int idx)
+        public Point? GetPointAtIndex(int idx)
         {
             if (points.Count == 0)
                 return null;
@@ -143,8 +133,9 @@ namespace MapCreationTool.Controls
         }
 
         public ObservableCollection<StartZoneInfo> StartZones { get => startZones; set => startZones = value; }
-        public StartZoneInfo SelectedStartZone { 
-            get => selectedStartZone; 
+        public StartZoneInfo SelectedStartZone
+        {
+            get => selectedStartZone;
             set
             {
                 selectedStartZone = value;
@@ -235,7 +226,7 @@ namespace MapCreationTool.Controls
 
         private void UserControl_KeyUp(object sender, KeyEventArgs e)
         {
-            switch(e.Key)
+            switch (e.Key)
             {
                 case Key.R:
                 case Key.D:

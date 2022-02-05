@@ -3,23 +3,20 @@ using OpenTK.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MapCreationTool.NewRendering
 {
-	public class Shader : IDisposable
-	{
-		int Handle;
-		bool loaded = false;
-		private  Dictionary<string, int> _uniformLocations;
-		public Shader()
-		{
-		}
+    public class Shader : IDisposable
+    {
+        int Handle;
+        bool loaded = false;
+        private Dictionary<string, int> _uniformLocations;
+        public Shader()
+        {
+        }
 
-		public void Load(string vertPath, string fragPath)
-		{
+        public void Load(string vertPath, string fragPath)
+        {
             // Load shader files
             // There are several different types of shaders, but the only two you need for basic rendering are the vertex and fragment shaders.
             // The vertex shader is responsible for moving around vertices, and uploading that data to the fragment shader.
@@ -87,7 +84,7 @@ namespace MapCreationTool.NewRendering
             }
 
             loaded = true;
-		}
+        }
         // The shader sources provided with this project use hardcoded layout(location)-s. If you want to do it dynamically,
         // you can omit the layout(location=X) lines in the vertex shader, and use this in VertexAttribPointer instead of the hardcoded values.
         public int GetAttribLocation(string attribName)
@@ -125,14 +122,14 @@ namespace MapCreationTool.NewRendering
         }
 
         public void Use()
-		{
-			if (!loaded)
-			{
-				throw new NotSupportedException("Shader not loaded yet. Please call Load before");
-			}
+        {
+            if (!loaded)
+            {
+                throw new NotSupportedException("Shader not loaded yet. Please call Load before");
+            }
 
-			GL.UseProgram(Handle);
-		}
+            GL.UseProgram(Handle);
+        }
 
         #region Unitform Setters
         /// <summary>
@@ -199,28 +196,28 @@ namespace MapCreationTool.NewRendering
         #region IDisposable
         private bool disposedValue = false;
 
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!disposedValue)
-			{
-				GL.DeleteProgram(Handle);
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                GL.DeleteProgram(Handle);
 
-				disposedValue = true;
-			}
-		}
+                disposedValue = true;
+            }
+        }
 
-		~Shader()
-		{
-			GL.DeleteProgram(Handle);
-		}
+        ~Shader()
+        {
+            GL.DeleteProgram(Handle);
+        }
 
 
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

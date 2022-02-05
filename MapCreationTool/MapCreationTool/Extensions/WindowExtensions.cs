@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace MapCreationTool.Extensions
 {
@@ -26,7 +20,7 @@ namespace MapCreationTool.Extensions
             newTop -= window.Height / 2;
 
             window.SetValue(Window.LeftProperty, newLeft);
-            window.SetValue (Window.TopProperty, newTop);
+            window.SetValue(Window.TopProperty, newTop);
         }
     }
 }

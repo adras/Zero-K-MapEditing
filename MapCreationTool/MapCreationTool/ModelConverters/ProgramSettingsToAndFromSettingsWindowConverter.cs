@@ -1,10 +1,5 @@
 ﻿using MapCreationTool.Configuration;
 using MapCreationTool.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MapCreationTool.ModelConverters
 {
@@ -16,7 +11,7 @@ namespace MapCreationTool.ModelConverters
             current.GameDirectory = viewModel.GameDirectory;
         }
 
-        public static void ApplySettingsToViewModel(ProgramSettings current , SettingsWindowViewModel viewModel)
+        public static void ApplySettingsToViewModel(ProgramSettings current, SettingsWindowViewModel viewModel)
         {
             viewModel.GameDirectory = current.GameDirectory;
         }

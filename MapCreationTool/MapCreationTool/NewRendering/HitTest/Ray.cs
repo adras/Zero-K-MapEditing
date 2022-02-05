@@ -1,9 +1,4 @@
 ﻿using OpenTK.Mathematics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MapCreationTool.NewRendering.HitTest
 {
@@ -26,7 +21,7 @@ namespace MapCreationTool.NewRendering.HitTest
             return result;
         }
 
-        private string V2S (Vector3 v)
+        private string V2S(Vector3 v)
         {
             string result = $"({v.X:F2}, {v.Y:F2}, {v.Z:F2})";
             return result;

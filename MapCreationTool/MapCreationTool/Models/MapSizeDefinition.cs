@@ -3,7 +3,7 @@
 namespace MapCreationTool.Models
 {
     // Warning CS8618  Non-nullable field 'xxx' must contain a non-null value when exiting constructor.
-    #pragma warning disable CS8618
+#pragma warning disable CS8618
     public class MapSizeDefinition
     {
         private WidthHeight gameMapSize;

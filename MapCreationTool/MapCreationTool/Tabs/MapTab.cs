@@ -1,11 +1,6 @@
 ﻿using MapCreationTool.Controls;
 using MapCreationTool.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace MapCreationTool.Tabs
 {
@@ -22,7 +17,7 @@ namespace MapCreationTool.Tabs
             get => header;
         }
 
-        public override object Content 
+        public override object Content
         {
             get => content;
         }
@@ -38,8 +33,8 @@ namespace MapCreationTool.Tabs
             this.projectSettings = ProjectSettings.OpenOrCreateDefault(pathInfo);
         }
 
-		internal void LoadMapInfo()
-		{
+        internal void LoadMapInfo()
+        {
             if (projectSettings == null)
                 throw new NotSupportedException("MapInfo can only be loaded after Project Settings are loaded");
 

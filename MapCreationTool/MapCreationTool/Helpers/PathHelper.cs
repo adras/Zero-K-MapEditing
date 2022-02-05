@@ -1,11 +1,6 @@
 ﻿using MapCreationTool.Models;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MapCreationTool.Helpers
 {
@@ -43,13 +38,13 @@ namespace MapCreationTool.Helpers
             return result;
         }
 
-		internal static string? GetMapInfoPath(string mapPath)
-		{
+        internal static string? GetMapInfoPath(string mapPath)
+        {
             // Linux ain't not gonna like the casing of the created path, because it could be different
             DirectoryInfo mapFileInfo = new DirectoryInfo(mapPath);
             string result = Path.Combine(mapFileInfo.FullName, MAP_INFO_NAME);
             return result;
-		}
+        }
 
         internal static string GetFilePathWithoutExtension(string filePath)
         {
@@ -57,7 +52,7 @@ namespace MapCreationTool.Helpers
             string directoryPath = fileInfo.Directory.FullName;
             string fileName = Path.GetFileNameWithoutExtension(filePath);
             string result = Path.Combine(directoryPath, fileName);
-            
+
             return result;
         }
 
@@ -71,16 +66,16 @@ namespace MapCreationTool.Helpers
         /// A bit troublesome if the user stores their map in a related directory
         /// </remarks>
         internal static bool IsMapDirectory(string fullMapPath)
-		{
+        {
             string mapsPath = Path.Combine(fullMapPath, "maps");
             if (!Directory.Exists(mapsPath))
                 return false;
 
             return true;
-		}
+        }
 
         public static DirectoryInfo GetApplicationDirectory()
-		{
+        {
             string assemblyPath = Assembly.GetExecutingAssembly().Location;
             FileInfo assemblyInfo = new FileInfo(assemblyPath);
             DirectoryInfo result = assemblyInfo.Directory;
@@ -94,5 +89,5 @@ namespace MapCreationTool.Helpers
             DirectoryInfo result = new DirectoryInfo(toolPath);
             return result;
         }
-	}
+    }
 }

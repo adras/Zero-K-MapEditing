@@ -3,11 +3,6 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.PixelFormats;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MapCreationTool.NewRendering
 {
@@ -93,8 +88,8 @@ namespace MapCreationTool.NewRendering
             {
                 // Get the startIndices for three vertices, this is the index of the x coordinate
                 uint vIdx1 = indices[idx] * VertexData.IDX_MUL;
-                uint vIdx2 = indices[idx + 1]  *VertexData.IDX_MUL;
-                uint vIdx3 = indices[idx + 2]  *VertexData.IDX_MUL;
+                uint vIdx2 = indices[idx + 1] * VertexData.IDX_MUL;
+                uint vIdx3 = indices[idx + 2] * VertexData.IDX_MUL;
 
                 // create three vectors
                 Vector3 a = new Vector3(vertices[vIdx1], vertices[vIdx1 + 1], vertices[vIdx1 + 2]);

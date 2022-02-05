@@ -1,11 +1,4 @@
-﻿using MapCreationTool.Configuration;
-using MapCreationTool.Helpers;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MapCreationTool.Helpers;
 
 namespace MapCreationTool.Models
 {
@@ -33,10 +26,10 @@ namespace MapCreationTool.Models
         /// </summary>
         public string mapInfoPath;
 
-		public MapPathInformation()
-		{
+        public MapPathInformation()
+        {
             // only for serialization purposes
-		}
+        }
 
         public MapPathInformation(string fullMapPath)
         {

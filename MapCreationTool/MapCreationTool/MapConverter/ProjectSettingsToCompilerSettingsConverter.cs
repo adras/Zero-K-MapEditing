@@ -1,11 +1,4 @@
-﻿using MapCreationTool.Helpers;
-using MapCreationTool.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MapCreationTool.Models;
 
 namespace MapCreationTool.MapConverter
 {

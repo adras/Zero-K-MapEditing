@@ -1,22 +1,10 @@
-﻿using MapCreationTool.Windows;
+﻿using MapCreationTool.Helpers;
+using MapCreationTool.Models;
+using MapCreationTool.Windows;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using Forms = System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MapCreationTool.Models;
-using System.IO;
-using MapCreationTool.Helpers;
 
 namespace MapCreationTool.Controls
 {
@@ -27,7 +15,7 @@ namespace MapCreationTool.Controls
     {
         public delegate void MapCreated(object sender, MapPathInformation mapPathInformation);
         public delegate void MapOpened(object sender, MapPathInformation mapPathInformation);
-        
+
 
         public event MapCreated OnMapCreated;
         public event MapOpened OnMapOpened;
@@ -60,8 +48,8 @@ namespace MapCreationTool.Controls
 
             MapPathInformation mapPathInfo = new MapPathInformation(fullMapPath);
             if (!PathHelper.IsMapDirectory(fullMapPath))
-			{
-                 MessageBox.Show($"Could not open map directory. No mapinfo.lua exists at: {mapPathInfo.mapInfoPath}");
+            {
+                MessageBox.Show($"Could not open map directory. No mapinfo.lua exists at: {mapPathInfo.mapInfoPath}");
                 return;
             }
 
