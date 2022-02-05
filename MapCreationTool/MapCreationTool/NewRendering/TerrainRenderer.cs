@@ -38,7 +38,7 @@ namespace MapCreationTool.NewRendering
 			triangle = new TestTriangle();
 		}
 
-		public ImageData imageData;
+		public VertexData imageData;
 		Texture diffuseTexture;
 		public void Startup(string imagePath, string diffusePath)
 		{
@@ -206,9 +206,9 @@ namespace MapCreationTool.NewRendering
 
         internal void UpdateImageData()
         {
-			
-			GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
-			GL.BufferData(BufferTarget.ArrayBuffer, imageData.vertices.Length * sizeof(float), imageData.vertices, BufferUsageHint.StaticDraw);
+			// https://www.khronos.org/opengl/wiki/Vertex_Specification_Best_Practices#Dynamic_VBO
+			// Using BufferSubData might be a good idea for performance improvement
+			GL.BufferData(BufferTarget.ArrayBuffer, imageData.vertices.Length * sizeof(float), imageData.vertices, BufferUsageHint.DynamicDraw);
 		}
 
 		internal void Move(Vector3 delta)

@@ -70,7 +70,7 @@ namespace MapCreationTool.NewRendering.HitTest
             }
         }
 
-        public static HitInfo GetHit(ImageData data, Ray ray)
+        public static HitInfo GetHit(VertexData data, Ray ray)
         {
             for (int i = 0; i < data.indices.Length; i += 3)
             {
