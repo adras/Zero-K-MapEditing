@@ -12,15 +12,15 @@ namespace MapCreationTool.Terrain
     {
         public VertexData vertexData;
 
-        public void DrawSmoothBrush(HitInfo hit, VertexData vertexData)
+        public void DrawSmoothBrush(HitInfo hit, VertexData vertexData, float brushSize, float brushStrength)
         {
 
             // Do some rectangle manipulation
             // NOTE: TODO: Normals also need to be recalculated
-            float brushStrength = 2f;
-            int halfBrushWidth = 8;
-            int halfBrushHeight = 8;
-            Vector3 brushSize = new Vector3(halfBrushWidth, halfBrushHeight, 0);
+            
+            int halfBrushWidth  = (int)(brushSize / 2f);
+            int halfBrushHeight = (int)(brushSize / 2f);
+            Vector3 brushSizeV = new Vector3(halfBrushWidth, halfBrushHeight, 0);
             //Vector3 center = new Vector3(halfBrushWidth / 2f, halfBrushHeight / 2f, 0);
             Vector3 center = Vector3.Zero;
             for (int x = -halfBrushWidth; x < halfBrushWidth; x++)

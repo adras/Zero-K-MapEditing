@@ -16,9 +16,13 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
         <CheckBox Content="UseTexture" IsChecked="{Binding Path=UseTexture, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TerrainControl}}"></CheckBox>
-        
+
         <opentk:GLWpfControl Name="openTk" Grid.Row="1"></opentk:GLWpfControl>
         <Border HorizontalAlignment="Left"    Grid.Row="1"        VerticalAlignment="Top"            Margin="10">
             <StackPanel Orientation="Vertical">
@@ -29,6 +33,18 @@
             </StackPanel>
 
         </Border>
+        <StackPanel Grid.Column="1" Grid.RowSpan="2" Orientation="Vertical">
+
+            <StackPanel Orientation="Vertical">
+                <Label Content="Brush Strength"></Label>
+                <Slider Minimum="1" Maximum="20" Name="sliderStrength"  SmallChange="0.5"></Slider>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <Label Content="Brush Size"></Label>
+                <Slider Minimum="3" Maximum="20"  Name="sliderSize" SmallChange="0.5"></Slider>
+            </StackPanel>
+        </StackPanel>
 
 
     </Grid>

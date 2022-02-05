@@ -117,7 +117,9 @@ namespace MapCreationTool.Controls
 
 
             HitInfo result = Madness.GetHit(renderer.vertexData, ray);
-            editor.DrawSmoothBrush(result, renderer.vertexData);
+            float brushStrength = (float)sliderStrength.Value;
+            float brushSize = (float)sliderSize.Value;
+            editor.DrawSmoothBrush(result, renderer.vertexData, brushSize, brushStrength);
             //if (result == null)
             //    return;
 
