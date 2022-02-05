@@ -7,26 +7,32 @@ namespace MapCreationTool.NewRendering
     public class Camera
     {
         private Vector3 front = -Vector3.UnitZ;
-
         private Vector3 up = Vector3.UnitY;
-
         private Vector3 right = Vector3.UnitX;
 
         private float pitch;
-
         private float yaw = -MathHelper.PiOver2; // Without this, you would be started rotated 90 degrees right.
-
         private float fov = MathHelper.PiOver2;
 
-        public Camera(Vector3 position, float aspectRatio)
+        private int screenWidth;
+        private int screenHeight;
+
+        public Camera(Vector3 position, int screenWidth, int screenHeight)
         {
             Position = position;
-            AspectRatio = aspectRatio;
+            ScreenWidth = screenWidth;
+            ScreenHeight = screenHeight;
         }
 
         public Vector3 Position { get; set; }
 
-        public float AspectRatio { private get; set; }
+        public float AspectRatio
+        {
+            get
+            {
+                return screenWidth / screenHeight;
+            }
+        }
 
         public Vector3 Front => front;
 
@@ -60,10 +66,13 @@ namespace MapCreationTool.NewRendering
             get => MathHelper.RadiansToDegrees(fov);
             set
             {
-                var angle = MathHelper.Clamp(value, 1f, 45f);
+                float angle = MathHelper.Clamp(value, 1f, 45f);
                 fov = MathHelper.DegreesToRadians(angle);
             }
         }
+
+        public int ScreenWidth { get => screenWidth; set => screenWidth = value; }
+        public int ScreenHeight { get => screenHeight; set => screenHeight = value; }
 
         public Matrix4 GetViewMatrix()
         {

@@ -30,18 +30,6 @@
 
         </Border>
 
-        <!-- Border is just an example-->
-        <!--<Border
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Margin="10"
-            BorderBrush="CornflowerBlue"
-            BorderThickness="2">
-            <Label
-                Background="#FFE6931C"
-                Content="Overlaid label with border"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center" />
-        </Border>-->
+
     </Grid>
 </UserControl>

@@ -1,9 +1,15 @@
 ﻿using OpenTK.Mathematics;
+using System.Drawing;
 
 namespace MapCreationTool.NewRendering.HitTest
 {
     public static class CameraExtensions
     {
+        public static Vector3 ScreenToWorldPos(this Camera camera, Point pos)
+        {
+            return Vector3.Zero;
+        }
+
         public static Vector3 ScreenToPointRay(this Camera camera, Vector3 mousePos, Matrix4 matrix)
         {
             Matrix4 proj = camera.GetProjectionMatrix();

@@ -49,9 +49,16 @@ namespace MapCreationTool.Controls
         public TerrainControl()
         {
             InitializeComponent();
-
-
             renderer = new TerrainRenderer();
+
+            GLWpfControlSettings settings = new GLWpfControlSettings
+            {
+                MajorVersion = 2,
+                MinorVersion = 1,
+            };
+
+            openTk.Start(settings);
+            openTk.Render += OpenTk_Render;
         }
 
         private void OpenTk_Render(TimeSpan obj)
@@ -60,23 +67,10 @@ namespace MapCreationTool.Controls
             renderer.Render();
         }
 
-        private void openTkControl_Render(TimeSpan obj)
-        {
-
-        }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            // GLFWGraphicsContext context = new GLFWGraphicsContext()
-            // Exception, memory corrupt when using this context
-            //Window currentWindow = Window.GetWindow(this);
-            //IntPtr handle = new WindowInteropHelper(currentWindow).Handle;
-            //GLFWGraphicsContext context = null;
-            //unsafe
-            //{
-            //	// Requires a OpenTK.Windowing.GraphicsLibraryFramework.Window
-            //	context = new GLFWGraphicsContext((OpenTK.Windowing.GraphicsLibraryFramework.Window*)handle.ToPointer());
-            //}
+
         }
 
         Vector3 lastPos = Vector3.Zero;
@@ -102,27 +96,13 @@ namespace MapCreationTool.Controls
             lastPos = mouseVect;
         }
 
-        bool initialized = false;
+
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)e.NewValue != true)
                 return;
 
-            GLWpfControlSettings settings = new GLWpfControlSettings
-            {
-                MajorVersion = 2,
-                MinorVersion = 1,
-                //ContextToUse = context
-            };
-
-            if (!initialized)
-            {
-                openTk.Start(settings);
-                renderer.Startup(ProjectSettings.CompilationSettings.HeightMapName, ProjectSettings.CompilationSettings.DiffuseMapName);
-                openTk.Render += OpenTk_Render;
-            }
-
-            initialized = true;
+            renderer.Startup(ProjectSettings.CompilationSettings.HeightMapName, ProjectSettings.CompilationSettings.DiffuseMapName);
         }
 
         private void UserControl_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -140,15 +120,10 @@ namespace MapCreationTool.Controls
             centeredMouse.X = 2.0f * centeredMouse.X / screenSize.X - 1f;
             centeredMouse.Y = 2.0f * centeredMouse.Y / screenSize.Y - 1f;
             centeredMouse.Z = -1;
-            //centeredMouse.Y *= -1;
 
 
             Matrix4 proj = renderer.camera.GetProjectionMatrix();
             Matrix4 view = renderer.camera.GetViewMatrix();
-            //Matrix4 newMatrix = Matrix4.Invert(view * proj);
-            //Matrix4 model = Matrix4.Identity;
-            //Matrix4 view = Matrix4.LookAt(new Vector3(0, 0, 2), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
-            //Matrix4 proj = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver2, 4.0f / 3.0f, 0.01f, 10f);
             Matrix4 newMatrix = view * proj;
 
             newMatrix = Matrix4.Invert(newMatrix);
@@ -169,6 +144,7 @@ namespace MapCreationTool.Controls
             Debug.WriteLine($"Ray: {ray}");
 
             HitInfo result = Madness.GetHit(renderer.imageData, ray);
+            
             Debug.WriteLine($"Hit: {result?.hitLocation}");
             if (result == null)
                 return;
@@ -194,12 +170,12 @@ namespace MapCreationTool.Controls
             }
 
             renderer.UpdateImageData();
-
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            renderer.camera.AspectRatio = (float)e.NewSize.Width / (float)e.NewSize.Height;
+            renderer.camera.ScreenWidth = (int)e.NewSize.Width;
+            renderer.camera.ScreenHeight = (int)e.NewSize.Height;
         }
     }
 }

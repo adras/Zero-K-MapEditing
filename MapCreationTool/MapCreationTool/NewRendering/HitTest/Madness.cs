@@ -18,7 +18,6 @@ namespace MapCreationTool.NewRendering.HitTest
             edge1 = vertex1 - vertex0;
             edge2 = vertex2 - vertex0;
 
-            // maybe the other way round
             Vector3 rayVector = ray.direction;
 
             h = Vector3.Cross(rayVector, edge2);
@@ -38,7 +37,6 @@ namespace MapCreationTool.NewRendering.HitTest
             {
                 return null;
             }
-
 
             q = Vector3.Cross(s, edge1);
             v = f * Vector3.Dot(rayVector, q);

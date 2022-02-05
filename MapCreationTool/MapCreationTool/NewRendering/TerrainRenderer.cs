@@ -19,7 +19,8 @@ namespace MapCreationTool.NewRendering
         public TerrainRenderer()
         {
             // Zoom out, set aspect ratio
-            camera = new Camera(new Vector3(0, 0, 2), 4.0f / 3.0f);
+            // Screen size will be updated by control's resize event during initialization
+            camera = new Camera(new Vector3(0, 0, 2), 400, 300);
 
             // Look down
             camera.Pitch = -180;
