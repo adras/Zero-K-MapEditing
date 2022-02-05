@@ -1,6 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL;
 
-namespace MapCreationTool.NewRendering
+namespace MapCreationTool.Terrain
 {
     // A simple implementation of a triangle
     // Just instantiate it, call start once, and render during the update loop, and you will see a triangle

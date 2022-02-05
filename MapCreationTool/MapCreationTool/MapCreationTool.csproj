@@ -151,10 +151,10 @@
 	  <None Update="Shaders\shader.vert">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="NewRendering\triangle.frag">
+	  <None Update="Terrain\triangle.frag">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="NewRendering\triangle.vert">
+	  <None Update="Terrain\triangle.vert">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
@@ -164,6 +164,10 @@
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	    <SubType>Designer</SubType>
 	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="NewRendering\" />
 	</ItemGroup>
 
 </Project>

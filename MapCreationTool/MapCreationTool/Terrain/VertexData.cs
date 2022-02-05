@@ -1,4 +1,4 @@
-﻿namespace MapCreationTool.NewRendering
+﻿namespace MapCreationTool.Terrain
 {
     class VertexData
     {

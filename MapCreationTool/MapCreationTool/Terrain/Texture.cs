@@ -5,7 +5,7 @@ using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 
-namespace MapCreationTool.NewRendering
+namespace MapCreationTool.Terrain
 {
     internal class Texture
     {

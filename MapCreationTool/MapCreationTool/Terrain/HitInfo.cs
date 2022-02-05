@@ -1,6 +1,6 @@
 ﻿using OpenTK.Mathematics;
 
-namespace MapCreationTool.NewRendering
+namespace MapCreationTool.Terrain
 {
     internal class HitInfo
     {
@@ -14,9 +14,9 @@ namespace MapCreationTool.NewRendering
 
         public HitInfo(uint idxA, uint idxB, uint idxC, Vector3 hitLocation)
         {
-            this.vIdxA = idxA;
-            this.vIdxB = idxB;
-            this.vIdxC = idxC;
+            vIdxA = idxA;
+            vIdxB = idxB;
+            vIdxC = idxC;
             this.hitLocation = hitLocation;
         }
     }

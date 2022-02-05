@@ -1,7 +1,7 @@
 using OpenTK.Mathematics;
 using System;
 
-namespace MapCreationTool.NewRendering
+namespace MapCreationTool.Terrain
 {
 
     public class Camera

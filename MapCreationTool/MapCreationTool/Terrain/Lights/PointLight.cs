@@ -1,6 +1,6 @@
 ﻿using OpenTK.Mathematics;
 
-namespace MapCreationTool.NewRendering.Lights
+namespace MapCreationTool.Terrain.Lights
 {
     public class PointLight
     {

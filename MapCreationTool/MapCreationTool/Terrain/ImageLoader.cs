@@ -4,7 +4,7 @@ using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.PixelFormats;
 using System;
 
-namespace MapCreationTool.NewRendering
+namespace MapCreationTool.Terrain
 {
 
 
@@ -20,7 +20,7 @@ namespace MapCreationTool.NewRendering
 
             float halfWidth = heightImage.Width / 2.0f;
             float halfHeight = heightImage.Height / 2.0f;
-            int bit16 = 2 << (16 - 1);
+            int bit16 = 2 << 16 - 1;
 
             float colorScaleFactor = 10;
 
@@ -60,7 +60,6 @@ namespace MapCreationTool.NewRendering
             int iIdx = 0;
             int nIdx = 3;
             for (int y = 0; y < heightImage.Height - 1; y += 1)
-            {
                 for (int x = 0; x < heightImage.Width - 1; x += 1)
                 {
                     int idxA1 = x + y * heightImage.Width + 1;
@@ -80,7 +79,6 @@ namespace MapCreationTool.NewRendering
                     indices[iIdx++] = (uint)idxB3;
                     //iIdx +=3;
                 }
-            }
 
             // Divide and capitulate to performance
             // Calculate normals
@@ -142,7 +140,7 @@ namespace MapCreationTool.NewRendering
             float oldDelta = oldMax - oldMin;
             float newDelta = newMax - newMin;
 
-            float result = (((val - oldMin) * newDelta) / oldDelta) + newMin;
+            float result = (val - oldMin) * newDelta / oldDelta + newMin;
             return result;
         }
     }

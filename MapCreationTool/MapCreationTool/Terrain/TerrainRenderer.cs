@@ -1,11 +1,11 @@
-﻿using MapCreationTool.NewRendering.Lights;
+﻿using MapCreationTool.Terrain.Lights;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace MapCreationTool.NewRendering
+namespace MapCreationTool.Terrain
 {
     class TerrainRenderer
     {
@@ -39,16 +39,23 @@ namespace MapCreationTool.NewRendering
                 new DirLight
                 {
                     direction = new Vector3(-0.2f, -1.0f, -0.3f),
-                    ambient = new Vector3(0.6f),
-                    diffuse = new Vector3(0.8f),
-                    specular= new Vector3(0.6f)
+                    ambient = new Vector3(0.2f),
+                    diffuse = new Vector3(0.4f),
+                    specular= new Vector3(0.2f)
                 },
                 new DirLight
                 {
-                    direction = new Vector3(-0.2f, 1.0f, -0.3f),
-                    ambient = new Vector3(0.6f),
-                    diffuse = new Vector3(0.8f),
-                    specular= new Vector3(0.6f)
+                    direction = new Vector3(0.4f, 1.0f, -0.4f),
+                    ambient = new Vector3(0.2f),
+                    diffuse = new Vector3(0.4f),
+                    specular= new Vector3(0.2f)
+                },
+                new DirLight
+                {
+                    direction = new Vector3(-0.2f, 1.0f, -0.4f),
+                    ambient = new Vector3(0.2f),
+                    diffuse = new Vector3(0.4f),
+                    specular= new Vector3(0.2f)
                 }
             };
 
@@ -144,21 +151,13 @@ namespace MapCreationTool.NewRendering
                 speed = 1.5f;
 
             if (Keyboard.IsKeyDown(Key.A))
-            {
                 delta -= camera.Right * speed;
-            }
             if (Keyboard.IsKeyDown(Key.D))
-            {
                 delta += camera.Right * speed;
-            }
             if (Keyboard.IsKeyDown(Key.W))
-            {
                 delta += camera.Front * speed;
-            }
             if (Keyboard.IsKeyDown(Key.S))
-            {
                 delta -= camera.Front * speed;
-            }
             Move(delta);
 
         }

@@ -1,6 +1,6 @@
 ﻿using OpenTK.Mathematics;
 
-namespace MapCreationTool.NewRendering.HitTest
+namespace MapCreationTool.Terrain.HitTest
 {
     public class Ray
     {

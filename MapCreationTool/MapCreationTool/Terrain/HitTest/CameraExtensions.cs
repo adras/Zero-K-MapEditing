@@ -1,7 +1,7 @@
 ﻿using OpenTK.Mathematics;
 using System.Windows;
 
-namespace MapCreationTool.NewRendering.HitTest
+namespace MapCreationTool.Terrain.HitTest
 {
     public static class CameraExtensions
     {
@@ -34,14 +34,14 @@ namespace MapCreationTool.NewRendering.HitTest
             Vector4 rayNear = mouseNear * newMatrix;
             Vector4 rayFar = mouseFar * newMatrix;
 
-            rayNear = (1 / rayNear.W) * rayNear;
-            rayFar = (1 / rayFar.W) * rayFar;
+            rayNear = 1 / rayNear.W * rayNear;
+            rayFar = 1 / rayFar.W * rayFar;
 
 
             Vector3 origin = new Vector3(rayNear);
             Vector3 target = new Vector3(rayFar);
             Ray ray = new Ray(origin, target);
-            
+
             return ray;
         }
     }

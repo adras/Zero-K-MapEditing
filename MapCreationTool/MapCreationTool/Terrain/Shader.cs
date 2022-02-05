@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MapCreationTool.NewRendering
+namespace MapCreationTool.Terrain
 {
     public class Shader : IDisposable
     {
@@ -116,18 +116,14 @@ namespace MapCreationTool.NewRendering
             // Check for linking errors
             GL.GetProgram(program, GetProgramParameterName.LinkStatus, out int code);
             if (code != (int)All.True)
-            {
                 // We can use `GL.GetProgramInfoLog(program)` to get information about the error.
                 throw new Exception($"Error occurred whilst linking Program({program})");
-            }
         }
 
         public void Use()
         {
             if (!loaded)
-            {
                 throw new NotSupportedException("Shader not loaded yet. Please call Load before");
-            }
 
             GL.UseProgram(Handle);
         }
@@ -163,7 +159,7 @@ namespace MapCreationTool.NewRendering
         public void SetBool(string name, bool data)
         {
             GL.UseProgram(Handle);
-            GL.Uniform1(_uniformLocations[name], (data) ? 1 : 0);
+            GL.Uniform1(_uniformLocations[name], data ? 1 : 0);
         }
 
         /// <summary>

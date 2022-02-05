@@ -1,6 +1,6 @@
 ﻿using MapCreationTool.Models;
-using MapCreationTool.NewRendering;
-using MapCreationTool.NewRendering.HitTest;
+using MapCreationTool.Terrain;
+using MapCreationTool.Terrain.HitTest;
 using OpenTK.Mathematics;
 using OpenTK.Wpf;
 using System;

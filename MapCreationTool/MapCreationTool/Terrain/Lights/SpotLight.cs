@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MapCreationTool.NewRendering.Lights
+namespace MapCreationTool.Terrain.Lights
 {
     public class SpotLight
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MapCreationTool.NewRendering.Lights
+namespace MapCreationTool.Terrain.Lights
 {
     public static class ShaderExtensions
     {
@@ -15,27 +15,21 @@ namespace MapCreationTool.NewRendering.Lights
             GL.UseProgram(shader.Handle);
             shader.SetInt("pointLightCount", lights.Count);
             for (int i = 0; i < lights.Count; i++)
-            {
-                SetPointLight(shader, i, lights[i]);
-            }
+                shader.SetPointLight(i, lights[i]);
         }
         public static void SetDirLights(this Shader shader, List<DirLight> lights)
         {
             GL.UseProgram(shader.Handle);
             shader.SetInt("dirLightCount", lights.Count);
             for (int i = 0; i < lights.Count; i++)
-            {
-                SetDirLight(shader, i, lights[i]);
-            }
+                shader.SetDirLight(i, lights[i]);
         }
         public static void SetSpotLights(this Shader shader, List<SpotLight> lights)
         {
             GL.UseProgram(shader.Handle);
             shader.SetInt("spotLightCount", lights.Count);
             for (int i = 0; i < lights.Count; i++)
-            {
-                SetSpotLight(shader, i, lights[i]);
-            }
+                shader.SetSpotLight(i, lights[i]);
         }
 
         public static void SetPointLight(this Shader shader, int idx, PointLight data)
