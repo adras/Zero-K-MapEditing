@@ -2,7 +2,7 @@
 
 namespace MapCreationTool.NewRendering.HitTest
 {
-    internal class Ray
+    public class Ray
     {
         public Vector3 origin;
         public Vector3 target;

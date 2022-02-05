@@ -14,14 +14,12 @@ namespace MapCreationTool.NewRendering
         private float yaw = -MathHelper.PiOver2; // Without this, you would be started rotated 90 degrees right.
         private float fov = MathHelper.PiOver2;
 
-        private int screenWidth;
-        private int screenHeight;
+        private Vector2 screenSize;
 
         public Camera(Vector3 position, int screenWidth, int screenHeight)
         {
             Position = position;
-            ScreenWidth = screenWidth;
-            ScreenHeight = screenHeight;
+            ScreenSize = new Vector2(screenWidth, screenHeight);
         }
 
         public Vector3 Position { get; set; }
@@ -30,7 +28,7 @@ namespace MapCreationTool.NewRendering
         {
             get
             {
-                return screenWidth / screenHeight;
+                return ScreenSize.X / ScreenSize.Y;
             }
         }
 
@@ -71,8 +69,7 @@ namespace MapCreationTool.NewRendering
             }
         }
 
-        public int ScreenWidth { get => screenWidth; set => screenWidth = value; }
-        public int ScreenHeight { get => screenHeight; set => screenHeight = value; }
+        public Vector2 ScreenSize { get => screenSize; set => screenSize = value; }
 
         public Matrix4 GetViewMatrix()
         {
