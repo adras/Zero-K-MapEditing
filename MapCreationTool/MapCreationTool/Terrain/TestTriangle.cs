@@ -34,7 +34,7 @@ namespace MapCreationTool.Terrain
 
 
             shader = new Shader();
-            shader.Load(@"NewRendering\triangle.vert", @"NewRendering\triangle.frag");
+            shader.Load(@"Shaders\triangle.vert", @"Shaders\triangle.frag");
             shader.Use();
 
         }

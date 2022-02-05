@@ -61,7 +61,7 @@ namespace MapCreationTool.Terrain
 
         }
 
-        public VertexData imageData;
+        public VertexData vertexData;
         Texture diffuseTexture;
         public void Startup(string imagePath, string diffusePath)
         {
@@ -70,7 +70,7 @@ namespace MapCreationTool.Terrain
             // Find a better place for the files, also the extension is weird, could be .glsl I guess
             shader.Load(@"Shaders\shader.vert", @"Shaders\lighting.frag");
 
-            imageData = ImageLoader.LoadImage(imagePath, 0, 300);
+            vertexData = ImageLoader.LoadImage(imagePath, 0, 300);
             diffuseTexture = Texture.LoadImage(diffusePath);
 
             float[] _vertices =
@@ -101,7 +101,7 @@ namespace MapCreationTool.Terrain
 
             VertexBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
-            GL.BufferData(BufferTarget.ArrayBuffer, imageData.vertices.Length * sizeof(float), imageData.vertices, BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, vertexData.vertices.Length * sizeof(float), vertexData.vertices, BufferUsageHint.StaticDraw);
 
             VertexArrayObject = GL.GenVertexArray();
             GL.BindVertexArray(VertexArrayObject);
@@ -134,7 +134,7 @@ namespace MapCreationTool.Terrain
             ElementBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
             // We also upload data to the EBO the same way as we did with VBOs.
-            GL.BufferData(BufferTarget.ElementArrayBuffer, imageData.indices.Length * sizeof(uint), imageData.indices, BufferUsageHint.DynamicDraw);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, vertexData.indices.Length * sizeof(uint), vertexData.indices, BufferUsageHint.DynamicDraw);
 
             diffuseTexture.Use(TextureUnit.Texture0);
             shader.Use();
@@ -207,7 +207,7 @@ namespace MapCreationTool.Terrain
 
             GL.BindVertexArray(VertexArrayObject);
 
-            GL.DrawElements(PrimitiveType.Triangles, imageData.indices.Length, DrawElementsType.UnsignedInt, 0);
+            GL.DrawElements(PrimitiveType.Triangles, vertexData.indices.Length, DrawElementsType.UnsignedInt, 0);
             GL.Finish();
 
             //triangle.Render();
@@ -218,7 +218,7 @@ namespace MapCreationTool.Terrain
             // https://www.khronos.org/opengl/wiki/Vertex_Specification_Best_Practices#Dynamic_VBO
             // Using BufferSubData might be a good idea for performance improvement
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
-            GL.BufferData(BufferTarget.ArrayBuffer, imageData.vertices.Length * sizeof(float), imageData.vertices, BufferUsageHint.DynamicDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, vertexData.vertices.Length * sizeof(float), vertexData.vertices, BufferUsageHint.DynamicDraw);
         }
 
         internal void Move(Vector3 delta)

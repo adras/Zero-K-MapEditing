@@ -151,10 +151,10 @@
 	  <None Update="Shaders\shader.vert">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Terrain\triangle.frag">
+	  <None Update="Shaders\triangle.frag">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Terrain\triangle.vert">
+	  <None Update="Shaders\triangle.vert">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
