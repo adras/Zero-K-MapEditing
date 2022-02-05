@@ -8,9 +8,10 @@ namespace MapCreationTool.NewRendering
 {
     public class Shader : IDisposable
     {
-        int Handle;
-        bool loaded = false;
-        private Dictionary<string, int> _uniformLocations;
+        internal int Handle;
+        internal bool loaded = false;
+        internal Dictionary<string, int> _uniformLocations;
+
         public Shader()
         {
         }

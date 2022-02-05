@@ -1,5 +1,7 @@
-﻿using OpenTK.Graphics.OpenGL;
+﻿using MapCreationTool.NewRendering.Lights;
+using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Input;
 
@@ -16,6 +18,8 @@ namespace MapCreationTool.NewRendering
         TestTriangle triangle;
         public bool useTexture = true;
 
+        List<DirLight> dirLights;
+
         public TerrainRenderer()
         {
             // Zoom out, set aspect ratio
@@ -29,9 +33,25 @@ namespace MapCreationTool.NewRendering
             camera.Yaw = 180;
 
             shader = new Shader();
-
-
             triangle = new TestTriangle();
+            dirLights = new List<DirLight>
+            {
+                new DirLight
+                {
+                    direction = new Vector3(-0.2f, -1.0f, -0.3f),
+                    ambient = new Vector3(0.6f),
+                    diffuse = new Vector3(0.8f),
+                    specular= new Vector3(0.6f)
+                },
+                new DirLight
+                {
+                    direction = new Vector3(-0.2f, 1.0f, -0.3f),
+                    ambient = new Vector3(0.6f),
+                    diffuse = new Vector3(0.8f),
+                    specular= new Vector3(0.6f)
+                }
+            };
+
         }
 
         public VertexData imageData;
@@ -175,15 +195,16 @@ namespace MapCreationTool.NewRendering
             shader.SetVector3("material.specular", new Vector3(0.5f, 0.5f, 0.5f));
             shader.SetFloat("material.shininess", 32.0f);
 
-            shader.SetBool("useTexture", useTexture);
-            shader.SetVector3("noTextureColor", new Vector3(1.0f, 1.0f, 0.7f));
+            // shader.SetBool("useTexture", useTexture);
+            // shader.SetVector3("noTextureColor", new Vector3(1.0f, 1.0f, 0.7f));
 
 
             // Directional light needs a direction, in this example we just use (-0.2, -1.0, -0.3f) as the lights direction
-            shader.SetVector3("light.direction", new Vector3(-0.2f, -1.0f, -0.3f));
-            shader.SetVector3("light.ambient", new Vector3(0.6f));
-            shader.SetVector3("light.diffuse", new Vector3(0.8f));
-            shader.SetVector3("light.specular", new Vector3(0.6f));
+            //shader.SetVector3("light.direction", new Vector3(-0.2f, -1.0f, -0.3f));
+            //shader.SetVector3("light.ambient", new Vector3(0.6f));
+            //shader.SetVector3("light.diffuse", new Vector3(0.8f));
+            //shader.SetVector3("light.specular", new Vector3(0.6f));
+            shader.SetDirLights(dirLights);
 
             GL.BindVertexArray(VertexArrayObject);
 
