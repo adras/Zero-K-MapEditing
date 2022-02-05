@@ -142,13 +142,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="NewRendering\lighting.frag">
+	  <None Update="Shaders\lighting.frag">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="NewRendering\shader.frag">
+	  <None Update="Shaders\shader.frag">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="NewRendering\shader.vert">
+	  <None Update="Shaders\shader.vert">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="NewRendering\triangle.frag">

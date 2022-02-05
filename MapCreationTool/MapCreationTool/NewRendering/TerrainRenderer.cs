@@ -41,7 +41,7 @@ namespace MapCreationTool.NewRendering
 
             // Load shaders
             // Find a better place for the files, also the extension is weird, could be .glsl I guess
-            shader.Load(@"NewRendering\shader.vert", @"NewRendering\lighting.frag");
+            shader.Load(@"Shaders\shader.vert", @"Shaders\lighting.frag");
 
             imageData = ImageLoader.LoadImage(imagePath, 0, 300);
             diffuseTexture = Texture.LoadImage(diffusePath);
@@ -164,18 +164,11 @@ namespace MapCreationTool.NewRendering
             Matrix4 view = camera.GetViewMatrix();
             Matrix4 proj = camera.GetProjectionMatrix();
 
-            //model = Matrix4.Identity;
-            //view  = Matrix4.Identity;
-            //proj  = Matrix4.Identity;
-
-            //view = Matrix4.LookAt(new Vector3(0, 0, 2), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
-            //proj = Matrix4.CreatePerspectiveFieldOfView(MathHelper.PiOver2, 4.0f / 3.0f, 0.01f, 10f);
 
             shader.SetMatrix4("model", model);
             shader.SetMatrix4("view", view);
             shader.SetMatrix4("projection", proj);
 
-            // No texture yet, when texture is implemented, enable this again
             shader.SetVector3("viewPos", camera.Position);
             shader.SetInt("material.diffuse", 0);
             shader.SetInt("material.specular", 1);
@@ -189,8 +182,8 @@ namespace MapCreationTool.NewRendering
             // Directional light needs a direction, in this example we just use (-0.2, -1.0, -0.3f) as the lights direction
             shader.SetVector3("light.direction", new Vector3(-0.2f, -1.0f, -0.3f));
             shader.SetVector3("light.ambient", new Vector3(0.6f));
-            shader.SetVector3("light.diffuse", new Vector3(1.0f));
-            shader.SetVector3("light.specular", new Vector3(1.0f));
+            shader.SetVector3("light.diffuse", new Vector3(0.8f));
+            shader.SetVector3("light.specular", new Vector3(0.6f));
 
             GL.BindVertexArray(VertexArrayObject);
 
