@@ -203,6 +203,7 @@ namespace MapCreationTool.NewRendering
         {
             // https://www.khronos.org/opengl/wiki/Vertex_Specification_Best_Practices#Dynamic_VBO
             // Using BufferSubData might be a good idea for performance improvement
+            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
             GL.BufferData(BufferTarget.ArrayBuffer, imageData.vertices.Length * sizeof(float), imageData.vertices, BufferUsageHint.DynamicDraw);
         }
 
