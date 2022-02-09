@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="130"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <CheckBox Content="UseTexture" IsChecked="{Binding Path=UseTexture, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TerrainControl}}"></CheckBox>
@@ -33,16 +33,22 @@
             </StackPanel>
 
         </Border>
-        <StackPanel Grid.Column="1" Grid.RowSpan="2" Orientation="Vertical">
+        <StackPanel Grid.Column="1" Grid.RowSpan="2" Orientation="Vertical" Margin="5, 0">
 
             <StackPanel Orientation="Vertical">
                 <Label Content="Brush Strength"></Label>
-                <Slider Minimum="1" Maximum="20" Name="sliderStrength"  SmallChange="0.5"></Slider>
+                <StackPanel Orientation="Horizontal">
+                    <Slider Minimum="1" Maximum="20" Name="sliderStrength" IsSnapToTickEnabled="True" SmallChange="1" Width="90"></Slider>
+                    <Label Content="{Binding ElementName=sliderStrength, Path=Value}"></Label>
+                </StackPanel>
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
                 <Label Content="Brush Size"></Label>
-                <Slider Minimum="3" Maximum="20"  Name="sliderSize" SmallChange="0.5"></Slider>
+                <StackPanel Orientation="Horizontal">
+                    <Slider Minimum="2" Maximum="20"  Name="sliderSize" IsSnapToTickEnabled="True" SmallChange="1" Width="100"></Slider>
+                    <Label Content="{Binding ElementName=sliderSize, Path=Value}"></Label>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 

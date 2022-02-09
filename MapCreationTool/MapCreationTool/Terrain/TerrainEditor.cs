@@ -31,6 +31,8 @@ namespace MapCreationTool.Terrain
                     Vector3 delta = center - current;
 
                     float height = 1f / Math.Max (1, delta.Length);
+                    Debug.WriteLine($"height: {height}");
+           
 
 
                     uint offset = (uint)(x + y * vertexData.width) * VertexData.IDX_MUL;
@@ -44,6 +46,7 @@ namespace MapCreationTool.Terrain
                     vertexData.vertices[targetIdx] += height * brushStrength;
                 }
             }
+            Debug.WriteLine("");
         }
     }
 }
