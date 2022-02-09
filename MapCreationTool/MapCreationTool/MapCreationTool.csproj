@@ -15,12 +15,16 @@
 
 	<ItemGroup>
 		<Compile Remove="Converters\**" />
+		<Compile Remove="NewRendering\**" />
 		<Compile Remove="Tools\**" />
 		<EmbeddedResource Remove="Converters\**" />
+		<EmbeddedResource Remove="NewRendering\**" />
 		<EmbeddedResource Remove="Tools\**" />
 		<None Remove="Converters\**" />
+		<None Remove="NewRendering\**" />
 		<None Remove="Tools\**" />
 		<Page Remove="Converters\**" />
+		<Page Remove="NewRendering\**" />
 		<Page Remove="Tools\**" />
 	</ItemGroup>
 
@@ -164,10 +168,6 @@
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	    <SubType>Designer</SubType>
 	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="NewRendering\" />
 	</ItemGroup>
 
 </Project>
