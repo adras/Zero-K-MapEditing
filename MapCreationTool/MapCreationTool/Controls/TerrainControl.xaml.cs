@@ -19,10 +19,9 @@ namespace MapCreationTool.Controls
         TerrainRenderer renderer;
         TerrainEditor editor;
         private bool useTexture = true;
+        Vector3 lastMousePos = Vector3.Zero;
 
-        BrushTypes selectedBrushType;
-        
-        public BrushTypes SelectedBrushType { get => selectedBrushType; set => selectedBrushType = value; }
+
 
         public ProjectSettings ProjectSettings
         {
@@ -80,14 +79,13 @@ namespace MapCreationTool.Controls
 
         }
 
-        Vector3 lastPos = Vector3.Zero;
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
             Point mousePoint = e.GetPosition(openTk);
             Vector3 mouseVect = new Vector3((float)mousePoint.X, (float)mousePoint.Y, 0);
             Vector3 delta;
-            if (lastPos != Vector3.Zero)
-                delta = mouseVect - lastPos;
+            if (lastMousePos != Vector3.Zero)
+                delta = mouseVect - lastMousePos;
             else
                 delta = Vector3.Zero;
 
@@ -100,7 +98,7 @@ namespace MapCreationTool.Controls
                 lblLookAt.Content = $"LookAt: {renderer.camera.Front}";
             }
 
-            lastPos = mouseVect;
+            lastMousePos = mouseVect;
         }
 
 
@@ -124,8 +122,13 @@ namespace MapCreationTool.Controls
             HitInfo result = Madness.GetHit(renderer.vertexData, ray);
             if (result == null)
                 return;
-            float brushStrength = (float)sliderStrength.Value;
-            float brushSize = (float)sliderSize.Value;
+            // float brushStrength = (float)sliderStrength.Value;
+            // float brushSize = (float)sliderSize.Value;
+            
+            // TODO: Get these values from BrushControl
+            float brushStrength = 5;
+            float brushSize = 2;
+
             editor.DrawSmoothBrush(result, renderer.vertexData, brushSize, brushStrength);
 
             renderer.UpdateImageData();
@@ -135,5 +138,8 @@ namespace MapCreationTool.Controls
         {
             renderer.camera.ScreenSize = new Vector2((int)e.NewSize.Width, (int)e.NewSize.Height);
         }
+
+
+
     }
 }

@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="MapCreationTool.Controls.TerrainBrushSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MapCreationTool.Controls"
+             xmlns:conv="clr-namespace:MapCreationTool.WPF.Converters"
+             xmlns:terrain="clr-namespace:MapCreationTool.Terrain"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Grid.Column="1" Grid.RowSpan="2" Orientation="Vertical" Margin="5, 0">
+
+        <StackPanel Orientation="Vertical">
+            <Label Content="Brush Strength"></Label>
+            <StackPanel Orientation="Horizontal">
+                <Slider Minimum="-20" Maximum="20" Name="sliderStrength" IsSnapToTickEnabled="True" SmallChange="1" Width="90"></Slider>
+                <Label Content="{Binding ElementName=sliderStrength, Path=Value}"></Label>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical">
+            <Label Content="Brush Size"></Label>
+            <StackPanel Orientation="Horizontal">
+                <Slider Minimum="2" Maximum="20"  Name="sliderSize" IsSnapToTickEnabled="True" SmallChange="1" Width="100"></Slider>
+                <Label Content="{Binding ElementName=sliderSize, Path=Value}"></Label>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel.Resources>
+                <conv:ComparisonConverter x:Key="ComparisonConverter"></conv:ComparisonConverter>
+            </StackPanel.Resources>
+            <RadioButton Checked="radioBrush_Checked" Name="radioBrushSet" Content="SetHeight" IsChecked="{Binding Path=SelectedBrushType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TerrainBrushSelector}, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static terrain:BrushTypes.FixedHeight}}"></RadioButton>
+            <RadioButton Checked="radioBrush_Checked" Name="radioBrushRL" Content="Raise/Lower" IsChecked="{Binding Path=SelectedBrushType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TerrainBrushSelector}, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static terrain:BrushTypes.RaiseLower}}"></RadioButton>
+            <RadioButton Checked="radioBrush_Checked" Name="radioBrushSmooth" Content="Smooth" IsChecked="{Binding Path=SelectedBrushType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TerrainBrushSelector}, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static terrain:BrushTypes.Smooth}}"></RadioButton>
+            <RadioButton Checked="radioBrush_Checked" Name="radioBrushRamp" Content="Ramp" IsChecked="{Binding Path=SelectedBrushType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TerrainBrushSelector}, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static terrain:BrushTypes.Ramp}}"></RadioButton>
+        </StackPanel>
+        <!-- 
+            Add multiple brush types. We need:
+            A standard, raise a bit, lower a bit
+            Set to height XX
+            Smooth
+            RAMPS, we need RAMPS!
+            -->
+    </StackPanel>
+</UserControl>
