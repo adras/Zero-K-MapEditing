@@ -20,6 +20,10 @@ namespace MapCreationTool.Controls
         TerrainEditor editor;
         private bool useTexture = true;
 
+        BrushTypes selectedBrushType;
+        
+        public BrushTypes SelectedBrushType { get => selectedBrushType; set => selectedBrushType = value; }
+
         public ProjectSettings ProjectSettings
         {
             get { return (ProjectSettings)GetValue(ProjectSettingsProperty); }
@@ -39,6 +43,7 @@ namespace MapCreationTool.Controls
                 renderer.useTexture = value;
             }
         }
+
 
         public static readonly DependencyProperty ProjectSettingsProperty = DependencyProperty.Register(
             nameof(ProjectSettings),

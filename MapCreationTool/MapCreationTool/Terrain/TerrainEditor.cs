@@ -14,9 +14,8 @@ namespace MapCreationTool.Terrain
 
         public void DrawSmoothBrush(HitInfo hit, VertexData vertexData, float brushSize, float brushStrength)
         {
-
-            // Do some rectangle manipulation
-            // NOTE: TODO: Normals also need to be recalculated
+            // Right now this looks kinda crappy
+        
 
             int halfBrushWidth = (int)(brushSize / 2f);
             int halfBrushHeight = (int)(brushSize / 2f);
