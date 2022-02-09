@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:MapCreationTool"
              StartupUri="Windows\MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/StyleResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
     </Application.Resources>
 </Application>
