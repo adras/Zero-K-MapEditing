@@ -53,7 +53,7 @@
                     <Grid>
                         <Border 
                                 Name="Border"
-                                Margin="0,0,-4,0" 
+                                Margin="0, 0, 4, 0" 
                                 Background="#330000"
                                 BorderBrush="#003300" 
                                 BorderThickness="1,1,1,1" 
