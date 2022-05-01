@@ -59,6 +59,7 @@ The heightmap of a map can be viewed, if the correct path is given
 * DONE Add support to edit some values of mapinfo.lua
 * DONE Add support to save mapinfo.lua
 
+### General
 * Define Project-Settings file with read/write/edit support
 * Implement support for .7z creation
 * Add support to read and write start-zones
@@ -68,3 +69,6 @@ The heightmap of a map can be viewed, if the correct path is given
 * Create github release pipeline
 * TENTATIVE Add support to edit heightmap
 
+### Terrain editing
+* Implement an Octree to improve HitTest-Performance
+* Implement various brushes for terrain editing
