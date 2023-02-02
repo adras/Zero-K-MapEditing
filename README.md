@@ -11,7 +11,7 @@ A very early prototype can be found in [Releases](https://github.com/adras/Zero-
 Be aware though, that it might crash any time.
 
 ## Build instructions
-# Get sourcecode
+### Get sourcecode
 
 Since this project includes other git repositories as submodules it's not enough to simply download the code as .zip from github.
 
@@ -20,7 +20,7 @@ The code needs to be pulled via git. For instance, create a new empty directory 
 
 See [this stackoverflow article](https://stackoverflow.com/questions/3796927/how-do-i-git-clone-a-repo-including-its-submodules) for additional information
 
-# Build solution
+### Build solution
 * Get Visual Studio e.g. Visual Studio Community Edition
 * Open Project/Solution -> MapCreationTool\MapCreationTool.sln 
 * Build/Rebuild Solution
